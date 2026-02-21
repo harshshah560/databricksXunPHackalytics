@@ -154,8 +154,7 @@ export async function fetchDataSources() {
 }
 
 export async function sendChatMessage(message, history = []) {
-    // Chat always uses the RAG endpoint if available
-    // The RAG endpoint should be a Databricks Model Serving endpoint or a separate backend
+    // 1. Try custom RAG endpoint if configured
     const RAG_ENDPOINT = import.meta.env.VITE_RAG_ENDPOINT;
     if (RAG_ENDPOINT) {
         try {
@@ -173,6 +172,7 @@ export async function sendChatMessage(message, history = []) {
         }
     }
 
+    // 3. Fallback to mock responses
     await simulateDelay(1500);
     const lower = message.toLowerCase();
     if (lower.includes('afghanistan') || lower.includes('afg')) {
