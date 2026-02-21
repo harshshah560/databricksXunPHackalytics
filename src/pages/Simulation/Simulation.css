@@ -1,0 +1,608 @@
+.sim-page {
+    display: flex;
+    height: calc(100vh - 60px);
+    overflow: hidden;
+}
+
+/* ── Map Area ─────────────────────────────────── */
+.sim-map-area {
+    flex: 1;
+    position: relative;
+    min-width: 0;
+}
+
+.map-overlay-info {
+    position: absolute;
+    top: var(--space-md);
+    left: var(--space-md);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-lg);
+}
+
+.map-overlay-country {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+.map-overlay-crisis {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* ── Country Target Marker ────────────────────── */
+.country-target {
+    color: var(--accent-primary);
+    animation: targetPulse 2s ease-in-out infinite;
+}
+
+@keyframes targetPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* ── Region Markers (Results) ─────────────────── */
+.region-marker {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: default;
+}
+
+.marker-pulse {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    animation: markerPulse 2s ease-in-out infinite;
+}
+
+.region-marker.critical .marker-pulse {
+    background: rgba(239, 68, 68, 0.2);
+}
+
+.region-marker.severe .marker-pulse {
+    background: rgba(245, 158, 11, 0.2);
+}
+
+.region-marker.moderate .marker-pulse {
+    background: rgba(59, 130, 246, 0.2);
+}
+
+.region-marker.low .marker-pulse {
+    background: rgba(16, 185, 129, 0.2);
+}
+
+@keyframes markerPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+}
+
+.marker-core {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.region-marker.critical .marker-core {
+    background: #ef4444;
+    color: #fff;
+}
+
+.region-marker.severe .marker-core {
+    background: #f59e0b;
+    color: #fff;
+}
+
+.region-marker.moderate .marker-core {
+    background: #3b82f6;
+    color: #fff;
+}
+
+.region-marker.low .marker-core {
+    background: #10b981;
+    color: #fff;
+}
+
+.marker-label {
+    position: absolute;
+    top: 34px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-sm);
+    padding: 4px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    white-space: nowrap;
+    box-shadow: var(--shadow-md);
+}
+
+.marker-name {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.marker-sev {
+    font-size: 0.6rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+/* ── Control Panel ────────────────────────────── */
+.sim-panel {
+    width: 420px;
+    flex-shrink: 0;
+    background: var(--bg-secondary);
+    border-left: 1px solid var(--border-secondary);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.sim-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--border-secondary);
+}
+
+.sim-panel-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.sim-panel-title h2 {
+    font-size: 1.1rem;
+}
+
+.sim-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: var(--radius-full);
+    background: rgba(233, 69, 96, 0.12);
+    color: var(--accent-primary);
+}
+
+.sim-phase {
+    flex: 1;
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+/* ── Setup Phase ──────────────────────────────── */
+.sim-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.sim-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.country-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xs);
+}
+
+.country-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--space-sm) var(--space-md);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.country-chip:hover {
+    border-color: var(--text-tertiary);
+    background: var(--bg-hover);
+}
+
+.country-chip.active {
+    border-color: var(--accent-primary);
+    background: rgba(233, 69, 96, 0.08);
+}
+
+.country-chip-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.country-chip-pop {
+    font-size: 0.65rem;
+    color: var(--text-tertiary);
+}
+
+.crisis-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.crisis-option {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-align: left;
+}
+
+.crisis-option:hover {
+    border-color: var(--text-tertiary);
+    background: var(--bg-hover);
+}
+
+.crisis-option.active {
+    border-color: var(--accent-primary);
+    background: rgba(233, 69, 96, 0.08);
+}
+
+.crisis-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+}
+
+.crisis-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.crisis-desc {
+    font-size: 0.72rem;
+    color: var(--text-tertiary);
+    margin-top: 2px;
+}
+
+.run-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: 14px;
+    background: linear-gradient(135deg, var(--accent-primary), #ff6b81);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    box-shadow: 0 4px 20px rgba(233, 69, 96, 0.3);
+}
+
+.run-btn:hover {
+    box-shadow: 0 6px 28px rgba(233, 69, 96, 0.4);
+}
+
+/* ── Simulating Phase ─────────────────────────── */
+.simulating-phase {
+    justify-content: center;
+    align-items: center;
+}
+
+.sim-progress-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.sim-progress-header h3 {
+    font-size: 1.1rem;
+}
+
+.spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.sim-progress-sub {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: var(--space-lg);
+}
+
+.sim-steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    width: 100%;
+    max-width: 300px;
+}
+
+.sim-step {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    font-size: 0.85rem;
+    color: var(--text-tertiary);
+    transition: all var(--transition-base);
+}
+
+.sim-step.done {
+    color: var(--accent-success);
+}
+
+.sim-step.active {
+    color: var(--accent-primary);
+}
+
+.sim-step-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-tertiary);
+    transition: all var(--transition-base);
+}
+
+.sim-step.done .sim-step-icon {
+    background: rgba(16, 185, 129, 0.15);
+}
+
+.sim-step.active .sim-step-icon {
+    background: rgba(233, 69, 96, 0.15);
+}
+
+/* ── Results Phase ────────────────────────────── */
+.results-phase {
+    gap: var(--space-md);
+}
+
+.results-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.results-header h3 {
+    font-size: 1rem;
+}
+
+.result-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+}
+
+.result-stat {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-md);
+}
+
+.result-stat svg {
+    color: var(--accent-primary);
+    flex-shrink: 0;
+}
+
+.result-stat-val {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.result-stat-label {
+    font-size: 0.65rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.food-risk {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background: rgba(239, 68, 68, 0.06);
+    border: 1px solid rgba(239, 68, 68, 0.15);
+    border-radius: var(--radius-md);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.food-risk svg {
+    color: var(--accent-danger);
+}
+
+/* ── Result Chart ─────────────────────────────── */
+.result-chart {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+}
+
+.result-chart h4 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-md);
+}
+
+/* ── Affected Regions ─────────────────────────── */
+.result-regions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.result-regions h4 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.region-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--bg-primary);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-secondary);
+}
+
+.region-sev-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.region-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.region-name {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: block;
+}
+
+.region-stats {
+    font-size: 0.68rem;
+    color: var(--text-tertiary);
+}
+
+.region-sev-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    flex-shrink: 0;
+}
+
+/* ── Key Insights ─────────────────────────────── */
+.result-insights {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.result-insights h4 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.result-insights ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.result-insights li {
+    display: flex;
+    gap: var(--space-sm);
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    padding: var(--space-sm);
+    background: var(--bg-primary);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-secondary);
+}
+
+.result-insights li svg {
+    color: var(--accent-primary);
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+/* ── Responsive ───────────────────────────────── */
+@media (max-width: 1024px) {
+    .sim-page {
+        flex-direction: column;
+    }
+
+    .sim-map-area {
+        height: 40vh;
+    }
+
+    .sim-panel {
+        width: 100%;
+        flex: 1;
+    }
+}
