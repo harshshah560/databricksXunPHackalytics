@@ -19,20 +19,23 @@ import {
     Tooltip, ResponsiveContainer, Legend,
 } from 'recharts';
 import projectsData from '../../services/projects_data.json';
-import cerfIds      from '../../services/cerf_ids.json';
-import hrpData      from '../../services/hrp_by_iso.json';
+import cerfIds from '../../services/cerf_ids.json';
+import hrpData from '../../services/hrp_by_iso.json';
+import { useSearchParams } from 'react-router-dom';
+import { streamChatMessage } from '../../services/api';
+import { SAMPLE_CHAT } from '../../services/mockData';
 import './Wiki.css';
 
 // ─────────────────────────────────────────────────────────────────
 // Country lookups
 // ─────────────────────────────────────────────────────────────────
 const COUNTRY_NAMES = {
-    AFG:'Afghanistan', BFA:'Burkina Faso', CAF:'Central African Republic',
-    COD:'DR Congo', COL:'Colombia', ETH:'Ethiopia', HTI:'Haiti',
-    IRQ:'Iraq', LBN:'Lebanon', MLI:'Mali', MMR:'Myanmar',
-    MOZ:'Mozambique', NER:'Niger', NGA:'Nigeria', PSE:'Palestine',
-    SDN:'Sudan', SOM:'Somalia', SSD:'South Sudan', SYR:'Syria',
-    TCD:'Chad', UKR:'Ukraine', VEN:'Venezuela', YEM:'Yemen',
+    AFG: 'Afghanistan', BFA: 'Burkina Faso', CAF: 'Central African Republic',
+    COD: 'DR Congo', COL: 'Colombia', ETH: 'Ethiopia', HTI: 'Haiti',
+    IRQ: 'Iraq', LBN: 'Lebanon', MLI: 'Mali', MMR: 'Myanmar',
+    MOZ: 'Mozambique', NER: 'Niger', NGA: 'Nigeria', PSE: 'Palestine',
+    SDN: 'Sudan', SOM: 'Somalia', SSD: 'South Sudan', SYR: 'Syria',
+    TCD: 'Chad', UKR: 'Ukraine', VEN: 'Venezuela', YEM: 'Yemen',
 };
 
 const NAME_TO_CODE = Object.entries(COUNTRY_NAMES).reduce((acc, [code, name]) => {
@@ -66,7 +69,7 @@ function detectYear(text) {
 
 function getCerfUrl(cc, year = '2025') {
     const key = `${cc}_${year}`;
-    const id  = cerfIds[key] ?? cerfIds[`${cc}_2024`] ?? cerfIds[`${cc}_2023`];
+    const id = cerfIds[key] ?? cerfIds[`${cc}_2024`] ?? cerfIds[`${cc}_2023`];
     if (!id) return null;
     const y = cerfIds[key] ? year : (cerfIds[`${cc}_2024`] ? '2024' : '2023');
     return `https://cerf.un.org/what-we-do/allocation/${y}/country/${id}`;
@@ -95,7 +98,7 @@ function buildDataContext(countryCodes, queryYear = null, sectorHint = null) {
     let ctx = '\n\n---\n## INJECTED DATA CONTEXT\n\n';
 
     for (const cc of countryCodes.slice(0, 3)) {
-        const name    = COUNTRY_NAMES[cc] || cc;
+        const name = COUNTRY_NAMES[cc] || cc;
         const cerfUrl = getCerfUrl(cc, year);
 
         ctx += `### ${name}\n`;
@@ -108,11 +111,11 @@ function buildDataContext(countryCodes, queryYear = null, sectorHint = null) {
 
         // ── CBPF Projects ─────────────────────────────────────────
         const allProjs = projectsData[cc] || [];
-        const projs    = sectorHint
+        const projs = sectorHint
             ? allProjs.filter(p => p.sector?.toLowerCase().includes(sectorHint.toLowerCase()))
             : allProjs;
-        const topProjs  = [...projs].sort((a, b) => b.allocation - a.allocation).slice(0, 10);
-        const totAlloc  = projs.reduce((s, p) => s + p.allocation, 0);
+        const topProjs = [...projs].sort((a, b) => b.allocation - a.allocation).slice(0, 10);
+        const totAlloc = projs.reduce((s, p) => s + p.allocation, 0);
         const totPeople = projs.reduce((s, p) => s + (p.targeted || 0), 0);
 
         if (topProjs.length) {
@@ -188,7 +191,7 @@ For chart requests, output a \`\`\`chart block:
 // ─────────────────────────────────────────────────────────────────
 // Chart colour palette
 // ─────────────────────────────────────────────────────────────────
-const CHART_COLORS = ['#009EDB','#E74C3C','#F39C12','#27AE60','#7B61FF','#D63384','#1A2B4A','#7CB342'];
+const CHART_COLORS = ['#009EDB', '#E74C3C', '#F39C12', '#27AE60', '#7B61FF', '#D63384', '#1A2B4A', '#7CB342'];
 
 // ─────────────────────────────────────────────────────────────────
 // Parse ```chart blocks
@@ -224,7 +227,7 @@ function ChartRenderer({ chart }) {
 
     if (chart.type === 'pie') return (
         <div className="chat-chart">
-            <div className="chart-header"><BarChart3 size={14}/><h4 className="chart-title">{chart.title}</h4></div>
+            <div className="chart-header"><BarChart3 size={14} /><h4 className="chart-title">{chart.title}</h4></div>
             <ResponsiveContainer width="100%" height={260}>
                 <PieChart>
                     <Pie data={chart.data} cx="50%" cy="50%" innerRadius={55} outerRadius={95}
@@ -239,11 +242,11 @@ function ChartRenderer({ chart }) {
     );
 
     if (chart.type === 'line') {
-        const keys   = chart.keys || Object.keys(chart.data[0]).filter(k => k !== 'year' && k !== 'name');
+        const keys = chart.keys || Object.keys(chart.data[0]).filter(k => k !== 'year' && k !== 'name');
         const labels = chart.labels || keys;
         return (
             <div className="chat-chart">
-                <div className="chart-header"><BarChart3 size={14}/><h4 className="chart-title">{chart.title}</h4></div>
+                <div className="chart-header"><BarChart3 size={14} /><h4 className="chart-title">{chart.title}</h4></div>
                 <ResponsiveContainer width="100%" height={240}>
                     <LineChart data={chart.data} margin={{ top: 5, right: 20, bottom: 5, left: 10 }}>
                         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
@@ -260,11 +263,11 @@ function ChartRenderer({ chart }) {
     }
 
     // Default: bar
-    const keys   = chart.keys || Object.keys(chart.data[0]).filter(k => k !== 'name');
+    const keys = chart.keys || Object.keys(chart.data[0]).filter(k => k !== 'name');
     const labels = chart.labels || keys;
     return (
         <div className="chat-chart">
-            <div className="chart-header"><BarChart3 size={14}/><h4 className="chart-title">{chart.title}</h4></div>
+            <div className="chart-header"><BarChart3 size={14} /><h4 className="chart-title">{chart.title}</h4></div>
             <ResponsiveContainer width="100%" height={240}>
                 <BarChart data={chart.data} margin={{ top: 5, right: 20, bottom: 5, left: 10 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
@@ -283,12 +286,13 @@ function ChartRenderer({ chart }) {
 // Main component
 // ─────────────────────────────────────────────────────────────────
 export default function Wiki() {
-    const [messages,  setMessages]  = useState([]);
-    const [input,     setInput]     = useState('');
-    const [loading,   setLoading]   = useState(false);
+    const [searchParams] = useSearchParams();
+    const [messages, setMessages] = useState(SAMPLE_CHAT);
+    const [input, setInput] = useState('');
+    const [loading, setLoading] = useState(false);
     const [streaming, setStreaming] = useState(false);
     const chatEndRef = useRef(null);
-    const inputRef   = useRef(null);
+    const inputRef = useRef(null);
 
     // Auto-fire prompt written by CountryModal's "Ask AI" button
     useEffect(() => {
@@ -299,6 +303,22 @@ export default function Wiki() {
             setTimeout(() => handleSendPrompt(autoPrompt), 120);
         }
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+    useEffect(() => {
+        const query = searchParams.get('q');
+        if (query) {
+            setInput(query);
+            // Small delay to ensure inputRef is available after initial render
+            setTimeout(() => inputRef.current?.focus(), 100);
+        }
+    }, [searchParams]);
+
+    useEffect(() => {
+        if (inputRef.current) {
+            inputRef.current.style.height = 'auto';
+            inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
+        }
+    }, [input]);
 
     useEffect(() => {
         chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -317,15 +337,15 @@ export default function Wiki() {
         setMessages(prev => [...prev, userMsg]);
 
         // ── Detect context from the query ────────────────────────
-        const mentionedCCs  = detectCountries(currentInput);
+        const mentionedCCs = detectCountries(currentInput);
         const mentionedYear = detectYear(currentInput);
-        const SECTOR_HINTS  = ['health','wash','water','education','shelter','nfi',
-                               'nutrition','protection','food','livelihoods'];
+        const SECTOR_HINTS = ['health', 'wash', 'water', 'education', 'shelter', 'nfi',
+            'nutrition', 'protection', 'food', 'livelihoods'];
         const sectorHint = SECTOR_HINTS.find(s => currentInput.toLowerCase().includes(s)) || null;
 
         const dataCtx = buildDataContext(mentionedCCs, mentionedYear, sectorHint);
 
-        const historyForApi    = messages.map(m => ({ role: m.role, content: m.content }));
+        const historyForApi = messages.map(m => ({ role: m.role, content: m.content }));
         const userContentForApi = currentInput + dataCtx;
         const apiMessages = [...historyForApi, { role: 'user', content: userContentForApi }];
 
@@ -345,7 +365,7 @@ export default function Wiki() {
             });
 
             if (!res.ok) throw new Error(`API ${res.status}`);
-            const data  = await res.json();
+            const data = await res.json();
             const reply = data.content?.find(b => b.type === 'text')?.text || 'No response received.';
 
             setStreaming(true);
