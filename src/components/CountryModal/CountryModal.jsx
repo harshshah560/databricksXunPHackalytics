@@ -4,8 +4,10 @@ import {
   AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell,
   XAxis, YAxis, Tooltip, ResponsiveContainer, Legend,
 } from 'recharts';
-import { X, Heart, Droplets, BookOpen, Home, ShieldCheck, Wheat, Activity,
-         Users, Baby, AlertCircle } from 'lucide-react';
+import {
+  X, Heart, Droplets, BookOpen, Home, ShieldCheck, Wheat, Activity,
+  Users, Baby, AlertCircle
+} from 'lucide-react';
 import './CountryModal.css';
 
 // ── Formatting helpers ────────────────────────────────────────────
@@ -31,20 +33,20 @@ const pctColor = (pct) => {
 // ── Issue icon map ────────────────────────────────────────────────
 const ISSUE_ICONS = {
   'Food Security': Wheat,
-  Health:          Heart,
-  WASH:            Droplets,
-  Shelter:         Home,
-  Protection:      ShieldCheck,
-  Education:       BookOpen,
+  Health: Heart,
+  Water: Droplets,
+  Shelter: Home,
+  Protection: ShieldCheck,
+  Education: BookOpen,
 };
 
 const ISSUE_COLORS = {
   'Food Security': '#f59e0b',
-  Health:          '#ef4444',
-  WASH:            '#38bdf8',
-  Shelter:         '#a78bfa',
-  Protection:      '#34d399',
-  Education:       '#fb923c',
+  Health: '#ef4444',
+  Water: '#38bdf8',
+  Shelter: '#a78bfa',
+  Protection: '#34d399',
+  Education: '#fb923c',
 };
 
 // ── Pictogram component ───────────────────────────────────────────
@@ -55,9 +57,9 @@ function Pictogram({ boys, girls, men, women }) {
   if (total === 0) return <p className="cm-no-data">No demographic data available</p>;
 
   const children = boys + girls;
-  const adults   = men + women;
-  const childCount  = Math.round((children / total) * TOTAL_ICONS);
-  const adultCount  = TOTAL_ICONS - childCount;
+  const adults = men + women;
+  const childCount = Math.round((children / total) * TOTAL_ICONS);
+  const adultCount = TOTAL_ICONS - childCount;
 
   const icons = [
     ...Array(childCount).fill('child'),
@@ -80,19 +82,19 @@ function Pictogram({ boys, girls, men, women }) {
             {/* body */}
             {type === 'child' ? (
               <>
-                <line x1="10" y1="9"  x2="10" y2="22" strokeWidth="2.5" />
-                <line x1="10" y1="13" x2="5"  y2="18" strokeWidth="2"   />
-                <line x1="10" y1="13" x2="15" y2="18" strokeWidth="2"   />
-                <line x1="10" y1="22" x2="6"  y2="30" strokeWidth="2"   />
-                <line x1="10" y1="22" x2="14" y2="30" strokeWidth="2"   />
+                <line x1="10" y1="9" x2="10" y2="22" strokeWidth="2.5" />
+                <line x1="10" y1="13" x2="5" y2="18" strokeWidth="2" />
+                <line x1="10" y1="13" x2="15" y2="18" strokeWidth="2" />
+                <line x1="10" y1="22" x2="6" y2="30" strokeWidth="2" />
+                <line x1="10" y1="22" x2="14" y2="30" strokeWidth="2" />
               </>
             ) : (
               <>
-                <line x1="10" y1="8"  x2="10" y2="22" strokeWidth="2.5" />
-                <line x1="10" y1="12" x2="4"  y2="17" strokeWidth="2"   />
-                <line x1="10" y1="12" x2="16" y2="17" strokeWidth="2"   />
-                <line x1="10" y1="22" x2="6"  y2="32" strokeWidth="2"   />
-                <line x1="10" y1="22" x2="14" y2="32" strokeWidth="2"   />
+                <line x1="10" y1="8" x2="10" y2="22" strokeWidth="2.5" />
+                <line x1="10" y1="12" x2="4" y2="17" strokeWidth="2" />
+                <line x1="10" y1="12" x2="16" y2="17" strokeWidth="2" />
+                <line x1="10" y1="22" x2="6" y2="32" strokeWidth="2" />
+                <line x1="10" y1="22" x2="14" y2="32" strokeWidth="2" />
               </>
             )}
           </svg>
@@ -102,12 +104,12 @@ function Pictogram({ boys, girls, men, women }) {
         <span className="pleg-child">
           <span className="pleg-dot" />
           Children — {fmtPeople(children)}
-          <span className="pleg-pct">({total > 0 ? Math.round(children/total*100) : 0}%)</span>
+          <span className="pleg-pct">({total > 0 ? Math.round(children / total * 100) : 0}%)</span>
         </span>
         <span className="pleg-adult">
           <span className="pleg-dot" />
           Adults — {fmtPeople(adults)}
-          <span className="pleg-pct">({total > 0 ? Math.round(adults/total*100) : 0}%)</span>
+          <span className="pleg-pct">({total > 0 ? Math.round(adults / total * 100) : 0}%)</span>
         </span>
       </div>
     </div>
@@ -172,40 +174,40 @@ export default function CountryModal({ country, onClose }) {
 
   // ── 1. CBPF Timeline data ─────────────────────────────────────
   const timelineData = cbpf_timeline.map((d) => ({
-    year:   d.year,
+    year: d.year,
     Received: d.cbpf_funding,
-    Target:   d.cbpf_target,
+    Target: d.cbpf_target,
   }));
 
   // ── 2. Cluster breakdown bars (sorted worst first) ─────────────
   const clusterData = Object.entries(cluster_breakdown)
     .map(([cat, v]) => ({
-      name:     cat,
+      name: cat,
       Required: v.req,
-      Funded:   v.fund,
-      pct:      v.pct,
-      fill:     ISSUE_COLORS[cat] || '#94a3b8',
+      Funded: v.fund,
+      pct: v.pct,
+      fill: ISSUE_COLORS[cat] || '#94a3b8',
     }))
     .sort((a, b) => a.pct - b.pct);
 
   // ── 3. Children vs Adults pie ──────────────────────────────────
   const { boys, girls, men, women, total } = affected;
   const children = boys + girls;
-  const adults   = men + women;
+  const adults = men + women;
   const demoPie = total > 0 ? [
-    { name: 'Children', value: children, pct: Math.round(children/total*100), fill: '#fb923c' },
-    { name: 'Adults',   value: adults,   pct: Math.round(adults/total*100),   fill: '#60a5fa' },
+    { name: 'Children', value: children, pct: Math.round(children / total * 100), fill: '#fb923c' },
+    { name: 'Adults', value: adults, pct: Math.round(adults / total * 100), fill: '#60a5fa' },
   ] : [];
 
   // ── 4. Population impact pie ───────────────────────────────────
   const popImpactPie = world.population > 0 ? [
-    { name: 'Targeted',      value: total,                         pct: pop_impact_pct,           fill: '#ef4444' },
+    { name: 'Targeted', value: total, pct: pop_impact_pct, fill: '#ef4444' },
     { name: 'Not in crisis', value: Math.max(world.population - total, 0), pct: 100 - pop_impact_pct, fill: '#1e293b' },
   ] : [];
 
   // ── Latest CBPF gap ────────────────────────────────────────────
-  const latest   = cbpf_timeline[cbpf_timeline.length - 1];
-  const gap      = latest ? latest.cbpf_target - latest.cbpf_funding : 0;
+  const latest = cbpf_timeline[cbpf_timeline.length - 1];
+  const gap = latest ? latest.cbpf_target - latest.cbpf_funding : 0;
   const latestPct = latest && latest.cbpf_target > 0
     ? Math.round((latest.cbpf_funding / latest.cbpf_target) * 100) : 0;
 
@@ -234,9 +236,6 @@ export default function CountryModal({ country, onClose }) {
             <div className="cm-header-left">
               <h2 className="cm-country-name">{name}</h2>
               <div className="cm-header-badges">
-                <span className="cm-badge" style={{ '--c': pctColor(latestPct) }}>
-                  {latestPct}% CBPF funded ({latest?.year ?? '—'})
-                </span>
                 {wi.vulnerability_score > 0 && (
                   <span className="cm-badge cm-badge-vuln">
                     Vulnerability score: {wi.vulnerability_score}
@@ -278,19 +277,19 @@ export default function CountryModal({ country, onClose }) {
                   <AreaChart data={timelineData} margin={{ top: 8, right: 16, left: 10, bottom: 0 }}>
                     <defs>
                       <linearGradient id="gradTarget" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%"  stopColor="#475569" stopOpacity={0.5} />
+                        <stop offset="5%" stopColor="#475569" stopOpacity={0.5} />
                         <stop offset="95%" stopColor="#475569" stopOpacity={0.05} />
                       </linearGradient>
                       <linearGradient id="gradFund" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%"  stopColor="#38bdf8" stopOpacity={0.7} />
+                        <stop offset="5%" stopColor="#38bdf8" stopOpacity={0.7} />
                         <stop offset="95%" stopColor="#38bdf8" stopOpacity={0.05} />
                       </linearGradient>
                     </defs>
                     <XAxis dataKey="year" tick={{ fill: '#64748b', fontSize: 11 }} axisLine={false} tickLine={false} />
                     <YAxis tickFormatter={(v) => fmt(v)} tick={{ fill: '#64748b', fontSize: 10 }} axisLine={false} tickLine={false} width={60} />
                     <Tooltip content={<FundingTooltip />} />
-                    <Area type="monotone" dataKey="Target"   stroke="#475569" fill="url(#gradTarget)" strokeWidth={1.5} strokeDasharray="4 3" dot={false} />
-                    <Area type="monotone" dataKey="Received" stroke="#38bdf8" fill="url(#gradFund)"   strokeWidth={2}   dot={{ r: 3, fill: '#38bdf8' }} />
+                    <Area type="monotone" dataKey="Target" stroke="#475569" fill="url(#gradTarget)" strokeWidth={1.5} strokeDasharray="4 3" dot={false} />
+                    <Area type="monotone" dataKey="Received" stroke="#38bdf8" fill="url(#gradFund)" strokeWidth={2} dot={{ r: 3, fill: '#38bdf8' }} />
                     <Legend wrapperStyle={{ fontSize: 11, color: '#94a3b8', paddingTop: 4 }} />
                   </AreaChart>
                 </ResponsiveContainer>
@@ -372,14 +371,14 @@ export default function CountryModal({ country, onClose }) {
                 <div className="cm-col">
                   <p className="cm-col-label">Demographic split</p>
                   {demoPie.length > 0 ? (
-                    <ResponsiveContainer width="100%" height={180}>
+                    <ResponsiveContainer width="100%" height={200}>
                       <PieChart>
                         <Pie
                           data={demoPie}
                           cx="50%"
-                          cy="45%"
-                          innerRadius={52}
-                          outerRadius={78}
+                          cy="50%"
+                          innerRadius={40}
+                          outerRadius={80}
                           paddingAngle={3}
                           dataKey="value"
                           strokeWidth={0}

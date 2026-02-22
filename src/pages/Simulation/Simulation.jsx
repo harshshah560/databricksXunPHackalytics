@@ -546,7 +546,6 @@ export default function Simulation() {
                         <Radar size={20} />
                         <h2>Disaster Forecast</h2>
                     </div>
-                    <span className="sim-badge">LIVE DATA</span>
                 </div>
 
                 <AnimatePresence mode="wait">
@@ -561,10 +560,6 @@ export default function Simulation() {
                             transition={{ duration: 0.2 }}
                         >
                             <div className="sim-section">
-                                <label className="sim-label">
-                                    <AlertTriangle size={14} />
-                                    Select a disaster type to forecast
-                                </label>
                                 <div className="disaster-type-grid">
                                     {Object.entries(DISASTER_CONFIG).map(([type, config]) => (
                                         <motion.button
