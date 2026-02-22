@@ -159,9 +159,13 @@ export function getCountries() {
   }
 
   // --- Affected persons (latest per country, with reached) ---
+  // Note: affected_persons_clean.csv uses different codes for some countries:
+  //   CAR → CAF (Central African Republic)
+  //   DRC → COD (DR Congo)
+  const AFFECTED_CODE_FIX = { CAR: 'CAF', DRC: 'COD' };
   const affected = {};
   for (const row of parseCSV(affRaw)) {
-    const cc = row.countrycode;
+    const cc = AFFECTED_CODE_FIX[row.countrycode] ?? row.countrycode;
     const yr = parseInt(row.year);
     if (!affected[cc] || yr > affected[cc].year) {
       affected[cc] = {
