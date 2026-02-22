@@ -353,26 +353,13 @@ export default function Wiki() {
         const assistantIdx = messages.length + 1;
 
         try {
-            const res = await fetch('https://api.anthropic.com/v1/messages', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    model: 'claude-sonnet-4-20250514',
-                    max_tokens: 1000,
-                    system: SYSTEM_PROMPT,
-                    messages: apiMessages,
-                }),
-            });
-
-            if (!res.ok) throw new Error(`API ${res.status}`);
-            const data = await res.json();
-            const reply = data.content?.find(b => b.type === 'text')?.text || 'No response received.';
-
-            setStreaming(true);
-            setMessages(prev => {
-                const updated = [...prev];
-                updated[assistantIdx] = { role: 'assistant', content: reply };
-                return updated;
+            await streamChatMessage(userContentForApi, historyForApi, (text) => {
+                setStreaming(true);
+                setMessages(prev => {
+                    const updated = [...prev];
+                    updated[assistantIdx] = { role: 'assistant', content: text };
+                    return updated;
+                });
             });
         } catch (err) {
             setMessages(prev => {
