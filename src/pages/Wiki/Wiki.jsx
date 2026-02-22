@@ -197,25 +197,6 @@ export default function Wiki() {
     return (
         <div className="wiki-page">
             <div className="chat-panel">
-                {/* Header */}
-                <div className="chat-header">
-                    <div className="chat-header-left">
-                        <div className="chat-header-icon">
-                            <Sparkles size={18} />
-                        </div>
-                        <div>
-                            <h2>NexAtlas AI</h2>
-                            <span className="chat-header-sub">
-                                <Database size={12} />
-                                Powered by Databricks · FTS · CBPF · EM-DAT
-                            </span>
-                        </div>
-                    </div>
-                    <div className="chat-header-badge">
-                        <span className="status-dot" />
-                        Online
-                    </div>
-                </div>
 
                 {/* Messages */}
                 <div className="chat-messages">
