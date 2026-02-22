@@ -185,11 +185,11 @@ function Pictogram({ boys, girls, men, women }) {
 // ── Efficiency/priority color helpers (mirrors Landing.jsx) ──────
 const effColor = (ratio) => {
   if (ratio == null) return '#718096';
-  if (ratio < 0.5)  return '#27AE60';
-  if (ratio < 0.75) return '#7CB342';
-  if (ratio < 1.25) return '#F39C12';
-  if (ratio < 1.75) return '#E67E22';
-  return '#C0392B';
+  if (ratio >= 1.75) return '#27AE60';  // well-resourced
+  if (ratio >= 1.25) return '#7CB342';
+  if (ratio >= 0.75) return '#F39C12';
+  if (ratio >= 0.5)  return '#E67E22';
+  return '#C0392B';                     // severely underspending per person
 };
 const priorityColor = (score) => {
   if (score == null) return '#718096';
@@ -595,7 +595,7 @@ export default function CountryModal({ country, onClose }) {
                     const meta     = ISSUE_META[cat] || {};
                     const Icon     = meta.icon || AlertCircle;
                     const diffPct  = ratio != null ? Math.round(Math.abs(ratio - 1) * 100) : null;
-                    const cheaper  = ratio != null && ratio < 1;
+                    const cheaper  = ratio != null && ratio < 1;  // below median = underfunded
                     return (
                       <div key={cat} className="cm-eff-row">
                         <span className="cm-eff-cat">
@@ -605,8 +605,8 @@ export default function CountryModal({ country, onClose }) {
                         <span className="cm-eff-cpp">${bd.cost_per_person?.toFixed(0)}</span>
                         <span className="cm-eff-ratio">
                           {ratio != null ? (
-                            <span className={`cm-eff-badge ${cheaper ? 'cm-eff-badge--good' : ratio < 1.75 ? 'cm-eff-badge--mid' : 'cm-eff-badge--bad'}`}>
-                              {cheaper ? '↓' : '↑'}{diffPct}% {cheaper ? 'below' : 'above'}
+                            <span className={`cm-eff-badge ${!cheaper ? 'cm-eff-badge--good' : ratio >= 0.75 ? 'cm-eff-badge--mid' : 'cm-eff-badge--bad'}`}>
+                              {!cheaper ? '↑' : '↓'}{diffPct}% {!cheaper ? 'above' : 'below'}
                               <span className="cm-eff-med"> (med ${glMed?.toFixed(0)})</span>
                             </span>
                           ) : '—'}

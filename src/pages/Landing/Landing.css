@@ -4,22 +4,23 @@
    Light/dark theme via CSS variables on :root and .dark
    ═══════════════════════════════════════════════════════════ */
 
-/* ── Light tokens (default) ── */
+/* ── UN/OCHA light theme tokens ── */
 :root {
-  --lp-bg:             #F5F7FA;
-  --panel-bg:          rgba(255, 255, 255, 0.95);
-  --panel-border:      rgba(0, 0, 0, 0.10);
-  --panel-shadow:      0 2px 16px rgba(0, 0, 0, 0.10);
-  --text-strong:       #1A2B4A;
-  --text-body:         #333333;
-  --text-muted:        #666666;
-  --text-faint:        #999999;
-  --rule:              rgba(0, 0, 0, 0.08);
-  --bar-track:         rgba(0, 0, 0, 0.06);
-  --hover-bg:          rgba(0, 0, 0, 0.03);
-  --un-blue:           #009EDB;
+  --lp-bg:             #F0F4F8;           /* UN light blue-grey page bg */
+  --panel-bg:          rgba(255,255,255,0.96);
+  --panel-border:      rgba(0, 100, 160, 0.14); /* UN blue tint border */
+  --panel-shadow:      0 2px 16px rgba(0, 100, 160, 0.10);
+  --text-strong:       #1A2B4A;           /* UN Dark Blue */
+  --text-body:         #2C3E50;
+  --text-muted:        #5D6D7E;
+  --text-faint:        #85929E;
+  --rule:              rgba(0, 100, 160, 0.10);
+  --bar-track:         rgba(0, 100, 160, 0.07);
+  --hover-bg:          rgba(0, 158, 219, 0.05);
+  --un-blue:           #009EDB;           /* OCHA Primary */
+  --un-dark:           #1A2B4A;           /* UN Dark Blue */
   --hpop-bg:           #ffffff;
-  --hpop-border:       rgba(0,0,0,0.10);
+  --hpop-border:       rgba(0, 100, 160, 0.18);
 }
 
 /* ── Dark tokens ── */
@@ -62,7 +63,7 @@
 .sector-nav {
   position: absolute;
   top: 12px;
-  right: 52px;   /* clear Mapbox nav controls */
+  right: 52px;
   z-index: 30;
   display: flex;
   flex-direction: column;
@@ -72,6 +73,7 @@
   width: 180px;
   background: var(--panel-bg);
   border: 1px solid var(--panel-border);
+  border-top: 3px solid var(--un-blue);    /* UN blue top accent */
   border-radius: 10px;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -461,6 +463,81 @@
 .hpop-muted {
   color: var(--text-muted) !important;
   font-weight: 400 !important;
+}
+
+/* ── Nation navigator ── */
+.snav-navigator {
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px solid var(--rule);
+}
+
+.snav-nav-row {
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.snav-nav-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  flex-shrink: 0;
+  padding: 4px 0;
+  border-radius: 5px;
+  border: 1px solid var(--panel-border);
+  background: var(--hover-bg);
+  color: var(--text-body);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+}
+.snav-nav-arrow:hover {
+  background: color-mix(in srgb, var(--un-blue) 12%, transparent);
+  color: var(--un-blue);
+  border-color: color-mix(in srgb, var(--un-blue) 35%, transparent);
+}
+
+.snav-nav-name {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px 6px;
+  border-radius: 5px;
+  border: 1px solid var(--panel-border);
+  background: var(--hover-bg);
+  cursor: pointer;
+  transition: background 0.12s;
+  min-width: 0;
+  gap: 1px;
+}
+.snav-nav-name:hover {
+  background: color-mix(in srgb, var(--un-blue) 8%, transparent);
+}
+
+.snav-nav-idx {
+  font-size: 0.55rem;
+  color: var(--text-faint);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.snav-nav-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--text-strong);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+.snav-nav-metric {
+  font-size: 0.63rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
 }
 
 /* ── Responsive ── */

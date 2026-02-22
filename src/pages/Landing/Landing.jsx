@@ -65,19 +65,20 @@ export const MAP_MODES = [
   { id: 'priority',   label: 'Priority Index',   icon: '🎯' },
 ];
 
-// Cost efficiency color: green=cheap (high impact/$), red=expensive (low impact/$)
-// ratio < 1 = cheaper than median = more efficient = green
-// ratio > 1 = more expensive than median = less efficient = red
+// Cost efficiency color: HIGH $/person = GREEN (well-resourced), LOW = RED (underspending)
+// ratio = country cost_per_person / global_sector_median
+// ratio > 1 = spending more than median per person = better resourced = GREEN
+// ratio < 1 = spending less than median per person = underfunded = RED
 const effColor = (ratio) => {
   if (ratio == null) return '#94a3b8';
-  if (ratio < 0.5)  return '#27AE60';  // very efficient — 2× cheaper than median
-  if (ratio < 0.75) return '#7CB342';  // efficient
-  if (ratio < 1.25) return '#F39C12';  // near median
-  if (ratio < 1.75) return '#E67E22';  // expensive
-  return '#C0392B';                    // very expensive
+  if (ratio >= 1.75) return '#27AE60';  // well above median — well-resourced
+  if (ratio >= 1.25) return '#7CB342';  // above median
+  if (ratio >= 0.75) return '#F39C12';  // near median
+  if (ratio >= 0.5)  return '#E67E22';  // below median
+  return '#C0392B';                     // far below — severely underspending per person
 };
 
-// Priority color: same scale as funding gap (higher score = more urgent)
+// Priority color: higher score = more urgent = red
 const priorityColor = (score) => {
   if (score == null) return '#94a3b8';
   if (score >= 60) return '#C0392B';
@@ -91,11 +92,11 @@ const priorityColor = (score) => {
 // Efficiency label
 const effLabel = (ratio) => {
   if (ratio == null) return 'No data';
-  if (ratio < 0.5)  return 'Very efficient';
-  if (ratio < 0.75) return 'Efficient';
-  if (ratio < 1.25) return 'Near median';
-  if (ratio < 1.75) return 'Above median';
-  return 'High cost';
+  if (ratio >= 1.75) return 'Well-resourced';
+  if (ratio >= 1.25) return 'Above median';
+  if (ratio < 0.5)   return 'Severely underfunded';
+  if (ratio < 0.75)  return 'Below median';
+  return 'Near median';
 };
 
 // ── Hover popup — compact, pie + gender ───────────────────────────
@@ -287,10 +288,11 @@ export default function Landing() {
   const [loading,      setLoading]      = useState(true);
   const [mapLoaded,    setMapLoaded]    = useState(false);
   const [activeIssue,  setActiveIssue]  = useState('Food Security & Agriculture');
-  const [mapMode,      setMapMode]      = useState('funding');   // 'funding' | 'efficiency' | 'priority'
+  const [mapMode,      setMapMode]      = useState('funding');
   const [hoveredCode,  setHoveredCode]  = useState(null);
   const [hoveredPos,   setHoveredPos]   = useState(null);
   const [selectedCode, setSelectedCode] = useState(null);
+  const [navIdx,       setNavIdx]       = useState(0);  // index into ranked nation list
 
   // Load from CSV via dataService (synchronous after first parse)
   useEffect(() => {
@@ -298,6 +300,46 @@ export default function Landing() {
     setCountries(data);
     setLoading(false);
   }, []);
+
+  // Ranked nation list for current sector + mode (worst first)
+  const rankedNations = useMemo(() => {
+    if (!countries.length) return [];
+    const filtered = countries.filter(c => {
+      if (mapMode === 'efficiency') return c.cost_ratio?.[activeIssue] != null;
+      if (mapMode === 'priority')   return c.priority_index?.[activeIssue] != null;
+      return c.issue_pct_funded?.[activeIssue] != null;
+    });
+    return [...filtered].sort((a, b) => {
+      if (mapMode === 'efficiency') {
+        // Worst = lowest ratio (underspending per person = red = bad)
+        return (a.cost_ratio[activeIssue] ?? 999) - (b.cost_ratio[activeIssue] ?? 999);
+      }
+      if (mapMode === 'priority') {
+        // Worst = highest priority score
+        return (b.priority_index[activeIssue] ?? 0) - (a.priority_index[activeIssue] ?? 0);
+      }
+      // Worst = lowest % funded
+      return (a.issue_pct_funded[activeIssue] ?? 100) - (b.issue_pct_funded[activeIssue] ?? 100);
+    });
+  }, [countries, activeIssue, mapMode]);
+
+  // Reset nav index and fly to region centroid when sector or mode changes
+  useEffect(() => {
+    setNavIdx(0);
+    if (!mapLoaded || !rankedNations.length || !mapRef.current) return;
+    // Compute centroid of top-5 worst countries
+    const top5 = rankedNations.slice(0, 5);
+    const lat  = top5.reduce((s, c) => s + c.lat, 0) / top5.length;
+    const lng  = top5.reduce((s, c) => s + c.lng, 0) / top5.length;
+    mapRef.current.flyTo({ center: [lng, lat], zoom: 3.2, duration: 1400, essential: true });
+  }, [activeIssue, mapMode, mapLoaded]);  // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Fly to a specific nation in the navigator
+  const flyToNation = useCallback((idx) => {
+    const c = rankedNations[idx];
+    if (!c || !mapRef.current) return;
+    mapRef.current.flyTo({ center: [c.lng, c.lat], zoom: 4.5, duration: 900, essential: true });
+  }, [rankedNations]);
 
   // Choropleth fill expression: changes colour logic based on mapMode
   const fillExpr = useMemo(() => {
@@ -494,6 +536,58 @@ export default function Landing() {
             </button>
           ))}
         </div>
+
+        {/* Nation navigator — worst countries for this sector/mode */}
+        {rankedNations.length > 0 && (
+          <div className="snav-navigator">
+            <span className="snav-leg-title">Navigate</span>
+            <div className="snav-nav-row">
+              <button
+                className="snav-nav-arrow"
+                onClick={() => {
+                  const next = (navIdx - 1 + rankedNations.length) % rankedNations.length;
+                  setNavIdx(next);
+                  flyToNation(next);
+                }}
+                aria-label="Previous nation"
+                title="Previous"
+              >‹</button>
+
+              <button
+                className="snav-nav-name"
+                onClick={() => setSelectedCode(rankedNations[navIdx]?.code)}
+                title="Open full analysis"
+              >
+                <span className="snav-nav-idx">{navIdx + 1}/{rankedNations.length}</span>
+                <span className="snav-nav-label">{rankedNations[navIdx]?.name}</span>
+                <span className="snav-nav-metric" style={{ color:
+                  mapMode === 'efficiency'
+                    ? effColor(rankedNations[navIdx]?.cost_ratio?.[activeIssue])
+                    : mapMode === 'priority'
+                    ? priorityColor(rankedNations[navIdx]?.priority_index?.[activeIssue])
+                    : pctColor(rankedNations[navIdx]?.issue_pct_funded?.[activeIssue])
+                }}>
+                  {mapMode === 'efficiency'
+                    ? `$${(rankedNations[navIdx]?.cost_per_person?.[activeIssue] ?? 0).toFixed(0)}/p`
+                    : mapMode === 'priority'
+                    ? `${rankedNations[navIdx]?.priority_index?.[activeIssue] ?? '—'} pts`
+                    : `${rankedNations[navIdx]?.issue_pct_funded?.[activeIssue] ?? '—'}%`}
+                </span>
+              </button>
+
+              <button
+                className="snav-nav-arrow"
+                onClick={() => {
+                  const next = (navIdx + 1) % rankedNations.length;
+                  setNavIdx(next);
+                  flyToNation(next);
+                }}
+                aria-label="Next nation"
+                title="Next"
+              >›</button>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* ══ BOTTOM: STATS BAR ══ */}
