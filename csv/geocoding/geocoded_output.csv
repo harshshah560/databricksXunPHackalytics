@@ -2,9 +2,9 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1,Flood,Afghanistan,Asia,"Yulmarab village (Mazar-e-Sharif district, Balkh province)",36.70716,67.11145,,,120,,120
 2,Flood,Afghanistan,Asia,"Deh Miran area (Garziwan district, Faryab province)",35.71248,65.22562,39,,4225,,4264
 3,Flood,Afghanistan,Asia,"Qala-e-Naw, Abkamari districts (Badghis province)",34.98773,63.127495,7,,1200,,1207
-4,Earthquake,Afghanistan,Asia,"Chawka, Nurgal, chapa Dara, Dara-e-Pech and Watapur districts (Kunar Province); Dara-e-Nur, Jalalabad city, Behsud and Kuz Kunar district (Nangarhar Province); Alingar, Mehtarlam and Qarghayi districts (Laghman Province); Nuristan province",-4.481577,138.93526,2200,3700,1301000,,1306900
+4,Earthquake,Afghanistan,Asia,Jalalabad City,-4.481577,138.93526,2200,3700,1301000,,1306900
 5,Flood,Afghanistan,Asia,Maidan Wardak and Logar provinces,34.393126,68.864105,4,4,2000,,2008
-6,Earthquake,Afghanistan,Asia,"Marmul and Sholgara (Balkh Province); Khulm, Feroz Nakhchir, Hazrat-e-Sultan and Aybak (Samangan Province)",36.44967,67.89497,26,1172,1411000,,1412198
+6,Earthquake,Afghanistan,Asia,Marmul and Sholgara,36.44967,67.89497,26,1172,1411000,,1412198
 7,Flood,Afghanistan,Asia,"Sokhtray village (Baghran district, Helmand province), Kajaki district (Helmand province)",33.076984,65.091156,30,,,1000,1030
 8,Earthquake,Afghanistan,Asia,"Yaka Bagh area (Namakab district, Takhar province)",36.735649,69.535073,1,1,,1000,1002
 9,Flood,Afghanistan,Asia,"Chashma village (Raghestan district, Badakhshan province) Fayzabad city (Fayzabad district, Badakhshan province) Darwaz district (Badakhshan province)",37.11933,70.57867,13,,100,,113
@@ -31,8 +31,6 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 30,Flood,Afghanistan,Asia,Guzargah-e-Nur district (Baghlan province),36.210434,69.53289,81,35,20,1900,2036
 31,Earthquake,Afghanistan,Asia,"Ashkasham town (Eshkmesh district, Badakhshan province)",37.118751,70.578497,,12,,395,407
 32,Flood,Afghanistan,Asia,"Badakhshan (Nusay, Shekay, Kuf Ab districts), Kabul (Kabul, Khak-i-Jabbar, Sarobi districts), Nangarhar provinces (Rodat, Kulma districts)",34.534927,69.16998,36,22,500,1300,1858
-33,Flood,Afghanistan,Asia,,33.838806,66.026471,72,,4000,,4072
-34,Flood,Afghanistan,Asia,,33.838806,66.026471,18,,,,18
 35,Flood,Afghanistan,Asia,Ghazi-Abad district (Kunar province),34.872795,71.150832,11,,,,11
 36,Flood,Afghanistan,Asia,Kohistan district (Badakhshan province),37.47766,70.618004,30,,,,30
 37,Flood,Afghanistan,Asia,"Obey, Kohsan, Karrokh, Shindand, Guzara districts (Herat)",34.213043,62.21155,16,6,,1275,1297
@@ -119,14 +117,13 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 118,Flood,Afghanistan,Asia,"Badakhstan, Takhar, Samangan, Sar-e-Pul, Faryab, Nangarhar, Jawzjan, Kapisa, Kunar, Bamyan, Kunduz, Balkh provinces",36.214966,65.933303,48,40,,5000,5088
 119,Flood,Afghanistan,Asia,"Farah city (Farah district, Farah province), Chakhansur, Charburjak districts (Nimroz province), Dehrawud, Tirinkot, Khasuruzgan, Chora districts (Uruzgan province), Chaghcharan, Taywarah, Charsadra, Shahrak districts (Ghor province), Adraskan, Pashtunzarghun, Farsi districts (Hirat province), Faryab, Paktya, Khost and Paktika provinces",-4.481577,138.93526,200,3,11000,,11203
 120,Flood,Afghanistan,Asia,"Nimroz, Uruzgan, Farah, Ghor provinces",30.954754,61.859475,3,,,1500,1503
-121,Flood,Algeria,Africa,"Laghouat, Blida, Djelfa, Mascara, El Bayadh, Boumerdes, Relizane, Chlef, Alger, Tiaret, Tissemsilt, Médéa, Tipaza, and Aïn Defla provinces",33.681782,1.022228,1,,6000,,6001
+121,Flood,Algeria,Africa,Laghouat,33.681782,1.022228,1,,6000,,6001
 122,Flood,Algeria,Africa,Chlef Province,36.164592,1.331499,10,,2500,,2510
 123,Earthquake,Algeria,Africa,"Laalam village (Tamridjet district, Bejaia province)",36.57229,5.373528,4,9,160,150,323
 124,Flood,Algeria,Africa,Tindouf province,27.67184,-8.13973,,,35000,,35000
 125,Flood,Algeria,Africa,Tindouf province,27.67184,-8.13973,1,,60000,,60001
 126,Flood,Algeria,Africa,Bab Al-Assa Municipality (Tlemcen); El Haoudh Village (El Bayadh Province),33.681782,1.022228,8,218,1450,,1676
 127,Flood,Algeria,Africa,Jijel,36.822536,5.768622,,,1000,,1000
-128,Flood,Algeria,Africa,"Béchar, Elbayadh, Beni Abbes, Tamanrasset, Tiaret, Tindouf, and Naama",30.131743,-2.169031,5,,11000,,11005
 129,Flood,Algeria,Africa,"Laghouat, Tiaret, Djelfa, M'Sila",34.825576,4.155022,5,100,1250,,1355
 130,Flood,Algeria,Africa,"Bab el oued, Oued Koriche, Bologhine, Rais Hamidou, Bains Romains, Ain Benian, Bouzareah, Dely Brahim, El Biar, Casbah, Alger districts (Alger province), Djinet, Zemmouri districts (Boumerdes province), El Marsa, Moussadek, Heranfa, Tenes, Sidi Abderrahmane, Dahra, Talassa, Bouzghaia, Taougrit, Tadjena, Breira, Oued Goussine, Sidi Akkache, Zeboudja, Abou El Hassan districts (Chlef province), El Mamounia, Ain Fares, El Goumri, Bouhnifia, El Gaada, Bouhani, Sidi Abdeldjabar, Oued El Abtal, Gherrous, Sidi Abdelmoumen, Ain Frass districts (Mascara province), Sidi Bellater, Mostaganem, Ain Nouissi, Forkala, El Hassaine, Ain Boudinar, Kheireddine, Seyada, Sidi Lakhdar, Achacha, Sour districts (Mostaganen province), Sidi Chahmi, Azrew, Gdyel, Bettioua, Mers El Hadjadj, Oued Tlilat, El Braya, Ain Turk, El Ancer, Mers El Kebir districts (Oran province), Hamri, Sidi Khettab, Bellasel, Ouarizane, Ouled Sidi Mihoub,El Matmar districts (Relizane province), Saida, Ain Hadjer, El Hassasna, Oued Khaled, Ain Skhouna districts (Saida province), Sidi Ghiles, Damous, Aghbal, Beni Melik districts (Tipaza province), Tigzirt, Azzefoun, Mezrana, Akkerou, Iflicen, Ait Chaffa, Aghrib districts (Tizi Ouzou province), Tlemcen, Sebdou, El Ghazaouet, Sidi Djilali, Beni Senous, Terni, Ben Sekrane, Maghnia, Ain Ghouraba, Ain Tounane-Souahlia, Ain Talout districts (Tlemcen province), Ain-Defla province",36.849472,-2.434868,921,423,45000,,46344
 131,Flood,Algeria,Africa,"Hamma, Boutaleb districts (Setif province), Batna, Biskra provinces",35.533979,6.09041,13,4,,,17
@@ -160,16 +157,15 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 159,Flood,Algeria,Africa,Djanet district (Illizi province),26.504191,8.479926,1,,,1750,1751
 160,Flood,Algeria,Africa,"Adrar, Laghouat, Oran, Ghardaia, Biskra provinces",27.873381,-0.287488,3,,27545,,27548
 161,Flood,Algeria,Africa,"Reggane district (Adrar province), Hidoussa district (Batna province), Tamanrasset province",26.718319,0.174218,13,,,,13
-162,Flood,Angola,Africa,"Benguela, Luanda, Huíla, Zaire Provinces",-6.26782,14.241796,19,,795,280,1094
+162,Flood,Angola,Africa,"Benguela, Luanda, Zaire Provinces",-6.26782,14.241796,19,,795,280,1094
 163,Flood,Angola,Africa,"Luanda, Huambo, Bie, Malanje and Kwanza Norte provinces",-8.81668,13.235822,30,,116275,,116305
 164,Flood,Angola,Africa,"Lubango city (Lubango district, Huila province)",-14.919562,13.489751,54,,,,54
 165,Flood,Angola,Africa,"Cazenga, Cacuaco, Viana, Kilamba Kiaxi (Luanda Province)",-8.835559,13.295115,14,2,8165,,8181
 166,Flood,Angola,Africa,Luanda district (Luand province),-8.81668,13.235822,9,,1000,,1009
 167,Flood,Angola,Africa,"Viana, Cacuaco, Belas (Viana), Cazenga and urban districts of Ingombota, Kilamba Kiaxi, Rangel, Maianga (Luanda), Ceramina, Mateba, Paraiso, Augusto Ngangula municiplalities",-34.710758,-58.61067,23,,3200,2400,5623
 168,Flood,Angola,Africa,"Kilamba Kiaxi, Talatona Municipalities (Viana, Luanda province); Huila, Malanje, Uige Provinces",-8.9181,13.190835,30,,10600,,10630
-169,Drought,Angola,Africa,,-19.96008,-44.2014,,,2800000,,2800000
 170,Flood,Angola,Africa,"Luanda, Cuando Cubango, Cuanza Norte",-9.298483,14.914498,8,,3000,,3008
-171,Flood,Angola,Africa,"Luanda, Luanda Sul, Luanda Norte, Bié, Benguela, Huambo, Cuanza Norte, Cuanza Sul, Malanje, Namibe, Uíge, Zaire provinces",-11.201936,13.839685,41,,11190,,11231
+171,Flood,Angola,Africa,"Luanda, Luanda Sul, Luanda Norte, Benguela",-11.201936,13.839685,41,,11190,,11231
 172,Flood,Angola,Africa,"Cuanza Sul, Malanje, Lunda Sul, and Cunene Provinces",-11.201936,13.839685,3,,10000,,10003
 173,Flood,Angola,Africa,"Dombre Grande village (Baia Farta district, Benguela province), Massangano village (Cambambe district, Kuanza Norte province)",-12.612869,13.198763,31,,70000,,70031
 174,Flood,Angola,Africa,"Catata, Calenga villages (Caala district, Huambo province)",-12.850254,15.466531,27,,330000,1700,331727
@@ -210,10 +206,9 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 209,Drought,Angola,Africa,"Cunene, Cuanza-Sul provinces",-11.201936,13.839685,,,25000,,25000
 210,Flood,Angola,Africa,"Xangongo village (Ombadja district, Cunene province), Onjiva village (Cuanhama district, Cunene province), Luacho, Senje, Muhaningo, Seco, Dombre-Grande, Canto villages (Baia Farta district, Benguela province), Namibe city, Macala, Lucira villages (Namibe district, Namibe province), Bibala, Camacuio districts (Namibe province), Lubango, Quipungo, Caluquembe districts (Huila province), Namacunde district (Cunene province), Luanda district (Luanda province), Bengo province",-34.710758,-58.61067,48,,39928,,39976
 211,Flood,Argentina,Americas,Bahia Blanca city area (Buenos Aires province),-38.718796,-62.265682,125,800,235900,,236825
-212,Drought,Argentina,Americas,"San Martín, Rivadavia, Oran departments (Salta province)",-24.183428,-62.883625,8,32,35000,,35040
 213,Earthquake,Argentina,Americas,"Aminga, Anillaco, Agua Blanca, Chuquis towns (Castro Barros district, La Rioja Provinve)",-30.578196,-65.72692,,27,500,200,727
 214,Flood,Argentina,Americas,Corrientes,-27.465242,-58.837837,,,400000,,400000
-215,Flood,Argentina,Americas,Corrientes and Entre Ríos,-30.746621,-57.983683,,,2400,,2400
+215,Flood,Argentina,Americas,Corrientes ,-30.746621,-57.983683,,,2400,,2400
 216,Flood,Argentina,Americas,"Canada de Gomez city (Iriondo disctrict, Santa Fe province)",-32.819096,-61.394753,2,,,1800,1802
 217,Flood,Argentina,Americas,Buenos Aires province,-34.92068,-57.953764,,,600,,600
 218,Flood,Argentina,Americas,"Buenos Aires, Cordoba, La Pampa, Santa Fe provinces",-36.62035,-64.290576,1,,250000,,250001
@@ -223,7 +218,7 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 222,Flood,Argentina,Americas,"Chaco, Corrientes, Entre Rios, Formosa, Salta, Santa Fe provinces",-31.618695,-60.701956,7,,30618,,30625
 223,Flood,Argentina,Americas,"San Antonio de Areco, Pergamino, Salto districts (Buenos Aires province)",-34.651281,-58.393852,2,,3510,,3512
 224,Flood,Argentina,Americas,"Buenos Aires D.f., Buenos Aires provinces",-34.92068,-57.953764,3,,5203,,5206
-225,Flood,Argentina,Americas,"Comodoro Rivadavia (Escalante - Patagonia); Santa Rosa (Canuelas-Buenos Aires); Jujuy, Salta, Tucumán, Santiago del Estero, Catamarca, San Juan, Mendoza, Córdoba, Formosa, Misiones, Santa Fe, La Pampa, Chubut, Santa Cruz provinces",-31.77448,-60.83842,,,39777,,39777
+225,Flood,Argentina,Americas,"Comodoro Rivadavia (Escalante - Patagonia); Santa Rosa (Canuelas-Buenos Aires); Jujuy, Salta, Santiago del Estero, Catamarca, San Juan, Mendoza, Cordoba, Formosa, Misiones, Santa Fe, La Pampa, Chubut, Santa Cruz provinces",-31.77448,-60.83842,,,39777,,39777
 226,Flood,Argentina,Americas,"Catamarca, Cordoba, Jujuy, La Rioja, Santiago del Estero, Salta,Tucuman provinces",-27.787715,-64.259506,7,,,6000,6007
 227,Flood,Argentina,Americas,"Adolfo Alsina, Avellaneda, Conesa, El Cuy, General Roca, Pichi Mahuida districts (Rio Negro province)",-39.032193,-67.594016,,,700,,700
 228,Flood,Argentina,Americas,Chaco province,-27.451123,-58.98652,,,5000,,5000
@@ -235,28 +230,26 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 234,Flood,Argentina,Americas,"Southern East Coast; Chubut province. Comodoro Rivadavia, Caleta Cordova and Laprida",-45.86212,-67.4815,1,,9000,,9001
 235,Flood,Argentina,Americas,Chaco and Salta Province,-24.789295,-65.410319,,,17000,,17000
 236,Flood,Argentina,Americas,"Lomas de Zamora, La Matanza, Lobos, La Plata, Arrecifes, Marcos Paz, Lanus (Buenos Aires Province)",-34.7616,-58.40276,,,1420,,1420
-237,Flood,Argentina,Americas,"Resistencia, Barranqueras, General Pinedo, Charata, Las Breñas, Saenz Peña, Corrientes cities (Chaco, Formosa, Corrientes provinces)",-26.789246,-60.441196,2,,1800,,1802
-238,Flood,Argentina,Americas,"Corrientes, Santiago del Estero, Chaco, Tucumán, Santa Fe, Entre Ríos provinces",-27.78901,-64.26073,4,,31451,,31455
-239,Flood,Argentina,Americas,"Chaco, Salta, Tucumán,La Rioja Provinces",-29.412741,-66.855879,3,,3000,,3003
+237,Flood,Argentina,Americas,"Resistencia, Barranqueras, General Pinedo, Charata, Corrientes cities (Chaco, Formosa, Corrientes provinces)",-26.789246,-60.441196,2,,1800,,1802
+238,Flood,Argentina,Americas,"Corrientes, Santiago del Estero, Chaco, Santa Fe",-27.78901,-64.26073,4,,31451,,31455
+239,Flood,Argentina,Americas,"Chaco, Salta, La Rioja Provinces",-29.412741,-66.855879,3,,3000,,3003
 240,Earthquake,Argentina,Americas,San Juan Province,-31.537091,-68.52518,,14,1800,,1814
 241,Flood,Argentina,Americas,"Belgrano (Comuna 13 district, Buenos Aires D.f. province), Palermo (Comuna 14 district, Buenos Aires D.f. province), Villa Crespo (Comuna 15 district, Buenos Aires D.f. province), Escobar, General San Martin, Lomas de Zamora, Pilar, Tres de Febrero, La Matanza districts (Buenos Aires province), La Rioja province",-31.77448,-60.83842,4,,3000,,3004
 242,Flood,Argentina,Americas,"Tucuman, Santiago del Estero, Salta, Formosa provinces",-27.78901,-64.26073,5,,60000,5000,65005
 243,Flood,Argentina,Americas,"Rosario district (Santa Fe province), Santa Fe City (La Capital district, Santa Fe province) Canada de Gomez city (Iriondo district, Santa Fe province), Esperanza city (Las Colonias district, Santa Fe province), Gualeguay (Entre Rios province)",-31.77448,-60.83842,5,,70000,,70005
 244,Flood,Argentina,Americas,"Buenos Aires city (Buenos Aires D.f. province), La Plata city (La Plata district, Buenos Aires province)",-34.916954,-57.9548,52,,350000,,350052
 245,Flood,Argentina,Americas,Corrientes province,-27.465242,-58.837837,6,,10000,,10006
-246,Flood,Argentina,Americas,"Concordia city (Condordia district, Entre Rios province), Hernandarias city (Paraná district, Entre Rios proince), Gualeguaychú, Colón districts (Entre Rios province), Paso de la Patria, Santa Ana cities (San Cosme district, Corrientes province), Perugorria city (Curuzu Cuatia district, Corrientes province), Cruz de los Milagros, Algarrobo, San José, Santa Lucia cities (Lavalle district, Corrientes province), Esquina, Goya, Paso de los Libres districts (Corrientes province)",-31.77448,-60.83842,6,,76133,,76139
+246,Flood,Argentina,Americas,"Concordia city (Condordia district, Entre Rios province), Hernandarias city ",-31.77448,-60.83842,6,,76133,,76139
 247,Flood,Argentina,Americas,"Entre Rios, Corrientes",-27.46917,-58.844348,,,3000,,3000
-248,Flood,Argentina,Americas,"Santa Mónica, Tiro Federal, Ginés Benítez, Monseñor de Carlo, Santa Elena, Hipólito Yrigoyen, Sáenz Peña, Milenium, San José, Piñeiro, Nala, Pablo VI, Quinta Ocho (Chaco) -> all in Presidencia Roque Sáenz Peña",-31.77448,-60.83842,,,45000,,45000
 249,Flood,Argentina,Americas,"General Taboada, Juan Felipe Ibarra, Belgrano Departments (Santiago del Estero Province)",-27.813353,-64.302808,,,2100,,2100
-250,Flood,Argentina,Americas,"Catamarca, Tinogasta, Belén",-28.067132,-67.563159,,,90,,90
-251,Flood,Argentina,Americas,"Quilmes (Buenos Aires); Santa Fe, Córdoba, Entre Ríos, Neuquen",-34.730522,-58.268185,,,38000,,38000
+250,Flood,Argentina,Americas,"Catamarca, Tinogasta",-28.067132,-67.563159,,,90,,90
+251,Flood,Argentina,Americas,"Quilmes (Buenos Aires); Santa Fe, Cordoba, Neuquen",-34.730522,-58.268185,,,38000,,38000
 252,Flood,Argentina,Americas,"Salta city (Capital district, Salta province), General San Martin, Oran, Rivadavia districts (Salta province)",-24.789295,-65.410319,,,85000,,85000
 253,Flood,Argentina,Americas,"Avellaneda, Berisso, Lanus, Quilmes, San Fernando, San Miguel districts (Buenos Aires province), Rosario district (Santa Fe province), Parana city (Entre Rios province); Buenos Aires city (Buenos Aires D.f. province), La Pampa, La Cordoba provinces",-31.77448,-60.83842,4,40,30000,,30044
 254,Earthquake,Bangladesh,Asia,"Dhaka, Jamalpur districts (Dhaka province), Rajshahi district (Rajshahi province), Lalmonirhat, Panchagarh districts (Rangpur province)",25.073456,89.03181,5,70,,,75
 255,Earthquake,Bangladesh,Asia,"Barisal, Chittagong, Khulna provinces",22.334938,91.833405,2,,,,2
 256,Flood,Bangladesh,Asia,"Shariatpur & Madaripur districts ; Kurigram, Gaibandha, Lalmonirhat, Nilphamari, Bogra, Jamalpur, and Sirajganj (Sylhet division); Zakigonj, Gowainghat, Jaintapur, Companiganj, Kurigram, Gaibandha, Rangpur, Lalmonirhat, Nilphamari, Bogra, Jamalpur, SirajganjDistricts (Sylhet Division); Sunamganj",22.26266,91.9463,141,,7200000,,7200141
 257,Flood,Bangladesh,Asia,Chittagong district (Chittagong province),22.334938,91.833405,120,60,80000,,80180
-258,Flood,Bangladesh,Asia,,24.347608,90.077974,21,,14000,,14021
 259,Flood,Bangladesh,Asia,"Chattogram, Cox’s Bazar, Bandarban, Rangamati, and Feni (Chattogram Division); Chittagong, Bandarban, Rangamati,",21.452524,92.01849,4,6,1000000,,1000010
 260,Flood,Bangladesh,Asia,"Sylhet, Sunamganj, Netrokona, Moulvibazar, Habiganj, Rangpur, Jamalpur, Gaibandha, Feni, Rangamati, Bogra, Kurigram, Sirajganj, Lalmonirhat, Tangail, Cox’s Bazar, Bogura, Munshigan, Khagrachari, Bandarban",22.26266,91.9463,15,,5130000,,5130015
 261,Flood,Bangladesh,Asia,"Lakshmipur, Cumilla, Feni, and Noakhali districts",23.276806,91.01606,71,,5820000,,5820071
@@ -284,8 +277,8 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 283,Flood,Bangladesh,Asia,"Bogra, Naogaon districts (Rajshahi province), Jamalpur, Mymensing, Netrokona districts (Dhaka province), Kurigram Lalmonirhat, Gaibandha districts (Rangpur province), Brahmanbaria district (Chittagong province)",22.26266,91.9463,,,400000,,400000
 284,Earthquake,Bangladesh,Asia,"Savar area (Dhaka district, Dhaka province), Narayanganj, Gazipur, Gopalganj districts (Dhaka province), Sunamganj district (Sylhet province), Comilla, Feni districts (Chittagong province), Habiganj district (Sylhet province), Gangachara area (Rangpur district, Rangpur province), Gaibandha district (Rangpur province), Rajshahi, Naogaon, Bogra, Pabna districts (Rajshahi province)",22.26266,91.9463,4,200,,,204
 285,Flood,Bangladesh,Asia,"Barisal district (Barisal province), Chittagong district (Chittagong province), Khulna district (Khulna province)",22.703749,90.37049,11,,10000,,10011
-286,Flood,Bangladesh,Asia,Cox’s Bazar,21.452524,92.01849,21,,268744,,268765
-287,Flood,Bangladesh,Asia,"Cox’s Bazar,Rangamati",22.653725,92.17828,14,,,,14
+286,Flood,Bangladesh,Asia,Cox Bazar,21.452524,92.01849,21,,268744,,268765
+287,Flood,Bangladesh,Asia,Cox Bazar,22.653725,92.17828,14,,,,14
 288,Flood,Bangladesh,Asia,"Nilphamari district (Rangpur province), Brahamanbaria district (Chittagong province), Sylhet province",25.932339,88.853516,9,,500000,,500009
 289,Flood,Bangladesh,Asia,"Mymensingh, Netrakona, Sherpur districts (Dhaka province), Sunamganj district (Sylhet province), Rangpur, Nilphamari, Kurigram, Gaibandha districts (Rangpur province), Noakhali, Lakshmipur, Cox's Bazar districts (Chittagong province), Jessore, Satkhira districts (Khulna province), Barguna, Bhola, Barisal, Patuakhali districts (Barisal province), Rajshahi province",22.26266,91.9463,10,,1500000,,1500010
 290,Flood,Bangladesh,Asia,"Debidwar, Burichang, Cahndina, Chauddagram, Muradnagar areas (Comilla district, Chittagong province)",23.602448,90.98973,20,,600000,,600020
@@ -304,15 +297,15 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 303,Flood,Bangladesh,Asia,"Kurigram, Gaibandha, Lalmonirhat, Rangpur, Nilphamari districts (Rangpur province), Sherpur, Jamalpur, Dhaka, Narayanganj, Munshiganj, Madaripur, districts (Dhaka province), Sirajganj, Bogra districts (Rajshahi province)",22.26266,91.9463,23,,1000000,,1000023
 304,Flood,Bangladesh,Asia,"Khagrachhari, Chittagong, Feni, Cox's Bazar, Lakshmipur, Comilla districts (Chittagong province), Bhola district (Barisal province), Netrakona, Jamalpur districts (Dhaka province), Sylhet province",22.26266,91.9463,65,,500000,,500065
 305,Flood,Bangladesh,Asia,"Hutiya, Companiganj areas (Noakhali district, Chittagong province), Maheskhali area (Cox's Bazar district, Chittagong province), Sandwip area (Chittagong district, Chittagong province)",22.26266,91.9463,1,10,,12000,12011
-306,Flood,Benin,Africa,"Adoukandji, Ahomadégbé, Gnizounmè, Tchito, Tohou et Zalli (Couffo); Zou, Ouémé, Mono",6.499072,2.625336,,,34052,,34052
+306,Flood,Benin,Africa,"Adoukandji, Tchito, Tohou et Zalli (Couffo)",6.499072,2.625336,,,34052,,34052
 307,Flood,Benin,Africa,"Kandi, Karimama and Malanville (Alibori Department, north-eastern Benin)",11.861813,3.386298,6,,7000,,7006
-308,Flood,Benin,Africa,"Sagon, Tohoué, Dasso, Ouinhi villages (Ouinhi district, Zou province)",7.010997,2.466988,15,,158235,,158250
+308,Flood,Benin,Africa,"Sagon, Dasso, Ouinhi villages (Ouinhi district, Zou province)",7.010997,2.466988,15,,158235,,158250
 309,Flood,Benin,Africa,"Athieme, Lokossa, Grand-popo districts (Mono province)",6.645853,1.71714,3,,59419,,59422
 310,Flood,Benin,Africa,"Karimama, Malanville districts (Alibori province)",11.861813,3.386298,,,32735,,32735
 311,Flood,Benin,Africa,"Athieme (Mono department); Bonou (Oueme department); Karimama (Alibori department); Ouesse, Savalou, Zogbodome, Zagnanado, Tchaourou, Dangbo, Ze, Cotonou, Abomey-Calavi, So-Ava, Seme-Podji, Aguegues, Adjohoun, Dangbo, Ouinhi, Glazoue, Grand-Popo, Lokossa, Bopa, Malanville, Banikoara, Dassa-Zoume departments",-34.709329,-58.429367,44,,73000,,73044
-312,Flood,Benin,Africa,"Karimama, Malanville, Zangnanado, Zogbodomey, Ouinhi, Aguégués, Dangbo, Athiémé, Grand-Popo, Zè",6.276375,1.80672,13,,35850,,35863
-313,Flood,Benin,Africa,"Akogbato, Kokotome areas (Abomey-calavi district, Atlantique province), Agontinkon, Fifadji, Ahogbohouè, Agongbomè, Ahwansori, Lafji, Vossa, Akpalpadodomè, Yagbè, Minontchou, Avotrou, Zogbohouè, Ayitabèn, Irédé, Agbodjèdo, Cadjèhoun/Houéyiho areas (Cotonou district, Littoral province)",-34.709329,-58.429367,7,,60238,,60245
-314,Flood,Benin,Africa,"Tchaourou district (Borgou province), Zangnanado, Ouinhi, Zogbodome districts (Zou province), Bonou, Adjohoun, Dangbo, Aguegue, Sèmè-kpodji districts (Oueme province), Cotonou district (Littoral province), Abomey-calavi, So-ava districts (Atlantique province), Athieme, Lokossa, Grand-popo districts (Mono province), Alibori, Collines, Plateau, Couffo provinces",-34.709329,-58.429367,46,1000,680000,150000,831046
+312,Flood,Benin,Africa,"Karimama, Malanville, Zangnanado, Zogbodomey, Ouinhi",6.276375,1.80672,13,,35850,,35863
+313,Flood,Benin,Africa,"Akogbato, Kokotome areas (Abomey-calavi district, Atlantique province), Agontinkon, Fifadji",-34.709329,-58.429367,7,,60238,,60245
+314,Flood,Benin,Africa,"Tchaourou district (Borgou province), Zangnanado, Ouinhi",-34.709329,-58.429367,46,1000,680000,150000,831046
 315,Flood,Benin,Africa,"Birni Lafia, Bogobogo, Karimama, Kompa, Monsey, Tomboutou villages (Karimama district, Alibori province), Garou, Madekali, Malanville villages (Malanville district, Alibori province)",-34.709329,-58.429367,4,,55000,,55004
 316,Flood,Benin,Africa,"Lokossa, Athieme, Bopa districts (Mono province), Cotonou district (Littoral province)",6.645853,1.71714,,,5840,,5840
 317,Flood,Benin,Africa,"Atakora, Donga, Borgou, Alibori, Atlantique, Littoral, Mono, Couffo, Oueme, Plateau, Zou, Collines province",6.499072,2.625336,10,,10000,884,10894
@@ -323,10 +316,10 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 322,Flood,Bolivia,Americas,"Catachila Alta, Laquina and Chinata Communities (Cochabamba Department)",-17.393611,-66.156898,,,,150,150
 323,Flood,Bolivia,Americas,"Bajo Acre, Bajo Virtudes and Velmonte (Cobija Municipality, Pando)",-11.021419,-68.757416,,,3990,,3990
 324,Flood,Bolivia,Americas,La Paz capital city area,-16.500357,-68.13408,2,26,350,,378
-325,Flood,Bolivia,Americas,"Chuquisaca, La Paz, Tarija, Cochabamba, Santa Cruz and Potosí",-17.783494,-63.182085,68,,3005000,,3005068
+325,Flood,Bolivia,Americas,"Chuquisaca, La Paz, Tarija, Cochabamba, and Santa Cruz",-17.783494,-63.182085,68,,3005000,,3005068
 326,Flood,Bolivia,Americas,"El Torno, La Guardia and Cotoca municipalities (Santa Cruz department); Beni, Cochabamba",-17.893393,-63.33103,30,142,10500,,10672
-327,Flood,Bolivia,Americas,"Chuquisaca, La Paz, Potosí, Oruro, Cochabamba, Tarija, Pando, Beni, Santa Cruz departments",-17.783494,-63.182085,60,,335540,,335600
-328,Flood,Bolivia,Americas,"El Salao (El Torno municipality, Andrés Ibanez distict, Santa Cruz provincia)",-18.096672,-63.499473,,29,475,,504
+327,Flood,Bolivia,Americas,"Chuquisaca, La Paz, Oruro, Cochabamba, Tarija, Pando, Beni, Santa Cruz departments",-17.783494,-63.182085,60,,335540,,335600
+328,Flood,Bolivia,Americas,El Salao,-18.096672,-63.499473,,29,475,,504
 329,Flood,Bolivia,Americas,"Trinidad city (Cercado district, Beni province), San Borja, Rurrenabaque cities (General Jose Ballivi district, Beni province), Riberalta city (Vaca Diez district, Beni province), Viloma city (Quillacollo district, Cochabamba province), Tiraque district (Cochabamba province), La Paz city (Murillo district, La Paz province), Luribay city (Loayza district, La Paz province), Papel Pampa, San Pedro de Curahuara municipalities (Gualberto Villarroel district, La Paz province), Los Yungas (Sur Yungas, Nor Yungas, Caranavi districts, La Paz province), Jorochito, Tiquipaya, Pailas, El Espino cites (Andres Ibanez district, Santa Cruz province), Boyuibe city (Cordillera district, Santa Cruz province), Cuatro Canadas, San Julian municipalities (Nuflo de Chavez district, Santa Cruz province), Okinawa city (Warnes district, Santa Cruz province), Villa Montes municipality (Gran Chaco district, Tarija province), Chuquisaca, Pando, Potosi provinces",-14.45015,-56.848522,25,21,126075,,126121
 330,Flood,Bolivia,Americas,"Beni, Chuquisaca, Cochabamba, La Paz, Oruro, Pando, Potosi, Santa Cruz, Tarija provinces",-17.783494,-63.182085,13,,69085,,69098
 331,Drought,Bolivia,Americas,Santa Cruz province,-17.783494,-63.182085,,,51180,,51180
@@ -345,7 +338,6 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 344,Flood,Bolivia,Americas,"Filadelphia, Bolpebra, Cobija, Porvenir muncipalities (Pando); Beni; Chuquisaca; Yungas (La Paz); Cochabamba; Oruro; Potosi; Santa Cruz; Tarija departments",-14.45015,-56.848522,38,,185120,,185158
 345,Flood,Bolivia,Americas,"Tiquipaya (Quillacollo-Cochabamba department), Tipuani (Larecaja-La Paz), Lagunillas (Cordillera-Santa Cruz)",-17.33937,-66.219185,4,,5300,,5304
 346,Flood,Bolivia,Americas,"Tarija, Cochabamba,",-17.400271,-66.031103,6,186,12000,,12192
-347,Flood,Bolivia,Americas,"Potosí, La Paz and Chuquisaca Departments",-16.500357,-68.13408,14,,8900,,8914
 348,Flood,Bolivia,Americas,Larecaja Province (La Paz Department),-16.48801,-68.141722,7,,125,,132
 349,Flood,Bolivia,Americas,"El Torno, Santa Cruz de la Sierra municipalities (Santa Cruz Department)",-17.813294,-63.202358,3,,9960,,9963
 350,Flood,Bolivia,Americas,"La Paz, Santa Cruz, Potosi, Beni, Cochabamba, Tarija",-17.783494,-63.182085,18,,35100,,35118
@@ -363,7 +355,7 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 362,Flood,Bolivia,Americas,"Beni, Chuquisaca, Cochabamba, La Paz, Oruro, Pando, Potosi, Santa Cruz, Tarija provinces",-17.783494,-63.182085,25,,145000,,145025
 363,Flood,Bolivia,Americas,"Chuquisaca, Cochabamba, La Paz, Oruro, Potosi, Santa Cruz, Pando, Beni, Tarija",-17.783494,-63.182085,25,,92890,,92915
 364,Flood,Bolivia,Americas,"Cochabamba, Tarija, Beni, La Paz Departments",-16.500357,-68.13408,1,,13000,,13001
-365,Flood,Bolivia,Americas,"Sucre City (Chuquisaca Department), Paz Department, Potosì Department, Cochabamba Department",-17.33937,-66.219184,8,,77965,,77973
+365,Flood,Bolivia,Americas,"Sucre City (Chuquisaca Department), Paz Department",-17.33937,-66.219184,8,,77965,,77973
 366,Flood,Bolivia,Americas,O'Connor Province (Tarija Department),-21.533879,-64.734356,60,,375000,,375060
 367,Flood,Bolivia,Americas,"Guanay, Mapiri, Chuquisaca, Tipuani municipalities (La Paz); Santa Cruz, Cochabamba, Potosi, Beni Departments",-15.497103,-67.87981,5,,188610,,188615
 368,Flood,Bolivia,Americas,"Trinidad city (Cercado district, Beni province), Villa Tunari city (Chapare district, Cochabamba province), La Paz, El Alto cities (Murillo district, La Paz province), Cochabamba city (Cercado district, Cochambamba province)",-14.45015,-56.848522,69,4,35000,10000,45073
@@ -399,7 +391,7 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 398,Flood,Bulgaria,Europe,"Strumiani, Tran, Batanovtsi",42.597725,22.95575,,,25,,25
 399,Flood,Bulgaria,Europe,"Gabrovo, Pleven, Lovech, Razgrad, Shumen, Velniko Turnovo provinces (North), Jambol, Pasardjik provinces (South)",43.409022,24.618012,1,,,,1
 400,Flood,Bulgaria,Europe,"Ruse, Lovech, Pleven, Silistra, Osem, Vit, Smolian, Plovdiv, Vratsa, Dobrotitsa, Apriltsi cities (Ruse, Silistra, Lovech, Veliko Tarnovo, Gabrovo, Pernik, Kustendil, Sofia, Pleven provinces)",42.561436,27.642585,6,,,,6
-401,Flood,Bulgaria,Europe,"Popovo district (Targovitché province) ; Shumen, Stara Zagora, Targovitché, Ruse, Veliko Tarnovo, Haskovo, Burgas, Vratca, Silistra, Lovech provinces (South, Center East)",42.561436,27.642585,17,,200,,217
+401,Flood,Bulgaria,Europe,Popovo district ,42.561436,27.642585,17,,200,,217
 402,Earthquake,Bulgaria,Europe,"Murgovo village (Kardzhali district, Kardzhali province)",41.641773,25.36996,,2,525,,527
 403,Flood,Bulgaria,Europe,"Karlovo, Kaloyanovo and Maritsa (Plovdiv province)",42.154766,24.74391,,,10937,,10937
 404,Flood,Bulgaria,Europe,"Plovdiv, Pazardjik, Sofia, Smolyan, Bourgas provinces",42.69489,23.320782,,,600,,600
@@ -412,13 +404,11 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 411,Flood,Bulgaria,Europe,"Rousse, Montana provinces ; Car Kalojan district (Razgrad province), Pazardjik district (Pazardjik province), Varna district (Varna province), Bansko district (Blagoevgrad province)",42.561436,27.642585,8,10,,,18
 412,Flood,Bulgaria,Europe,"Plovdiv, Lovech, Gabrovo, Sofia province ; Etropole (Sofia province), Veliko Tarnovo district (Veliko Tarnovo province) ; Krasnovo city (Hisarja district), Gelemenovo, Saraya cities (Pazrdzhik district, Pazrdzhik province), Trudovetz city (Botevgrad district, Sofia province)",42.561436,27.642585,2,,1000,,1002
 413,Flood,Bulgaria,Europe,"Vratsa, Pleven, Sofia (Stolitsa), Sofia, Plovdiv, Pazardzhik, Smolyan",42.771677,23.361804,7,,,,7
-414,Drought,Burkina Faso,Africa,,12.27793,-1.573062,,,3500928,,3500928
 415,Flood,Burkina Faso,Africa,"Boucle Du Mouhoun, Centre-Nord, Hauts-Bassins",12.4617,-3.457987,,,7684,,7684
 416,Flood,Burkina Faso,Africa,"Kongoussi (Bam) , Pensa (Bam) , Barsalogho Municipalities (Sanmatenga)",13.322492,-1.526339,,24,14500,3500,18024
 417,Flood,Burkina Faso,Africa,"Ouagadougou city (Kadiogo district, Centre province)",12.363142,-1.529773,9,1000,150000,,151009
 418,Flood,Burkina Faso,Africa,"Boucle Du Mouhoun, Cascades, Centre, Centre-est, Centre-nord, Centre-ouest, Centre-sud, Est, Hauts-bassins, Nord, Plateau Central, Sahel, Sud-ouest provinces",12.27793,-1.573062,18,,,21000,21018
 419,Flood,Burkina Faso,Africa,Hauts-bassins province,12.27793,-1.573062,2,13,11383,,11398
-420,Drought,Burkina Faso,Africa,,12.27793,-1.573062,,,2900000,,2900000
 421,Flood,Burkina Faso,Africa,"Boucle Du Mouhoun, Cascades, Centre, Centre-est, Centre-nord, Centre-ouest, Centre-sud, Est, Hauts-bassins, Nord, Plateau Central, Sahel, Sud-ouest provinces",12.27793,-1.573062,,,500,,500
 422,Flood,Burkina Faso,Africa,"Gnagna district (Est province), Namentenga, Sanmatenga districts (Centre-nord province), Soum, Seno, Oudalan, Yagha districts (Sahel province), Houet, Tuy districts (Hauts-bassins province), Ganzourgou district (Plateau Central province), Bougouriba, Poni districts (Sud-ouest province), Yatenga district (Nord province), Banwa district (Boucle Du Mouhoun province)",12.27793,-1.573062,16,,133362,,133378
 423,Flood,Burkina Faso,Africa,"Ouagadougou, Kilwin areas (Kadiogo district, Centre province), Bobo-Dioulasso city (Houet district, Hauts-bassins province), Kenedougou, Tuy districts (Hauts-bassins province), Cascades province",12.27793,-1.573062,8,54,28871,,28933
@@ -428,7 +418,6 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 427,Flood,Burkina Faso,Africa,"Kouritenga district (Centre-est province), Oubritenga district (Plateau Central province), Kadiogo district (Centre province), Houet district (Hauts-bassins province), Zondoma, Yatenga, Passore, Loroum districts (Nord province), Bam, Namentenga, Sanmatenga districts (Centre-Nord), Zoundweogo, Nahouri districts (Centre-Sud), Sahel province",12.27793,-1.573062,52,73,92970,28000,121095
 428,Flood,Burkina Faso,Africa,"Batie area (Noumbiel district, Sud-ouest province)",9.876604,-2.92089,6,18,,4292,4316
 429,Drought,Burkina Faso,Africa,"Sahel, Centre-nord, Est, Centre-ouest and Centre-est provinces",12.27793,-1.573062,,,2850000,,2850000
-430,Flood,Burkina Faso,Africa,"Arr.3 (Zogo, Watinoma, sector 12 and 13), Arr. 4, Arr. 7 (Sondogo), Arr.8 (Bissighin), Arr. 10, Tanghlin Dassouri Arr. (Ouagadougou city, Kadiogo district, Centre province), Boucle du Mouhoun, Cascades, Centre-nord, Centre-ouest, Est, Hauts-bassins, Nord, Sahel provinces",12.27793,-1.573062,15,35,27826,7032,34908
 431,Drought,Burkina Faso,Africa,Sahel province,12.526374,1.86857,,,4000000,,4000000
 432,Flood,Burkina Faso,Africa,Oudalan province (Tin-Akoff commune),14.964191,-0.164378,2,,882,,884
 433,Flood,Burkina Faso,Africa,"Boucle Du Mouhoun, Cascades, Centre, Centre-est, Centre-nord, Centre-ouest, Centre-sud, Est, Hauts-bassins, Nord, Plateau Central, Sahel, Sud-ouest provinces",12.27793,-1.573062,,,560,,560
@@ -495,38 +484,31 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 494,Drought,Cambodia,Asia,"Takeo, Kampot, Kampong Speu, Kampong Chhnang, Kandal, Prey Veng, Phnom Penh,Otdar Meanchey, Banteay Meanchey, Pursat, Battambang provinces",11.530254,104.8976,,,650000,,650000
 495,Flood,Cambodia,Asia,"Kandal, Stung Treng, Prey Veng, Takeo, Kampong Chhnang, Banteay Meanchey, Svay Rieng, Kampong Speu, Kratie, Pursat, Kampot provinces",13.5884,102.970027,29,,1470000,,1470029
 496,Flood,Cameroon,Africa,"Bamenda City (Northwest Region, north-west Cameroon)",5.963662,10.155619,2,95,153000,,153097
-497,Flood,Cameroon,Africa,"Ekirozock, Nkomassi, Garoua, Ndamvout boroughs (Youndé City, Mfoundi district, Centre province)",3.864768,11.520526,9,,24000,1000,25009
-498,Drought,Cameroon,Africa,,30.123842,-93.824214,,,2389127,,2389127
+497,Flood,Cameroon,Africa,"Ekirozock, Nkomassi, Garoua, Ndamvout boroughs ",3.864768,11.520526,9,,24000,1000,25009
 499,Flood,Cameroon,Africa,"Limbe, Fako Division",4.018898,9.197624,2,5,93255,,93262
 500,Flood,Cameroon,Africa,Logone et Chari and the Mayo-Danay Divisions (Far North Region ),10.603308,14.328163,38,8,500000,,500046
 501,Flood,Cameroon,Africa,Littoral province,4.042941,9.706203,2,,,,2
 502,Flood,Cameroon,Africa,"Mayo-Danay, Mayo-Kani (Far North Region)",10.603308,14.328163,,,26402,,26402
-503,Flood,Cameroon,Africa,"Mokolo area (Mayo-Tsanaga district, Extrême - Nord province), Kolofata area (Mayo-Sava district, Extrême - Nord province)",10.603308,14.328163,8,17,,10279,10304
-504,Flood,Cameroon,Africa,"Poss village (Mayo-Danay district, Extrême - Nord province)",10.603308,14.328163,13,95,,3000,3108
+503,Flood,Cameroon,Africa,Mokolo area (Mayo-Tsanaga district),10.603308,14.328163,8,17,,10279,10304
+504,Flood,Cameroon,Africa,Poss village (Mayo-Danay district),10.603308,14.328163,13,95,,3000,3108
 505,Flood,Cameroon,Africa,"Douala, Bonaberi areas (Wouril district, Littoral province)",4.0424,9.707925,3,,500,,503
-506,Flood,Cameroon,Africa,"Limbé area (Fako district, Sud - Ouest province)",4.018898,9.197624,30,,,1500,1530
-507,Flood,Cameroon,Africa,"Dougui village (Kai Kai area, Mayo-Danay district, Extrême - Nord province)",10.666759,15.028457,,,805,,805
-508,Flood,Cameroon,Africa,"Bénoue, Faro, Mayo-Louti, Mayo - Rey districts (Nord province), Diamaré, Logone - Et - Chari, Mayo-Danay, Mayo-Kani districts (Extrême - Nord province), Ngo-Ketunjia district (Nord - Ouest province), Haut - Nyong district (Est province)",12.802933,14.887716,15,,,31980,31995
+507,Flood,Cameroon,Africa,"Dougui village (Kai Kai area, Mayo-Danay district)",10.666759,15.028457,,,805,,805
 509,Flood,Cameroon,Africa,"Douala V area (Douala city, Wouril district, Littoral province)",4.0424,9.707925,4,,30000,,30004
 510,Flood,Cameroon,Africa,Adamaoua province,7.321196,13.58773,10,,20000,,20010
-511,Drought,Cameroon,Africa,"Nord, Extrème-Nord provinces (Northern regions)",10.603308,14.328163,,,12000,,12000
-512,Flood,Cameroon,Africa,"Sabongari, Oura-Kar, Bandoro Botare, Baksa villages (Bibemi area, Bénoue district, Nord province)",8.39841,14.23905,,,250000,,250000
+512,Flood,Cameroon,Africa,"Sabongari, Oura-Kar, Bandoro Botare, Baksa villages (Bibemi area, Nord province)",8.39841,14.23905,,,250000,,250000
 513,Flood,Cameroon,Africa,"Santchou, Bebong, Fondo Nera, Echiok, Nden-Ofoungouo, Fosso Ouasen Menoua Division",3.179427,11.961195,3,,12890,,12893
 514,Flood,Central African Republic,Africa,Bangui district (Bangui province),4.390715,18.550913,1,,,11000,11001
-515,Flood,Central African Republic,Africa,"Issongo, Bea-Rex Makambo, Sara Banga-2-Gbaya Dombia, Bibalé, Souma Poto Poto, Fondo Yakite, Sara-Dah areas (Bangui district, Bangui province)",30.724958,-88.06624,,,32993,,32993
+515,Flood,Central African Republic,Africa,"Issongo, Bea-Rex Makambo, Sara Banga-2-Gbaya Dombia",30.724958,-88.06624,,,32993,,32993
 516,Flood,Central African Republic,Africa,Bangui,4.390715,18.550913,,,44918,,44918
-517,Drought,Central African Republic,Africa,,6.571341,20.482826,,,2221692,,2221692
 518,Flood,Central African Republic,Africa,"Mbomou, Moyenne-Sido prefectures",8.223365,18.715955,,,2700,,2700
 519,Flood,Central African Republic,Africa,Moyenne Sido (prefecture of Ouham),8.223365,18.715955,,,2500,,2500
-520,Flood,Central African Republic,Africa,Sibut district (Kémo province),5.735083,19.085054,,,,240,240
 521,Flood,Central African Republic,Africa,"Bama village (Bria district, Haute-Kotto province), Bangui district (Bangui province), Mobaye district (Basse-Kotto province)",4.973273,21.787745,3,4,,12698,12705
 522,Flood,Central African Republic,Africa,"Bambari, Bakala districts (Ouaka province), Bangui district (Bangui province)",5.768001,20.67557,1,7,,23798,23806
 523,Flood,Central African Republic,Africa,"Bangui district (Nagui province), Bossangoa district (Ouham province)",6.492444,17.446316,1,,6000,1812,7813
-524,Flood,Central African Republic,Africa,"Male area (Paoua district, Ouham Pendé province), Bangui district (Bangui province)",7.2407,16.432496,,,2935,,2935
+524,Flood,Central African Republic,Africa,"Male area (Paoua district), Bangui district (Bangui province)",7.2407,16.432496,,,2935,,2935
 525,Flood,Central African Republic,Africa,Kouango city,4.994105,19.976695,,,3500,,3500
-526,Flood,Central African Republic,Africa,"Lobaye, Bangui, Ouaka, Ouham-Pendé",6.669372,16.347789,16,3,118000,,118019
+526,Flood,Central African Republic,Africa,"Lobaye, Bangui, Ouaka",6.669372,16.347789,16,3,118000,,118019
 527,Flood,Central African Republic,Africa,Bimbo; Birao and Baoro cities,10.296197,22.780991,,5,3952,,3957
-528,Flood,Central African Republic,Africa,Mambéré-Kadéï province,4.259338,15.787783,,,,795,795
 529,Flood,Central African Republic,Africa,"Nangha Boguila, Bossangoa districts (Ouham province)",6.492444,17.446316,3,,1585,,1588
 530,Flood,Chad,Africa,"Mandoul, Moyen-Chari provinces",9.9889,18.9757,22,19,123000,,123041
 531,Drought,Chad,Africa,"Bahr El Gazal (Nord, Ouest, Sud), Batha (Est, Ouest), Fitri, Fada, Mourtcha, Kanem, Wadi-Bissam, Mamdi, Assoungha, Djourouf Al Ahmar, Ouara, Aboudeia, Haraze Mangueigne, Abdi, Kimiti, Tibesti (Est, Ouest)",12.802933,14.887716,,,2135362,,2135362
@@ -536,38 +518,35 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 535,Flood,Chad,Africa,"Kerfi village (Goz-beida district, Sila province)",12.225592,21.410162,,,8000,,8000
 536,Flood,Chad,Africa,Bongor district (Mayo-Boneye province),9.689083,19.333833,3,,7120,900,8023
 537,Flood,Chad,Africa,Mandoul and Logone (Oriental provinces),8.659203,16.85385,1,45,3760,,3806
-538,Flood,Chad,Africa,"Batha, Chari-Baguirmi, Logone Oriental, Mayo-Kebbi Ouest, Sila, Logone Occidental, N'Djamena city, Lake, Kanem; Tibesti, Lac, Mayo-Kebbi Est, Mandoul, Tandjilé, Batah, Guera, Salamat, Ennedi West, Borkou, Ennedi East",12.802933,14.887716,576,,1941869,,1942445
+538,Flood,Chad,Africa,"Batha, Chari-Baguirmi, Logone Oriental",12.802933,14.887716,576,,1941869,,1942445
 539,Flood,Chad,Africa,"Tandjile Ouest, Logone Occidental, Logone Oriental, Salamat, Tandjile Est, Mayo-Boneye, Mandoul provinces",9.269467,17.465933,100,,175763,,175863
 540,Flood,Chad,Africa,"Walia, Kamda, Toukra, Habena, Chagoua, Moursal boroughs (Ndjamena district, Hadjer Lamis province)",12.031525,15.099631,3,,,4895,4898
 541,Flood,Chad,Africa,Grande Sido departement (Moyen-Chari Province),8.235913,18.714223,,,2062,,2062
 542,Flood,Chad,Africa,"Walia, Ngoumna, Ngueli boroughs (Ndjamena district, Hadjer Lamis province), Yaroungou, Moula refugees camps (Maro district, Barh Koh province)",12.067315,15.055807,,,18800,,18800
 543,Drought,Chad,Africa,"Kanem, Lac Barl el Gazal, Batha Est, Batha Ouest, Hadjer Lamis, Ouaddai, Salamat provinces",12.996486,15.73491,,,1600000,,1600000
 544,Drought,Chad,Africa,"Chari Baguimi, Guera, Lac, Kanem, Wadi Fira",14.525174,20.928701,,,1886800,,1886800
-545,Flood,Chad,Africa,"Batha, Chari-Baguirmi, Mayo-Kebbi Ouest, Tandjilé, Salamat, Logone Oriental, Moyen-Chari, Sila, Ennedi-Est, Ouaddaï, Mandoul, Sila, Mayo Kebbi Est and all districts of the city of N’djamena",12.802933,14.887716,22,229,1100000,,1100251
+545,Flood,Chad,Africa,"Batha, Chari-Baguirmi, Mayo-Kebbi Ouest",12.802933,14.887716,22,229,1100000,,1100251
 546,Flood,Chad,Africa,"Ndjamena, Lac, Mandoul, Tandjile, Mayo-Kebi East, Batha, Salama, Sila",8.2128,17.254383,3,,34872,,34875
 547,Flood,Chad,Africa,"Kabia, Mayo-Boneye, Mayo-Dala provinces",15.361167,18.664479,3,,3000,,3003
 548,Drought,Chad,Africa,"Kanem, Barl El Gazal, Lac, Batha Est, Batha Ouest, Guera, Sila, Salamat, Ouaddai, Hadjer Lamis provinces",12.996486,15.73491,,,2400000,,2400000
-549,Flood,Chad,Africa,"Borkou, Ouaddaï, Batha Est, Batha Ouest, Tibesti, Ennedi, Sila, Guera, Logone Oriental, Logone Occidental, Barh Koh, Tandjile Est, Tandjile Ouest, Salamat, Mayo-Boneye, Mayo-Dala, Kabia, Hadjer Lamis provinces",12.802933,14.887716,24,,144579,,144603
-550,Flood,Chad,Africa,"Bologo and Dafra districts; Tandjilé, Mandoul, Ennedi-Ouest, Batha, and the capital city of N’Djamena",17.193058,21.581326,32,329,246851,22000,269212
+550,Flood,Chad,Africa,Bologo and Dafra districts,17.193058,21.581326,32,329,246851,22000,269212
 551,Flood,Chad,Africa,"Ndjamena district (Hadjer Lamis province), Barh Koh, Lac Iro provinces",12.119154,15.050276,,,,6450,6450
 552,Flood,Chad,Africa,Salamat province,11.039637,20.282643,12,,170000,,170012
-553,Drought,Chad,Africa,"Guera, Biltine, Ouaddaï, Assongha, Batha-Est, Batha-ouest provinces",13.82803,20.828365,,,800000,,800000
+553,Drought,Chad,Africa,"Guera, Biltine, Assongha, Batha-Est, Batha-ouest provinces",13.82803,20.828365,,,800000,,800000
 554,Flood,Congo,Africa,"Likouala, Sangha, Cuvette, Plateaux, Niari, Brazzaville and Pointe-Noire",-2.546349,14.755819,23,,1800000,,1800023
 555,Flood,Congo,Africa,Likouala region,1.618742,18.06235,,,66000,,66000
 556,Flood,Congo,Africa,"Betou, Epena, Enyele, Bouanela, Liranga, Impfondo and Dongou distrcits (Likouala); Pokola, Pikounda and Kabo disricts (Sangha); Mossaka, Loukola districts (Cuvette and Plateaux",-33.792455,19.893254,,,164679,,164679
 557,Flood,Congo,Africa,Brazzaville district (Brazzaville province),-4.269441,15.271226,1,,,2000,2001
-558,Flood,Congo,Africa,"Mipla, Mikalou, Tsiemé, Ma Mboualé, Peit-Chose, Yoro, Mfilou boroughs (Brazzaville district, Brazzaville province)",-4.269441,15.271226,6,,,5000,5006
-559,Flood,Congo,Africa,"Tsiémé, Mikalou, Nkombo, Moungali, Yoro, Ngamakosso, Poto-Poto, Massengo, Ma Mnoualé, Mfilou, Tagai boroughs (Brazzaville district, Brazzaville province), Pointe-Noire district (Pointe-Noire province)",-33.792455,19.893254,,,20000,5000,25000
+558,Flood,Congo,Africa,"Mipla, Mikalou, Peit-Chose, Yoro, Mfilou boroughs (Brazzaville district, Brazzaville province)",-4.269441,15.271226,6,,,5000,5006
 560,Flood,Congo,Africa,Pointe-Noire district (Pointe-Noire province),-4.795098,11.85492,5,,2025,,2030
 561,Flood,Congo,Africa,Brazzaville district (Brazzaville province),-4.269441,15.271226,14,89,,7500,7603
 562,Flood,Congo,Africa,"Brazzaville, Pointe-Noire",-4.797537,11.85033,,,213000,,213000
 563,Flood,Congo,Africa,Brazzaville,-4.269441,15.271226,20,,,,20
 564,Flood,Congo,Africa,"Plateaux, Cuvette, Sangha provinces",-2.546349,14.755819,,,5000,48000,53000
-565,Flood,Congo,Africa,"Bétou, Epéna and Dongou districts (Likouala); Sangha, Cuvette, Plateaux, Kouilou, Brazzaville",3.055119,18.520916,24,,46652,,46676
 566,Flood,Congo,Africa,"Likouala, Cuvette, Plateaux departments",-1.830855,14.880245,,,40000,,40000
-567,Flood,Costa Rica,Americas,"Alajuela; Cartago; Cuajiniquil, Santa Cruz Veintisiete de Abril, Santa Cruz, Tempate, Santa Cruz, Tamarindo, Nosara, Nicoya (Guanacaste); Sierpe de Osa, Puerto Jiménez, Bahía Drake, Corredor, Corredores, Guaycará, Golfito, Jacó, Garabito (Puntarenas)",25.874811,-97.495989,,,400000,,400000
+567,Flood,Costa Rica,Americas,Alajuela; Cartago; Cuajiniqui,25.874811,-97.495989,,,400000,,400000
 568,Flood,Costa Rica,Americas,"Guanacaste, Puntarenas",9.267638,-83.283346,8,,1098668,,1098676
-569,Flood,Costa Rica,Americas,"Lepanto, Paquera, Puntarenas districts; Tárcoles, Garabito, Parrita, Quepos districts",9.820364,-84.933105,1,,125190,,125191
+569,Flood,Costa Rica,Americas,"Lepanto, Paquera, Puntarenas districts",9.820364,-84.933105,1,,125190,,125191
 570,Flood,Costa Rica,Americas,"Guacimo, Limon, Matina, Pococi, Siquirres, Talamanca districts (Limon province)",9.993936,-83.054761,,,1000,,1000
 571,Earthquake,Costa Rica,Americas,"San Jose, Puntarenas provinces",8.736465,-82.938991,8,,255,25,288
 572,Flood,Costa Rica,Americas,"Guacimo, Limon, Matina, Pococi, Siquierres, Talamanca (Limon province), Sarapiqui (Heredia province), Paraiso, Alvarado, Turrialba (Cartago province), San Ramon (Alajuela province)",25.874811,-97.495989,4,,2143,,2147
@@ -580,31 +559,28 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 579,Earthquake,Costa Rica,Americas,"Corredores, Golfito districts (Puntarenas province)",8.639927,-83.16754,2,75,60,,137
 580,Flood,Costa Rica,Americas,"San Jose, Guanacaste provinces",10.539157,-85.700394,,,12500,,12500
 581,Flood,Costa Rica,Americas,"Guanacaste, Puntarenas provinces",9.267638,-83.283346,,,9498,,9498
-582,Flood,Costa Rica,Americas,"Guanacaste, Puntarenas, San José, Cartago provinces",9.932543,-84.079578,3,,106,,109
-583,Flood,Costa Rica,Americas,"Corredores, Quepos, Golfito Canyons (Puntarenas); Sarapiquí, Heredia, San Isidro Cantons (Heredia Province); Jiménez, Turrialba, Paraíso, Cartago, Oreamuno, Alvarado, La Unión Cantons (Cartago Province); Siquirres, Tamanca, Limón, Guácimo, Pococí, Matina Cantons (Limon Province); San José, Alajuelita, Puriscal, Santa Ana, Moravia Cantons (San José); San Carlos, San Ramón, Guatoso Cantons (Alajuela).",25.874811,-97.495989,3,,200000,,200003
+582,Flood,Costa Rica,Americas,"Guanacaste, Puntarenas, Cartago provinces",9.932543,-84.079578,3,,106,,109
+583,Flood,Costa Rica,Americas,"Corredores, Quepos",25.874811,-97.495989,3,,200000,,200003
 584,Flood,Costa Rica,Americas,Matina district (Limon province),10.077212,-83.289635,1,,2500,,2501
 585,Flood,Costa Rica,Americas,"Limon, Heredia, Cartago, Alajuela provinces",10.013978,-84.199303,,,20000,,20000
 586,Flood,Costa Rica,Americas,"Guacimo, Pococi districts (Limon province), Carrandi, Matina, Batan municipalities (Matina district), Guacimo district (Limon province), Pacuarito municipality(Siquirres district, Limon province), Puerto Viejo de Saraquipi, Horquetas municipalities (Sarapiqui district, Heredia province), Turrialba district (Cartago province)",25.874811,-97.495989,2,,2056,,2058
 587,Flood,Costa Rica,Americas,"Sixaola, Bratsi, Cahuita (Talamanca district, Limon province), Valle de la Estrella (Limon district, Limon province), Batan, Carrandi (Matina district, Limon province), Siquirres district (Limon province) Heredia, Barva, Sarapiqui, San Isidro districts (Heredia province), Vasquez de Coronado, Moravia districts (San Jose province), Cartago province",25.874811,-97.495989,1,,53000,,53001
 588,Flood,Costa Rica,Americas,"Paraiso, Turrialba districts (Cartago province), Matina, Siquirres, Talamanca districts (Limon province), Valle de la Estrella city (Limon district, Limon province)",25.874811,-97.495989,6,,9523,,9529
-589,Flood,Costa Rica,Americas,"Santa Cruz, Bagaces districts (Guanacaste province); Puntarenas district(Puntarenas province); San Marcos de Tarrazu city (Tarrazu district, San Jose province), Aserri, Acosta, Escazu districts (San José province); Alajuela, Heredia, Cartago provinces",25.874811,-97.495989,24,,3000,,3024
+589,Flood,Costa Rica,Americas,Santa Cruz,25.874811,-97.495989,24,,3000,,3024
 590,Flood,Costa Rica,Americas,"Guanacaste, Puntarenas, Alajuela provinces",9.267638,-83.283346,4,,46695,,46699
 591,Flood,Costa Rica,Americas,"Sarapiqui district (Heredia province); San Carlos district (Alajuela province); Turrialba district (Cartago province); Pococi, Talamanca districts (Limon province)",10.47107,-84.64631,,,9666,,9666
 592,Earthquake,Costa Rica,Americas,"Alajuela, Alfaro Ruiz, Grecia, Poas, Valverde Vega districts (Alajuela province), Barva, Heredia, Santa Barbara, Sarapiqui districts (Heredia province)",10.036735,-84.158714,31,91,128527,,128649
-593,Flood,Ivory Coast,Africa,"Abobo, Anyama, Attecoubé, Bingerville, Port-Bouët, Grand-Bassam (Abidjan); Azaguié, Bonoua, Dabo; B Alépé, Azaguié, Bonoua, Dabou,",5.352378,-4.095608,13,114,11478,,11605
+593,Flood,Ivory Coast,Africa,"Abobo, Anyama",5.352378,-4.095608,13,114,11478,,11605
 594,Flood,Ivory Coast,Africa,Abidjan district (District autonome de Abidjan province),5.320357,-4.016107,10,,6425,,6435
 595,Flood,Ivory Coast,Africa,Abidjan district,5.320357,-4.016107,26,,227,,253
 596,Flood,Ivory Coast,Africa,"Bondoukou town (Gontougo district, Zanzan province), Abidjan district (District autonome de Abidjan province)",8.039799,-2.798426,8,,,,8
 597,Flood,Ivory Coast,Africa,Abidjan district (District autonome de Abidjan province),5.320357,-4.016107,23,,,,23
-598,Flood,Ivory Coast,Africa,"Danané region (Tonkpi district, Montagnes province)",7.259797,-8.152627,20,,,,20
-599,Flood,Ivory Coast,Africa,"Abidjan (Abobo, Koumassi, Yopougon), San Pedro, Pont-Brimé village",4.758159,-6.641549,15,25,200,,240
+599,Flood,Ivory Coast,Africa,"Abidjan (Abobo, Koumassi, Yopougon), San Pedro",4.758159,-6.641549,15,25,200,,240
 600,Flood,Ivory Coast,Africa,Abidjan district (District autonome de Abidjan province),5.320357,-4.016107,6,,450,,456
-601,Flood,Ivory Coast,Africa,"Aboisso, Alépé, Grand Bassam, Ayamé, Man, Bonoua, Agboville, Ono and Adiaké (Abidjan)",5.320357,-4.016107,12,32,14002,612,14658
 602,Flood,Ivory Coast,Africa,"Agboville city (Agneby-Tiassa district, Lagunes province)",5.931283,-4.210653,,,2000,,2000
 603,Flood,Ivory Coast,Africa,Abidjan district (District autonome de Abidjan province),5.320357,-4.016107,23,,,,23
 604,Flood,Ivory Coast,Africa,"Attecoube, Adjame areas (Abidjan district, District autonome de Abidjan province)",5.347945,-3.872737,16,,,,16
-605,Flood,Ivory Coast,Africa,"Abobo, Adjamé, Attécoubé, Cocody, Kumasi, Yopougon districts (Abidjan); Tiassalé, Toulepleu, San Pedro",5.385243,-4.02095,20,,25000,,25020
-606,Flood,Ivory Coast,Africa,"Abobo, Adjamé, Anyama, Cocody, Port-Bouet ,Yopougon (Abidjan area); San-Pedro,Alépé (Me Region), Divo(Lôh-Djiboua), Azaguié (Agneby-Tiassa), Niakaramadougou (Vallée du Bandama),Tabou (Bas-Sassandra)",7.806563,-5.379007,24,32,16525,2100,18681
+606,Flood,Ivory Coast,Africa,"Abobo, Anyama, Cocody, Port-Bouet ",7.806563,-5.379007,24,32,16525,2100,18681
 607,Flood,DRC,Africa,"Bukavu, and Burhinyi (South Kivu)",-2.502264,28.857573,40,5,,,45
 608,Flood,DRC,Africa,"Bunyakiri Town (Kalehe Territory, northern South Kivu Province); Bukavu City (northern South Kivu Province)",-2.502264,28.857573,7,,176000,,176007
 609,Flood,DRC,Africa,Kalehe territory (South Kivu province),-2.104971,28.91939,13,12,,2000,2025
@@ -613,9 +589,7 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 612,Earthquake,DRC,Africa,Bukavu district (Sud-Kivu province),-2.502264,28.857573,11,,17355,,17366
 613,Earthquake,DRC,Africa,"Kabare, Bukavu (South Kivu)",-2.502264,28.857573,3,30,260,100,393
 614,Flood,DRC,Africa,Bukavu district (Sud-Kivu province),-2.502264,28.857573,18,,,,18
-615,Drought,DRC,Africa,,-1.172919,23.166899,,,25972806,,25972806
 616,Flood,DRC,Africa,"Baraka City, Fizi territory (South-Kivu Province); Dungu Town area (Haut-Uele Province)",-4.105613,29.095069,4,20,3600,,3624
-617,Flood,DRC,Africa,"1 Nord-Ubangi, Sud-Ubangi, Tanganyika, Bas-Uele, Haut-Uele, Equateur, Sud-Kivu, Nord-Kivu, Kinshasa, Tshopo, Maniema, Kasaï Central, Mongala, Kwilu et Tshuapa. Kongo Central, Lomami",-1.172919,23.166899,300,,2190000,,2190300
 618,Flood,DRC,Africa,"Kalemie, Moba, Kabalo, Kongolo, Manon (Tanganyika)",-7.039878,29.76628,11,18,289412,,289441
 619,Flood,DRC,Africa,Kinshasa capital city,-4.325152,15.312853,165,28,82696,,82889
 620,Flood,DRC,Africa,Tanganyika Province,-5.946021,29.196717,2,15,8815,,8832
@@ -640,7 +614,7 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 639,Flood,DRC,Africa,"Tshopo, Haut-Uele districts (Orientale province)",2.77427,27.620817,,,180000,,180000
 640,Flood,DRC,Africa,"Gemena city (Sud-Ubangi district, Equateur province)",2.950709,19.422892,,7,2628,,2635
 641,Flood,DRC,Africa,"Galiema, Bandalungwa, Selembao, Masina, Limete, Kalamu, Bumbu, Kimbaseke Ndjili communes (Kinshasa)",-4.351478,15.334537,51,17,,15743,15811
-642,Flood,DRC,Africa,"Nord - Ubangi, Sud -Ubangi, Mongala, Bas -Uele, Haut-Uele, Maniema, Sud-Kivu, Kasaï, Kinshasa and Tshopo, creating a humanitarian disaster. Nord and Sud-Ubangi, Mongala and Kinshasa",-1.172919,23.166899,43,54,399840,,399937
+642,Flood,DRC,Africa,"Nord - Ubangi, Sud -Ubangi",-1.172919,23.166899,43,54,399840,,399937
 643,Flood,DRC,Africa,"Sake Town (Masisi territory, North Kivu Province)",-1.571281,29.053624,13,,35422,,35435
 644,Flood,DRC,Africa,"Lufutoto town (Mbanza-Ngungu area, Cataractes district, Bas-Congo province)",-5.249463,14.866064,1,,,881,882
 645,Flood,DRC,Africa,"Bumba area (Mongala district, Equateur province)",2.184128,22.466366,,,,3600,3600
@@ -649,7 +623,7 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 648,Flood,DRC,Africa,"Bukama area (Haut-Lomami district, Katanga province)",-9.202957,25.850267,,,67500,,67500
 649,Flood,DRC,Africa,Sud-Kivu province,-2.505584,28.859489,,,,2000,2000
 650,Flood,DRC,Africa,"Kabalo area (Tanganyka district, Katanga province)",-6.050065,26.915733,1,,3525,1010,4536
-651,Flood,DRC,Africa,"Debonhome, Ndanu, Kingabua, Pécheur, Salongo boroughs (Kinshasa district, Kinshasa province)",-4.325152,15.312853,31,,10560,,10591
+651,Flood,DRC,Africa,"Debonhome, Ndanu, Kingabua",-4.325152,15.312853,31,,10560,,10591
 652,Flood,DRC,Africa,"Mbanza-Ngungu City; Noki, Disengomoka districts (Kongo Central Province)",-5.249463,14.866064,18,4,,,22
 653,Flood,DRC,Africa,"Mount Ngafula, Ngaliema, Ngaba, Selembao, Kitambo, Bandalungwa, Bumbu, Kisenso, Ngiri-Ngiri, Barumbu, Matete, Limete, Masina, Makala, Gombe and Kalamu (Kinshasa)",-1.172919,23.166899,175,87,84624,,84886
 654,Flood,DRC,Africa,"Mbuji-Mayi, Mwene-Ditu districts (Kasai Oriental province)",-6.119067,23.589931,,,5000,,5000
@@ -657,42 +631,37 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 656,Flood,Dominican Republic,Americas,"Padre Granero, Bello Costero, Playa Oeste, Los Dominguez boroughs (Puerto Plata city, Puerto Plata district, Puerto Plata province), Las Flores area (El factor district, Maria Trinidad Sanches province), Urbanizacion General Gregorio Luperon area (Santiago district, Santiago province), Aguas Negras area (Pedernales district, Pedernales province), Los Callejones area (La Vega district, La Vega province), Padre Las Casas district (Azua province)",40.914371,-74.150861,1,,25700,,25701
 657,Flood,Dominican Republic,Americas,Santiago district (Santiago province),19.45679,-70.693016,,,,250,250
 658,Flood,Dominican Republic,Americas,"Santo Domingo, La Romana cities",18.493652,-69.83837,,,3400,,3400
-659,Flood,Dominican Republic,Americas,,27.927362,79.237366,,,257,,257
-660,Flood,Dominican Republic,Americas,"Azua, Barahona, Distrito Nacional, Duarte, Monte Plata, San Cristobal, San Pedro de Macoris, Santo Domingo, San José de Ocoa, Bahoruco, San Juan de la Maguana, Sánchez Ramírez, Peravia",40.914371,-74.150861,34,,22236,,22270
-661,Flood,Dominican Republic,Americas,"Duarte, El Seibo, Espaillat, Hato Mayor, La Altagracia, Maria Trinidad Sanches, Puerto Plata, Samanà",18.98212,-69.046734,,,15000,,15000
+660,Flood,Dominican Republic,Americas,"Azua, Barahona, Distrito Nacional, Duarte, Monte Plata",40.914371,-74.150861,34,,22236,,22270
+661,Flood,Dominican Republic,Americas,"Duarte, El Seibo, Espaillat, Hato Mayor, La Altagracia",18.98212,-69.046734,,,15000,,15000
 662,Flood,Dominican Republic,Americas,Maria Trinidad Sanches province,19.22683,-69.61313,1,,460,,461
 663,Flood,Dominican Republic,Americas,"Palo Verde area (Casta??uelas district, Monte Cristi province), Arenoso, San Francisco de Macoris districts (Duarte province), Cayetano Germos?n district (Espaillat province), La Vega, Santiago, Dajabon provinces",40.914371,-74.150861,9,,16000,,16009
-664,Flood,Dominican Republic,Americas,"Azua, Baoruco, Barahona, Dajabon, Distrito Nacional, Duarte, El Seibo, Elias Pina, Espaillat, Hato Mayor, Independencia, La Altagracia, La Romana, La Vega, Maria Trinidad Sanches, Monsenor Nouel, Monte Cristi, Monte Plata, Pedernales, Peravia, Puerto Plata, Salcedo, Samana, San Cristobal, San José de Ocoa, San Juan, San Pedro de Macoris, Sanchez Ramirez, Santiago, Santiago Rodriguez, Santo Domingo, Valverde provinces",40.914371,-74.150861,6,,9500,,9506
+664,Flood,Dominican Republic,Americas,"Azua, Baoruco, Barahona",40.914371,-74.150861,6,,9500,,9506
 665,Flood,Dominican Republic,Americas,Puerto Plata province,19.789398,-70.694051,,,,11500,11500
 666,Flood,Dominican Republic,Americas,Santiago province,19.450393,-70.690905,,,3070,,3070
 667,Flood,Dominican Republic,Americas,"Dajabon, Duarte, Espaillat, La Vega, Maria Trinidad Sanches, Mensenor Nouel, Monte Cristi, Puerto Plata, Samana, Salcedo, Sanchez Ramirez, Santiago, Santiago Rodriguez, Valverde provinces",40.914371,-74.150861,9,3,65000,,65012
-668,Flood,Dominican Republic,Americas,"Azua, Baoruco, Barahona, Dajabon, Distrito Nacional, Duarte, El Seibo, Elias Pina, Espaillat, Hato Mayor, Independencia, La Altagracia, La Romana, La Vega, Maria Trinidad Sanches, Monsenor Nouel, Monte Cristi, Monte Plata, Pedernales, Peravia, Puerto Plata, Salcedo, Samana, San Cristobal, San José de Ocoa, San Juan, San Pedro de Macoris, Sanchez Ramirez, Santiago, Santiago Rodriguez, Santo Domingo, Valverde provinces",40.914371,-74.150861,3,,3830,,3833
+668,Flood,Dominican Republic,Americas,"Azua, Baoruco, Barahona, Dajabon",40.914371,-74.150861,3,,3830,,3833
 669,Flood,Dominican Republic,Americas,"Dajabon, Duarte, El Seibo, Espaillat, Hato Mayor, Maria Trinidad Sanches, Monte Cristi, Puerto Plata, Samana, Santiago Rodriguez, Valverde provinces",40.914371,-74.150861,2,,4565,,4567
-670,Flood,Dominican Republic,Americas,"Azua, Baoruco, Barahona, Dajabon, Distrito Nacional, Duarte, El Seibo, Elias Pina, Espaillat, Hato Mayor, Independencia, La Altagracia, La Romana, La Vega, Maria Trinidad Sanches, Monsenor Nouel, Monte Cristi, Monte Plata, Pedernales, Peravia, Puerto Plata, Salcedo, Samana, San Cristobal, San José de Ocoa, San Juan, San Pedro de Macoris, Sanchez Ramirez, Santiago, Santiago Rodriguez, Santo Domingo, Valverde provinces",40.914371,-74.150861,1,,300,,301
-671,Flood,Dominican Republic,Americas,"San Cristóbal Province, Santo Domingo Province, Distrito Nacional",18.479528,-69.94257,,,7390,,7390
+670,Flood,Dominican Republic,Americas,"Azua, Baoruco, Barahona",40.914371,-74.150861,1,,300,,301
 672,Flood,Dominican Republic,Americas,Puerto Plata Province,19.789398,-70.694051,,,210,,210
 673,Flood,Dominican Republic,Americas,San Pedro de Macoris district (San Pedro de Macoris province),18.45457,-69.308586,3,,1750,,1753
 674,Earthquake,Dominican Republic,Americas,"Puerto Plata district (Puerto Plata province), San Francisco de Macoris district (Duarte province), Santiago district (Santiago province), Nagua district (Maria Trinidad Sanches province)",40.914371,-74.150861,3,15,2000,,2018
 675,Flood,Dominican Republic,Americas,"Dajabon, Monte Plata, Puerto Plata, San Cristobal, San Pedro de Macoris, Sanchez Ramirez, Santiago provinces",18.461709,-69.303185,4,,11200,,11204
 676,Flood,Dominican Republic,Americas,"Espaillat, Puerto Plata, Duarte, Salcedo, Sanchez Ramirez, Maria Trinidad Sanches provinces",19.753898,-70.829224,2,,20850,100,20952
-677,Flood,Dominican Republic,Americas,"Cabrera district (María Trinidad Sánches province), Luperón, Guananico districts, Cabecera-Cabarete (Puerto Plata province), Gaspar Hernandez district (Espaillat province), La Vega, Monte Cristi, Santiago (Jaico), Valverde, Duarte (Villa Riva, Los Peinados and Los Contreras communities), Hato Mayor, El Seibo provinces",40.914371,-74.150861,15,,2792000,,2792015
-678,Flood,Dominican Republic,Americas,"Azua, Barahona, Bahoruco, Dajabón, Elías Piña, Espaillat, Independencia, La Vega, Pedernales, Santiago, and Santiago Rodríguez",19.223741,-70.528407,1,,289083,,289084
+677,Flood,Dominican Republic,Americas,"Cabrera district, Guananico districts",40.914371,-74.150861,15,,2792000,,2792015
+678,Flood,Dominican Republic,Americas,"Azua, Barahona, Bahoruco",19.223741,-70.528407,1,,289083,,289084
 679,Flood,Dominican Republic,Americas,"Dajabon, Espaillat, La Vega, Monsenor Nouel, Monte Cristi, Puerto Plata, Santiago, Santiago Rodrigez provinces",19.223741,-70.528407,5,,10000,,10005
 680,Flood,Dominican Republic,Americas,"Espaillat, Maria Trinidad Sanches, Puerto Plata, Sanchez Ramirez provinces",19.753898,-70.829224,3,,1450,,1453
 681,Flood,Dominican Republic,Americas,"Jimani district (Independencia province), Baoruco, Barahona, Elias Pina, Duarte, Sanchez Ramirez provinces",18.49502,-71.85111,688,,7910,2092,10690
-682,Earthquake,Ecuador,Americas,"Guayaquil district (Guayas province), Muisne district (Esmeraldas province), Portoviejo district (Manabi province), Santo Domingo de los Tsachilas, Los Ríos, Santa Elena provinces",-0.946486,-79.24172,672,6274,383090,,390036
+682,Earthquake,Ecuador,Americas,"Guayaquil district (Guayas province), Muisne district",-0.946486,-79.24172,672,6274,383090,,390036
 683,Earthquake,Ecuador,Americas,Amazon basin region,-1.160171,-78.432915,,15,,,15
 684,Earthquake,Ecuador,Americas,"Esmeraldas district (Esmeraldas province), Portoviejo district (Manabi province)",-1.054474,-80.45159,1,87,60,,148
 685,Earthquake,Ecuador,Americas,"Azuay, Manabi, Morona Sant",-1.052807,-80.453427,,9,225,15,249
-686,Earthquake,Ecuador,Americas,"Esmeraldas, Eloy Alfaro, Atacames, Muisne, Quinindé, Rioverde, and San Lorenzo cantons (Esmeraldas Province)",1.288675,-78.83446,,49,2810,222,3081
-687,Earthquake,Ecuador,Americas,,-33.452717,-70.696686,,,39,,39
-688,Flood,Ecuador,Americas,"Muisne (Esmeraldas); Puerto López, Chone, and Tosagu (Manabí); Alfredo Baquerizo Moreno (Jujan); Balzar, Palestina, Santa Lucía, Playas, and Milagro (Guayas); Baba and Valenc (Los Rios); El Oro Province",-0.946486,-79.24172,6,7,117491,,117504
-689,Flood,Ecuador,Americas,"La Delia, El Colorado (Los Rios Province); Santa Ana Canton, Manabí, Pastaza provinces",-1.206903,-80.37225,14,,3000,,3014
-690,Flood,Ecuador,Americas,"Machala City (El Oro Province); Manabí,Morona Santiago Provinces",-3.258856,-79.95885,,,290,,290
-691,Flood,Ecuador,Americas,"Cotopaxi, Azuay, Chimborazo, El Oro, Esmeraldas, Guayas, Los Ríos, Pichincha Provinces",-3.258856,-79.958852,,,600,,600
+686,Earthquake,Ecuador,Americas,"Esmeraldas, Eloy Alfaro, Atacames, Muisne",1.288675,-78.83446,,49,2810,222,3081
+689,Flood,Ecuador,Americas,"La Delia, El Colorado (Los Rios Province)",-1.206903,-80.37225,14,,3000,,3014
+690,Flood,Ecuador,Americas,Machala City (El Oro Province),-3.258856,-79.95885,,,290,,290
+691,Flood,Ecuador,Americas,"Cotopaxi, Azuay, Chimborazo, El Oro, Esmeraldas, Guayas",-3.258856,-79.958852,,,600,,600
 692,Flood,Ecuador,Americas,"Pastaza, Zamora Chinchipe, Azuay, Chimborazo,Tungurahua provinces",-1.645279,-78.681885,3,,600,,603
-693,Flood,Ecuador,Americas,"Chone Canton (Manabí); Guayas; Los Ríos, Santa Elena, Cotopaxi, El Oro, Santo Domingo de Los Tsáchilas, Imbabura, Esmeraldas, and Chimborazo",-0.946486,-79.24172,30,37,66727,,66794
-694,Flood,Ecuador,Americas,"Atacames, Esmeraldas, Quinindé and Muisne",0.872027,-79.852066,,,14186,,14186
+694,Flood,Ecuador,Americas,"Atacames, Esmeraldas",0.872027,-79.852066,,,14186,,14186
 695,Flood,Ecuador,Americas,"Zamora Chinchipe, Napo, Pastaza, Morona Santiago, Orellana provinces",-3.817093,-78.757816,47,30,8300,,8377
 696,Flood,Ecuador,Americas,Huaquillas district (El Oro province),-3.481677,-80.236725,,,520,,520
 697,Flood,Ecuador,Americas,"Quevedo, Babahoyo, Vinces, Baba, Urdaneta, Montalvo districts (Los Rios province), Santa Rosa, Portovelo, Huaquillas, Arenillas districts (El Oro province), Salitre district (Gayas province), Eloy Alfaro district (Esmeraldas province), Portoviejo, Montecristi, Chone, Tosagua, Rocafuerte, Sucre district (Manabi province), Pichincha, Santa Elena, Santo Domingo de los Tsachilas, Zona No Delimitada provinces",-0.946486,-79.24172,16,,57670,,57686
@@ -706,21 +675,15 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 705,Drought,Ecuador,Americas,"Zapotillo, Celica, Paltas, Macara, Sozoranga districts (Loja province)",-4.383851,-79.940385,,,3165,,3165
 706,Flood,Ecuador,Americas,"Carchi, Imbabura provinces",0.670811,-77.593525,34,32,,,66
 707,Flood,Ecuador,Americas,"Santo Domingo district (Santo Domino de los Tsachilas province), Santa Rosa district (El Oro province), Chillanes district (Bolivar province), Pichincha, Los Rios, Esmeraldas, Napo provinces",-0.946486,-79.24172,12,,1185,,1197
-708,Flood,Ecuador,Americas,"Guayas, Bolívar, Esmeraldas, Cotopaxi, Los Ríos, Manabí, Imbabura, Santo Domingo de los Tsáchilas, El Oro provinces",-0.846164,-80.16482,9,,10000,,10009
-709,Flood,Ecuador,Americas,"Guayas, Cotopaxi, El Oro and Los Ríos; Quito (Pichincha)",-0.221173,-78.51131,29,52,7270,,7351
 710,Flood,Ecuador,Americas,"Montanita area (Santa Elena district, Santa Elena province), 3 de Noviembre area (El Guabo district, El Oro province), Taura, Naranjal, Puerto Inca, Lechugal areas (Naranjal district, Guayas province), El Triunfo, Colimes, Daule, San Jacinto de Yaguachi, Duran, Salitre districts (Guayas province), Machala, Balsas, El Guabo districts (El Oro province), Quevedo, Mocache, Babahoyo, Baba, Montalvo, Vinces, Urdaneta districts (Los Rios province), Echeandia district (Bolivar province), Santo Domingo district (Santo Domingo de los Tsachilas province), Salinas, La Libertad districts (Santa Elena province), Quininde, San Lorenzo, Eloy Alfaro, Esmeraldas districts (Esmeraldas province), Quito district (Pichincha province), Latacunga, La Mana districts (Cotopaxi province), Manta, 24 de Mayo, Flavio Alfaro, Sucre, Chone districts (Manabi province), Tollo Intag village (Cotacachi districts, Imbabura province), Chimborazo, Canar provinces",-0.946486,-79.24172,3,2,11805,,11810
 711,Flood,Ecuador,Americas,Tena district (Napo province),-0.991014,-77.813805,2,,6440,,6442
 712,Flood,Ecuador,Americas,"Vinces district (Los Rios province), Bolivar, Carchi, Chimborazo, Cotopaxi, El Oro, Guayas, Imabura, Manabi, Zamora Chinchipe provinces",-0.846164,-80.16482,,,3600,,3600
 713,Flood,Ecuador,Americas,"Cotopaxi, El Oro, Esmeraldas, Guayas provinces",-3.258856,-79.958852,12,,,500,512
-714,Flood,Ecuador,Americas,Piñas Canton (El Oro); Chunchi Canton (Chimborazo),-3.679282,-79.68225,6,3,18000,,18009
-715,Earthquake,Ecuador,Americas,"Cotopaxi, Esmeraldas, Guayas, Imbabura, Los Ríos, Manabí, Pichincha, Santo Domingo de los Tsáchilas, Tungurahua",-0.267355,-79.15665,1,2,7802,,7805
 716,Flood,Ecuador,Americas,Azuay Province,-3.052445,-79.239513,4,27,81,,112
-717,Flood,Ecuador,Americas,"Balao,Quinsaloma, La Maná, Quilanga, Espíndola, Catamayo, Chila, Santa Elena, Camilo Enrique Ponce, Alfredo Baquerizo Moreno, Caluma, Zaruma counties; Cotopaxi, Pichincha,Los Ríos, El Oro provinces",-0.946486,-79.24172,40,86,26663,,26789
 718,Earthquake,Ecuador,Americas,"El Oro, Guayas, and Azuay",-3.326291,-79.804773,14,494,126922,,127430
 719,Flood,Ecuador,Americas,"Guayaquil, Duran districts (Guayas province), Huaquillas district (El Oro province), Portoviejo, Manta, Montecristi, Sucre, San Vicente districts (Manabi province), Pichincha, Bolivar, Canar, Esmeraldas, Los Rios provinces",-0.946486,-79.24172,31,6,51080,3027,54144
 720,Flood,Ecuador,Americas,"Chone, Portoviejo districts (Manabi province)",-1.06093,-80.470148,11,,1200,,1211
 721,Flood,El Salvador,Americas,"San Salvador, Soyapango districts (San Salvador province)",13.698965,-89.19143,,,1000,,1000
-722,Earthquake,El Salvador,Americas,San Martín municipality (San Salvador Department),13.739628,-89.055435,1,,160,,161
 723,Flood,El Salvador,Americas,San Salvador district (San Salvador province),13.698965,-89.19143,1,,100,,101
 724,Earthquake,El Salvador,Americas,Intipuca (La Union); Chirilagua (San Miguel),13.197278,-88.0541,,1,2499,,2500
 725,Earthquake,El Salvador,Americas,"Apaneca district (Ahuachapan province), Juayua district (Sonsonate province)",13.960529,-89.746139,1,1,750,,752
@@ -734,7 +697,7 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 733,Flood,El Salvador,Americas,"Ahuachapan, Cabanas, Chalatenango, Cuscatlan, La Libertad, La Paz, La Union, Morazan, San Miguel, San Salvador, San Vicente, Santa Ana, Sonsonate, Usulutan provinces",35.113545,-78.997391,1,,,,1
 734,Earthquake,El Salvador,Americas,"San Lorenzo, Atiquizaya, Ahuachapan, Turin, El Refugio districts (Ahuachapan province)",13.912426,-89.79863,,,16470,,16470
 735,Drought,El Salvador,Americas,"La Union, San Miguel, Morazan, Usulutan, Ahuachapan, Sonsonate, Santa Ana, Chalatenango provinces",14.14596,-89.552974,,,700000,,700000
-736,Flood,El Salvador,Americas,"El Brazo, La Canoa, El Tecomatal cantons (San Miguel department); San Felipe, Las Tunas cantons (La Unión department); Capitán Lazo, Puerto Parada cantons (Usulután municipality); Metalío canton (Sonsonate department); San Diego, San Rafael Abajo (La Libertard department)",35.113545,-78.997391,4,14,7085,,7103
+736,Flood,El Salvador,Americas,"El Brazo, La Canoa",35.113545,-78.997391,4,14,7085,,7103
 737,Earthquake,El Salvador,Americas,"Berlin, Alegria, Tecapan, Santiago de Maria districts (Usulutan province), Santa Tecla, Comasagua districts (La Libertad province) ; San Miguel, Santa Ana, Sonsonate, Cuscatlan, San Vicente, La Union, Ahuachapan, Cabanas, Morazan, Chalatenango, La Paz, La Libertad, San Salvador, Usulutan provinces",35.113545,-78.997391,844,4723,1329806,,1335373
 738,Drought,El Salvador,Americas,"San Vicente, Usulutan and San Miguel zones",13.338732,-88.42192,,,386610,,386610
 739,Flood,El Salvador,Americas,"Ahuachapan, Cabanas, Chalatenango, Cuscatlan, La Libertad, La Paz, La Union, Morazan, San Miguel, San Salvador, San Vicente, Santa Ana, Sonsonate, Usulutan provinces",35.113545,-78.997391,2,,500,,502
@@ -743,9 +706,8 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 742,Earthquake,Ethiopia,Africa,"Southern Afar, northern Oromia, Amhara regions",11.594966,37.388225,2,2,99950,,99954
 743,Flood,Ethiopia,Africa,"Himora town (Western district, Tigray province)",13.496664,39.476826,,,2500,,2500
 744,Flood,Ethiopia,Africa,"Afar, Oromia, Somali region",9.350853,42.800379,22,,4000,,4022
-745,Flood,Ethiopia,Africa,,8.62622,39.616032,16,,,,16
 746,Flood,Ethiopia,Africa,"Somali Region, Afar, Oromia, SNNP, Gambela",9.350853,42.800379,60,,1500000,,1500060
-747,Flood,Ethiopia,Africa,"far, Amhara, Central Ethiopia, Oromia, Sidama, Somali, South Ethiopia and South West Ethiopia People’s, Tigray regions and Dire Dawa City Administration",-34.710758,-58.61067,5,,181548,,181553
+747,Flood,Ethiopia,Africa,Amhara,-34.710758,-58.61067,5,,181548,,181553
 748,Earthquake,Ethiopia,Africa,Afar and Tigray regions,13.496664,39.476826,1,9,43000,,43010
 749,Flood,Ethiopia,Africa,"Dire Dawa City, SNNPR",9.591319,41.856637,12,,219000,,219012
 750,Drought,Ethiopia,Africa,"Tigray, Afar and Amhara",11.594966,37.388225,,,6800000,,6800000
@@ -815,59 +777,53 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 814,Flood,Ghana,Africa,"Chereponi, Bunkpurugu Nakpanduri districts (North East Region)",10.136218,0.289885,5,,120,,125
 815,Flood,Ghana,Africa,Accra Metropolis district (Greater Accra province),5.661083,-0.202815,,,200,,200
 816,Flood,Guatemala,Americas,"Teleman area (Panzos district, Alta Verapaz province), Guatemala district (Guatemala province), Zacapa district (Zacapa province)",14.971177,-89.53142,20,12,200,250,482
-817,Earthquake,Guatemala,Americas,"Huehuetenango, Quetzaltenango, Quiché, San Marcos, Suchitepéquez, Totonicapan",14.964381,-91.794327,,2,3518,81,3601
+817,Earthquake,Guatemala,Americas,"Huehuetenango, Quetzaltenango",14.964381,-91.794327,,2,3518,81,3601
 818,Earthquake,Guatemala,Americas,Jutapia province,45.567653,-73.467228,6,2,150,,158
 819,Flood,Guatemala,Americas,Escuintla district (Escuintla province),14.302247,-90.789082,,,10800,,10800
 820,Flood,Guatemala,Americas,Cuilapa district (Santa Rosa province),14.27731,-90.300255,11,,6075,,6086
 821,Earthquake,Guatemala,Americas,"Cuilapa district (Santa Rosa province) ; Guatemala city (Guatemala district, Guatemala province)",14.27731,-90.300255,3,,400,,403
 822,Flood,Guatemala,Americas,Santa Catarina La Tinta district (Alta Verapaz province),15.31195,-89.885216,5,,,,5
 823,Flood,Guatemala,Americas,"Zacapa, San Marcos Departments",14.109833,-90.876621,3,,16000,,16003
-824,Drought,Guatemala,Americas,,14.6228,-90.5314,,,1500000,,1500000
-825,Flood,Guatemala,Americas,Uspantán and Chicamán Municipalities (Quiché Department); Sacatepéquez Department,15.347561,-90.801056,,,2245,,2245
-826,Flood,Guatemala,Americas,"Suchitepéquez, San Marcos, Jutiapa, Sacatepequez, Guatemala Department",14.684778,-90.485762,18,13,606102,,606133
-827,Earthquake,Guatemala,Americas,"Guatemala city, Escuintla, Sacatepéquez",14.6228,-90.5314,9,9,14541,,14559
+827,Earthquake,Guatemala,Americas,"Guatemala city, Escuintla",14.6228,-90.5314,9,9,14541,,14559
 828,Earthquake,Guatemala,Americas,Jerez municipality (Jutiapa department),14.288404,-89.89333,9,9,14541,,14559
-829,Flood,Guatemala,Americas,"San Marcos, Sololá, Guatemala and Santa Rosa Departments",14.964381,-91.794327,2,,11799,,11801
-830,Flood,Guatemala,Americas,"Alta Verapaz, Escuintla, Baja Verapaz, Guatemala, Suchitepéques, Zacapa and Totonicapán Departments",14.685523,-90.487197,78,5,4400000,,4400083
+829,Flood,Guatemala,Americas,"San Marcos, Guatemala and Santa Rosa Departments",14.964381,-91.794327,2,,11799,,11801
+830,Flood,Guatemala,Americas,"Alta Verapaz, Escuintla, Baja Verapaz, Guatemala",14.685523,-90.487197,78,5,4400000,,4400083
 831,Drought,Guatemala,Americas,Chiquimula province,14.68502,-90.485282,41,,113596,,113637
 832,Flood,Guatemala,Americas,Santa Marta and Santa Odilia (Nuevo Concepcion) San Francisco (Tiquisate),14.290673,-91.36725,1,,160,,161
-833,Flood,Guatemala,Americas,"Cuyotenango, San Felipe, San Martín Zapotitlán, San Andrés Villa Seca, San Sebastián, Santa Cruz Muluá, Mazatenango’s urban centre, Colotenango’s urban centre, Calle de la Cruz, Callejón 10, Campo Borrayo municipaliaties; Icán, La otra banda and Tulula cantons; Suchitepéquez Retalhuleu departements",26.036713,-80.283195,,,10080,,10080
-834,Flood,Guatemala,Americas,"Livingston Town Area (Izabal Department); Alta Verapaz, Baja Verapaz, Petén, Quetzaltenango, San Marcos, Santa Rosa, Sololá, Suchitepéquez departments",15.826731,-88.74938,,1,10571,,10572
-835,Flood,Guatemala,Americas,"Guatemala district (Guatemala province), Alta Verapaz, Escuintla, Huehuetenango, Jalapa, Quiché, Totonicapan, Zacapa provinces",14.6228,-90.5314,16,24,2500,,2540
+833,Flood,Guatemala,Americas,"Cuyotenango, San Felipe",26.036713,-80.283195,,,10080,,10080
+834,Flood,Guatemala,Americas,"Livingston Town Area (Izabal Department); Alta Verapaz, Baja Verapaz",15.826731,-88.74938,,1,10571,,10572
+835,Flood,Guatemala,Americas,"Guatemala district (Guatemala province), Alta Verapaz",14.6228,-90.5314,16,24,2500,,2540
 836,Flood,Guatemala,Americas,"Escuintla, Jutiapa, Quetzaltenango, Retalhuleu, San Marcos, Santa Rosa, Suchitepequez provinces",14.964381,-91.794327,,,1440,,1440
 837,Flood,Guatemala,Americas,"Rio Salinas, Santa Elena, Santo Domingo, Caribe Salinas, Las Delicias, Roto Viejo, Roto Nuevo, La Soledad, Mollejon, Pico de Oro, Loveremos, Zaragoza, Mario Mendez, El Puerquito areas (Sayaxche district, Peten province), Pipiles o El Sacrificio, Los Laureles Cooperativa, Santa Rosito areas (La Liberdad district, Peten province), Dolores, Poptun, San Luis districts (Peten province), Legual area (San Miguel Ixtahuacan district, San Marcos province), Izabal, Alta Verapaz, Quiche, Zacapa, Huehuetenango, Chimatenango provinces",26.036713,-80.283195,3,,180000,,180003
 838,Flood,Guatemala,Americas,"Chiquimulilla, Cuilapa, Santa Rosa De Lima districts (Santa Rosa province), Moyuta, Pasaco districts (Jutiapa province), Ixcan district (Quiche province), Solola, Izabal, Peten, Chiquimula, Chimaltenango, Quetzaltenango, Escuitla, El Progresso, Huehuetenango, Retalhuleu, Suchitepequez, San Marcos, Totonicapan, Sacatepequez, Alta Verapaz, Baja Verapaz, Jalapa provinces",26.036713,-80.283195,43,18,528735,,528796
-839,Flood,Guatemala,Americas,"Alta Verapaz, Baja Verapaz, Chimaltenango, Chiquimula, El Progreso, Escuintla, Guatemala, Huehuetenango, Izabal, Jalapa, Jutiapa, Petén, Quetzaltenango, Quiché, Retalhuleu, Sacatepéquez, San Marcos, Santa Rosa, Sololá, Suchitepéquez, Totonicapán, Zacapa provinces",26.036713,-80.283195,6,,87500,,87506
-840,Flood,Guatemala,Americas,"El Progreso, Petén, Quiché, San Marcos provinces",14.964381,-91.794327,2,,56845,,56847
-841,Flood,Guatemala,Americas,"Alta Verapaz, El Progreso, Petén, Quiché",15.4702,-90.373506,,,1000,,1000
-842,Earthquake,Guatemala,Americas,"Escuintla, Baja Verapaz, Chimaltenango, Guatemala, Quetzaltenango, Sacatepéquez, Sololá, Suchitepéquez and Totonicapán departments",14.684809,-90.484844,3,2,31300,,31305
-843,Flood,Guatemala,Americas,"Tucurú Municipality (Alta Verapaz); Guatemala, Huehuetenango, Quiché, Santa Rosa, Solóla, Gualán, Zacapa, Retalhuleu, Suchitepéquez, Quetzaltenango",15.295015,-90.118866,48,23,2890000,,2890071
-844,Flood,Guatemala,Americas,"Teleman area (Panzós district, Alta Verapaz province), Guatemala, Villa Canales districts (Guatemala province), Camotán district (Chiquimula province), Peten province",14.480092,-90.53381,27,,17300,,17327
-845,Drought,Guatemala,Americas,"Baja Verapaz, El Progreso, Zacapa, Jalapa, Chiquimula, Santa Rosa, Jutiapa, Quiché provinces",14.355543,-89.84657,,,2500000,,2500000
-846,Flood,Guatemala,Americas,"Alta Verapraz, Escuintla, Izabal, Quiché, Petén, Sacatepéquez, Guatemala, Jutiapa, Chiquimula, Solola, Zacapa, Huehuetenango provinces",14.622233,-90.518519,,,3270,,3270
-847,Earthquake,Guatemala,Americas,"San Marcos, Quetzaltenango, Solola, Retalhuleu, Quiché, Totonicapan, Huehuetenango, Suchitepequez, Chimaltenango, Sacatepequez, Guatemala provinces",14.964381,-91.794327,44,178,1321564,,1321786
+839,Flood,Guatemala,Americas,"Alta Verapaz, Baja Verapaz, Chimaltenango",26.036713,-80.283195,6,,87500,,87506
+841,Flood,Guatemala,Americas,"Alta Verapaz, El Progreso",15.4702,-90.373506,,,1000,,1000
+844,Flood,Guatemala,Americas,Teleman ,14.480092,-90.53381,27,,17300,,17327
+845,Drought,Guatemala,Americas,"Baja Verapaz, El Progreso, Zacapa",14.355543,-89.84657,,,2500000,,2500000
+846,Flood,Guatemala,Americas,"Alta Verapraz, Escuintla, Izabal",14.622233,-90.518519,,,3270,,3270
+847,Earthquake,Guatemala,Americas,"San Marcos, Quetzaltenango",14.964381,-91.794327,44,178,1321564,,1321786
 848,Earthquake,Guatemala,Americas,"Ciudad Tecun Uman city (Ayutla district, San Marcos province)",14.695686,-92.121143,1,52,520,,573
 849,Earthquake,Guatemala,Americas,"Huehuetenango, Quetzaltenango, Retalhuleu, San Marcos, Solola, Suchitepequez, Totonicapan provinces",14.964381,-91.794327,1,274,84679,9830,94784
-850,Drought,Guatemala,Americas,"Baja Verapaz, El Progreso, Zacapa, Chiquimula, Jalapa, Jutiapa, Quiché, Huehuetenango, Totonicapán, San Marcos, Retalhuleu, Santa Rosa, Escuintla provinces",14.355543,-89.84657,,,1300000,,1300000
-851,Drought,Guatemala,Americas,"Jalapa, El Progreso, Zacapa, Santa Rosa, Guatemala, Sacatepéquez, Solola, Chimaltenango, Baja Verapaz, Quiché, Huehuetenango provinces",14.854668,-90.068724,,,266485,,266485
+850,Drought,Guatemala,Americas,"Baja Verapaz, El Progreso, Zacapa, Chiquimula",14.355543,-89.84657,,,1300000,,1300000
+851,Drought,Guatemala,Americas,"Jalapa, El Progreso, Zacapa, Santa Rosa",14.854668,-90.068724,,,266485,,266485
 852,Flood,Guatemala,Americas,"Livingston, El Estor (Izabel department)",15.524176,-89.33463,6,,8291,,8297
 853,Flood,Guatemala,Americas,"Chisec, Coban, Panzos, Raxruha, San Cristobal Verapaz, San Juan Chamlco, San Pedro Carcha, Santa Catalina La Tinta, Santa Cruz Verapaz, Tactic, Tucuru municipalities (Alta Verapaz department)",26.036713,-80.283195,,,31319,,31319
 854,Flood,Guatemala,Americas,"Chiquimula, El Progresso, Guatemala department, Peten, Quetzaltenango, Sacatepequez, Solola, San Marcos, Suchitepequez",14.964381,-91.794327,2,,76845,,76847
 855,Flood,Guatemala,Americas,Jutiapa department,14.288404,-89.89333,,,100,,100
-856,Flood,Guatemala,Americas,"Huehuetenango, Petén , Sayaxché Departments",14.683707,-90.486314,,,4070,,4070
+856,Flood,Guatemala,Americas,Huehuetenango,14.683707,-90.486314,,,4070,,4070
 857,Flood,Guatemala,Americas,Guatemala district (Guatemala province),14.6228,-90.5314,11,,656,,667
-858,Flood,Guatemala,Americas,"Alta Verapaz, Baja Verapaz, Chimaltenango, Chiquimula, El Progreso, Escuintla, Guatemala, Huehuetenango, Izabal, Jalapa, Jutiapa, Petén, Quetzaltenango, Quiché, Retalhuleu, Sacatepéquez, San Marcos, Santa Rosa, Sololá, Suchitepéquez, Totonicapán, Zacapa provinces",26.036713,-80.283195,,,98740,,98740
+858,Flood,Guatemala,Americas,"Alta Verapaz, Baja Verapaz, Chimaltenango",26.036713,-80.283195,,,98740,,98740
 859,Flood,Guinea,Africa,"Kindia, Coyah, Conakry and Siguiri,",9.51706,-13.699843,8,937,24135,,25080
-860,Flood,Guinea,Africa,"BTN, Bolibana, Sigurikoura, Nankoda, Kokomo, Heremakonon, Chinese City, Tiguibiry, Konoba, Abatoire, Setceur TP, Téléladji, ORS1, and Mandé districts; Kintinian, Kinièbakoura, Niandankoro sub-prefectures (Siguiri)",-34.710758,-58.61067,5,1000,175000,,176005
-861,Flood,Guinea,Africa,"Bordo, Far, Senkefera 2, Madina, Salamanida, Energieako 1, Farako 2, Dalako, Briqueterie, Missira, Kokolinikoro, Djodon, Senkefera, Banankoroda, Korialen, Hermakonon, Kankancoura, Dar-es-salam, Aviation, Kabada 1, Kabada 2, Fourouban, Timbo, Gare, Metéo, Sobje, Batè Nafadji, Gbéredou Baranama, Balandou, Karifamoria, Missamana, Tintioulen, Sabadou Baranama, Moribaya, Koumban,Tokounou, Mamouroudou, Boula prefectures (Kankan)",-34.710758,-58.61067,,5,49536,,49541
-862,Flood,Guinea,Africa,"Matoto, Ratoma, Matam, Dixinn (Conakry); Frako 1, Bambino 1, Mangala 1, Heremakono, Nioumoulè, Bafilatè, Nialinko, Bambo and the Sub-prefecture of Nongoa (Guéckédou); Heremakonon, ORS, Teleladji, Cité chinoise, Énergie neighbourhoods, Malea, Djomabana, Kintignia, Boukaria, Kofilani, Balato Niandankoro and Mandjemakolen (Siguiri)",-34.710758,-58.61067,5,21,69671,1972,71669
+860,Flood,Guinea,Africa,"BTN, Bolibana, Sigurikoura, Nankoda",-34.710758,-58.61067,5,1000,175000,,176005
+861,Flood,Guinea,Africa,"Bordo, Far, Senkefera 2",-34.710758,-58.61067,,5,49536,,49541
+862,Flood,Guinea,Africa,"Matoto, Ratoma, Matam",-34.710758,-58.61067,5,21,69671,1972,71669
 863,Flood,Guinea,Africa,Kankan,10.383517,-9.306935,,,49536,,49536
 864,Flood,Guinea,Africa,Mamou district (Mamou province),23.177065,120.219604,,,20685,,20685
 865,Flood,Guinea,Africa,Kankan province,10.383517,-9.306935,9,,220000,,220009
 866,Flood,Guinea,Africa,Conakry province,9.51706,-13.699843,7,,7615,,7622
 867,Flood,Guinea,Africa,Kindia district (Kindia province),10.049248,-12.8578,,,1200,,1200
 868,Flood,Guinea,Africa,"Dinguiraye district (Faranah province), Siguiri district (Kankan province)",10.042493,-10.740824,,,4200,,4200
-869,Flood,Guinea,Africa,"Labe town (Labe district, Labe province), Siguiri, Niandankoro, Kiniébakoura towns (Siguiri district, Kankan province), Mandiana district (Kankan province), Gaoual district (Boke province), Matam, Matoto districts (Conakry province)",-34.710758,-58.61067,,,16143,4000,20143
+869,Flood,Guinea,Africa,"Labe town (Labe district, Labe province), Siguiri",-34.710758,-58.61067,,,16143,4000,20143
 870,Flood,Guinea,Africa,"Dinguiraye district (Faranah province), Siguiri district (Kankan province), Macenta district (Nzerekore province)",10.383517,-9.306935,,,11106,,11106
 871,Flood,Guinea,Africa,"Coyah, Macenta districts (Nzerekore province), Siguiri district (Kankan province), Telemele, Forecariah, Beyla districts (Kindia province), Conakry province",9.709041,-13.388956,9,29,29599,,29637
 872,Flood,Guinea,Africa,"Mamou, Dounet towns (Mamou district, Mamou province), Labe town (Labe district, Labe province), Norassoba, Kouremale, Nounkounkan towns (Siguiri district, Kankan province), Lola town (Lola district, Nzerekore province)",-34.710758,-58.61067,1,6,40405,,40412
@@ -885,7 +841,6 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 884,Flood,Haiti,Americas,"Chansolme, Port-de-Paix communes",19.939808,-72.83037,1,1,4115,,4117
 885,Flood,Haiti,Americas,Petite Goave,18.432352,-72.866714,6,,1175,150,1331
 886,Flood,Haiti,Americas,"North-West, North, North-East and Nippes Departments",51.076072,1.072335,5,,12500,,12505
-887,Flood,Haiti,Americas,Limbé Arrondissement,19.704935,-72.402176,2,,500,,502
 888,Flood,Haiti,Americas,"Abricots village (Jeremie district, Grande Anse province)",18.644804,-74.11272,12,,,1200,1212
 889,Flood,Haiti,Americas,Artibonite province,19.44606,-72.688434,26,11,5070,,5107
 890,Flood,Haiti,Americas,"Cap Haitien district (Nord province), Port De Paix district (Nord Ouest province)",19.760397,-72.198555,38,,150000,,150038
@@ -898,13 +853,12 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 897,Flood,Haiti,Americas,"Cap-Haitien, Limonade cities (Cap Haitien district, Nord province), Grande Anse province",19.760397,-72.198555,5,7660,40620,,48285
 898,Drought,Haiti,Americas,"Corail, Anse-D'Ainsault, Jeremie districts (Grande Anse province), Chardonnieres, Coteaux, Aquin, Cayes, Port-Salut districts (Sud province), Anse-A-Veau, Baraderes, Miragoane districts (Nippes province), Gonave, Leogane districts (Ouest province), Belle Anse, Jacmel, Bainet districts (Sud Est province), Croix-des-Bouquets district (Ouest province), Lascahobas, Ceca La Source, Hinche, Mirebalais districts (Centre province), Valliere, Ouanaminthe, Trou du Nord, Fort Liberte districts (Nord Est province), Saint-Raphael, Grande Riviere Du Nord, Limbe, Acul Du Nord districts (Nord province), Gonaives, Marmelade, Gros Morne, Saint-Marc districts (Artibonite province), Mole Saint Nicolas, Port De Paix districts (Nord Ouest province)",40.622244,-80.813979,,,3600000,,3600000
 899,Flood,Haiti,Americas,"Williamson area (Arcahaie district, Ouest province)",18.770554,-72.51239,,,296,,296
-900,Flood,Haiti,Americas,"Côtes-de-Fer village (Bainet district, Sud Est province)",18.189293,-73.00254,,5,78,,83
 901,Flood,Haiti,Americas,"Ouest, Nippes, Sud provinces",18.547327,-72.339593,34,8,2350,,2392
 902,Flood,Haiti,Americas,"Artibonite, Nord Ouest, Centre provinces",19.938986,-72.830813,6,,,33265,33271
 903,Drought,Haiti,Americas,"Macaya area (Cayes district, Sud province), Nord province",18.194443,-73.75116,,,1000000,,1000000
 904,Flood,Haiti,Americas,"Port-au-Prince city (Port-au-Prince district, Ouest province)",18.539766,-72.33548,6,10,22060,,22076
 905,Flood,Haiti,Americas,"Bombardopolis city (Mole Saint Nicolas district, Nord Ouest province), Gonaives district (Artibonite province)",19.8072,-73.37797,23,,,,23
-906,Flood,Haiti,Americas,"Cabaret, Arcahaie, Cité Soleil, Carrefour, Port-au-Prince, Tabarre and Gressier municipalitities (Ouest department)",18.539766,-72.33548,8,3,3105,,3116
+906,Flood,Haiti,Americas,"Cabaret, Arcahaie, Carrefour, Port-au-Prince",18.539766,-72.33548,8,3,3105,,3116
 907,Earthquake,Haiti,Americas,Nippes Department,18.444843,-73.088639,2,52,15,950,1019
 908,Flood,Haiti,Americas,"Ouest, Sud-Est, Nippes, Grand'Anse, Nord-Ouest, Centre, Sud",19.938986,-72.830813,78,143,225000,,225221
 909,Flood,Haiti,Americas,Saint-Marc district (Artibonite province),19.109808,-72.70095,24,70,,12000,12094
@@ -915,7 +869,7 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 914,Flood,Haiti,Americas,Saint-Marc district (Artibonite province),19.109808,-72.70095,6,,2500,,2506
 915,Flood,Haiti,Americas,"Ferrier village (Fort Liberte district, Nord Est province), Ouanaminthe district (Nord Est province), Abricot village (Jeremie district, Grande Anse province)",40.622244,-80.813979,14,14,15000,,15028
 916,Flood,Haiti,Americas,"Grande Anse, Centre, Sud, Nippes, Ouest, Artibonite, Nord Ouest, Nord, Nord Est, Sud Est provinces",19.938986,-72.830813,41,78,72520,3349,75988
-917,Flood,Haiti,Americas,"Caracol village (Trou Du Nord district, Nord Est province), Camp Perrin, Cayes, Maniche villages (Cayes district, Sud province), Chardonnieres district (Sud province), Saint-Michel-de-l'Attalaye village (Marmelade district, Artibonite province), Ennery village (Gonaives district, Artibonite province), Dessalines, Saint-Marc districts (Artibonite province), Anse à Veau, Lazile, Plaisance villages (Anse-A-Veau district, Nippes province), Baraderes district (Nippes province), Cerca Carvajal village (Hinche district, Centre province), Ceca La Source district (Centre province), Leogane district (Ouest province), Grande Anse province",40.622244,-80.813979,11,,,9910,9921
+917,Flood,Haiti,Americas,"Caracol village, Camp Perrin, Cayes, Maniche villages",40.622244,-80.813979,11,,,9910,9921
 918,Flood,Haiti,Americas,Ouest province,18.547327,-72.339593,10,,2500,,2510
 919,Flood,Haiti,Americas,"Sud, Nippes, Grande Anse provinces",18.644584,-74.113918,2,,2080,,2082
 920,Flood,Haiti,Americas,"Nord, Nord Ouest provinces",19.938986,-72.830813,9,,11000,,11009
@@ -924,16 +878,11 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 923,Flood,Haiti,Americas,Nord province,19.759524,-72.200807,12,,30000,,30012
 924,Flood,Haiti,Americas,"Nippes, Grande Anse, Ouest provinces",18.644584,-74.113918,16,,7600,,7616
 925,Flood,Haiti,Americas,"Artibonite, Centre, Grande Anse, Nippes, Nord, Nord Est, Nord Ouest, Ouest, Sud, Sud Est provinces",19.938986,-72.830813,17,,7865,,7882
-926,Flood,Haiti,Americas,"Baradère (Nippes), Savanette, Petit-Fond (Lascahobas)",18.482622,-73.63879,5,,3000,,3005
-927,Flood,Haiti,Americas,"Port-de-Paix, îIe à Vache, Maniche, Torbeck (Cayes), Les Cayes, Tortuga (Port de Paix), Baradères, Petit Paradis (Gros Morne)",40.622244,-80.813979,5,,50000,,50005
 928,Flood,Haiti,Americas,"Saint Louis Du Nord, Port De Paix districts (Nord Ouest province)",19.932997,-72.71969,2,,,12500,12502
 929,Flood,Haiti,Americas,"Gonave district (Ouest province), Sud province",18.833333,-73.083333,11,,11500,,11511
 930,Flood,Haiti,Americas,"L'Asile village (Anse-A-Veau district, Nippes province), Cap Tiburon village (Chardonnieres district, Sud province), Port-Salut, Cayes districts (Sud province), Grande Anse province",40.622244,-80.813979,31,4,38335,,38370
 931,Flood,Honduras,Americas,"Tegucigalpa area (Distrito Central district, Francisco Morazan province)",14.105943,-87.205345,5,10,1600,,1615
 932,Flood,Honduras,Americas,"Copan, Cortes provinces",15.506216,-88.024894,3,5,100,,108
-933,Drought,Honduras,Americas,,18.1514,-66.20802,,,360000,,360000
-934,Flood,Honduras,Americas,"Francisco Morazán, La Paz, Intibucá, and Lempira departments",14.105743,-87.204005,16,,34073,,34089
-935,Flood,Honduras,Americas,"Copán, Ocotepeque, Lempira, Intibucá, La Paz, Comayagua, Francisco Morazán, El Paraíso Valle (Copán),Choluteca",15.024119,-88.98368,6,,6948,,6954
 936,Drought,Honduras,Americas,"Choculeta, Sabanagrande, Tegulcipalga, Jacaleapa, Lepaguare, Catacamas, Yoro, Flores, La Lima, Sana Rosa de Copan, Ocotepeque, La Esperanza",15.137944,-87.124948,,,10300,,10300
 937,Drought,Honduras,Americas,"Montana de la Flor area (Marale district, Francisco Morazan province)",14.893483,-87.173004,,,1125,,1125
 938,Drought,Honduras,Americas,"Choluteca, Valle, Francisco Morazan, Paraiso, La Paz, Comayagua, Intibuca, Yoro, Lempira provinces",15.319982,-87.602036,,,195000,,195000
@@ -945,10 +894,8 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 944,Flood,Honduras,Americas,"Tegucigalpa area (Distrito Central district, Francisco Morazan province)",14.105943,-87.205345,4,,3000,,3004
 945,Flood,Honduras,Americas,"Atlantida, Choluteca, Colon, Comayagua, Copan, Cortes, Francisco Morazan, Gracias A Dios, Intibuca, Islas De Bahia, La Paz, Lempira, Name Unknown, Ocotepeque, Olancho, Paraiso, Santa Barbara, Valle, Yoro provinces",40.75808,-85.03301,117,,3400,,3517
 946,Flood,Honduras,Americas,"Atlantida, Colon provinces",15.783374,-86.791775,,,20000,,20000
-947,Flood,Honduras,Americas,"Francisco Morazan, Valle, Choluteca, Paraíso provinces",14.105743,-87.204005,6,,450000,,450006
-948,Flood,Honduras,Americas,"Francisco Morazán, Olancho, Colón, Cortés (La Lima), Atlántida, Islas de La Bahía, Santa Bárbara, El Paraíso, Yoro, Gracias a Dios",40.75808,-85.03301,8,,46975,,46983
-949,Flood,Honduras,Americas,"Cortés, Atlántida and Islas de la Bahía",16.31678,-86.537441,,,1800,,1800
-950,Flood,Honduras,Americas,"La Masica (Atlantida Department); Gracias a Dios, Colón, Cortés, Yoro, Islas de la Bahía.",15.634577,-87.10078,3,,17700,,17703
+947,Flood,Honduras,Americas,"Francisco Morazan, Valle, Choluteca",14.105743,-87.204005,6,,450000,,450006
+950,Flood,Honduras,Americas,La Masica (Atlantida Department); Gracias a Dios,15.634577,-87.10078,3,,17700,,17703
 951,Flood,Honduras,Americas,"Marcovia, Choluteca districts (Choluteca province)",13.304824,-87.1918,,,1720,,1720
 952,Drought,Honduras,Americas,"Atlantida, Choluteca, Colon, Comayagua, Copan, Cortes, Francisco Morazan, Gracias A Dios, Intibuca, Islas De Bahia, La Paz, Lempira, Name Unknown, Ocotepeque, Olancho, Paraiso, Santa Barbara, Valle, Yoro provinces",40.75808,-85.03301,,,137500,,137500
 953,Earthquake,Honduras,Americas,"El Progreso district (Yoro province), Santa Barbara, Las Vegas districts (Santa Barbara province)",15.401057,-87.81007,,18,,1865,1883
@@ -956,12 +903,11 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 955,Earthquake,Honduras,Americas,"La Ceiba, Tela districts (Atlantida province), La Lima, Omoa, Puerto Cortes, San Pedro Sula districts (Cortes province), Jesus De Otoro, Guanaja, Roatan, Jose Santos Guardiola districts (Islas De Bahia province), Ceguaca, Chinda, Gualala, Ilama, Las Vegas, Petoa, San Jose De Colimas, Santa Barbara, Trinidad districts (Santa Barbara province), El Progreso, Olanchito districts (Yoro province)",40.75808,-85.03301,7,136,50000,,50143
 956,Drought,Honduras,Americas,"Paraiso, Francisco Morazan, Yoro, Choluteca, Valle, Intibuca provinces",15.319982,-87.602036,,,45000,,45000
 957,Drought,Honduras,Americas,"San Marcos De Sierra, Camasca districts (Intibuca province), Moroceli, Alauca, Oropoli, Teupasenti districts (Paraiso province), Ocotepeque, Copan, Santa Barbara, Yoro, Comayagua, Olancho, Lempira, La Paz, Valle, Choluteca, Francisco Morazan provinces",40.75808,-85.03301,,,2023000,,2023000
-958,Flood,Honduras,Americas,"Choluteca (Choluteca city), Francisco Morazán (Talanga city), Cortés, Colón, Santa Barbara, Valle, Lempira, La Paz, Intibucá, Copán, Ocotepeque",14.402225,-87.08155,3,,595,50,648
-959,Flood,Honduras,Americas,"Caribbean coast; Trujillo, Tocoa (Colon), Tela, La Ceiba, (Atlantida) Omoa-Cuyamel (Cortes), Laguna de Ibans in La Mosquitia (Brus Laguna), El Progreso (Yoro)",40.75808,-85.03301,7,,400,,407
-960,Flood,Honduras,Americas,"Santa Bárbara, Copàn, Cortés, Olancho, Colón, Yoro, Paraíso, Ocotepeque, Lempira, Intibucá, Comayagua, La Paz, Francisco Morazán, Valle, and Choluteca Departments",40.75808,-85.03301,9,,76657,,76666
-961,Flood,Honduras,Americas,"Atlantida, Choluteca, Colon, Comayagua, Copan, Cortes, Francisco Morazan, Gracias a Dios, Intibuca, La Paz, Lempira, Ocotepeque, Olancho, Paraiso, Santa Barbara, Valle, Yoro provinces",40.75808,-85.03301,67,7,313350,,313424
-962,Flood,Honduras,Americas,"Tegucigalpa area (Distrito Central district, Francisco Morazan province)",14.105943,-87.205345,8,,,800,808
-963,Flood,Honduras,Americas,"Atlantida, Colon provinces",15.783374,-86.791775,1,,500,,501
+958,Flood,Honduras,Americas,Choluteca City,14.402225,-87.08155,3,,595,50,648
+959,Flood,Honduras,Americas,Trujillo,40.75808,-85.03301,7,,400,,407
+961,Flood,Honduras,Americas,Atlantida,40.75808,-85.03301,67,7,313350,,313424
+962,Flood,Honduras,Americas,Tegucigalpa,14.105943,-87.205345,8,,,800,808
+963,Flood,Honduras,Americas,Atlantida,15.783374,-86.791775,1,,500,,501
 964,Flood,Honduras,Americas,"Distrito Central, Talanga districts (Francisco Morazan province), Juticalpa district (Olancho province), Choluteca, Paraiso, Santa Barbara, Valle, Yoro provinces",14.66891,-86.218575,10,,825,144,979
 965,Earthquake,Iran,Asia,"Kashmar, Bardeskan districts (Khorasan)",35.245796,58.463657,1,15,1500,500,2016
 966,Earthquake,Iran,Asia,"Mohammadieh, Sarhozak, Hajiabad areas (Kashmar district, Khorasan province)",35.245796,58.463657,,,1000,,1000
@@ -973,7 +919,6 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 972,Earthquake,Iran,Asia,"Qasre-Shirin, Gilane-Garb, Kermanshah, Sare-Pule-Zahab, , Islamabad- E- Gharb, Dalahoo, Javanrood (Ezgeleh), Salase-Babajani (Kermanshah province), Ilam city, Mehran City (Ilam)",2.590998,32.926447,444,9000,200000,,209444
 973,Earthquake,Iran,Asia,Birjand district (Khorasan province),32.86321,59.216988,,,1000,,1000
 974,Earthquake,Iran,Asia,Sarpol-e Zahab (Kermanshah province),34.455368,45.87016,,716,,,716
-975,Earthquake,Iran,Asia,Azerbaïdjan-Occidental province,37.549347,45.068286,,75,15000,,15075
 976,Earthquake,Iran,Asia,Varnakesh village (Mianeh County); Torkamanchay City (Mianeh County) - East Azerbaijan Province,37.655188,47.449523,6,584,22500,,23090
 977,Earthquake,Iran,Asia,Dashty district (Bushehr province),28.65148,51.374767,1,30,750,,781
 978,Earthquake,Iran,Asia,"Behabad village (Sonqor district, Kermanshah province) Dinvar village (Sahneh district, Kermanshah province)",34.32508,47.07395,2,56,20000,,20058
@@ -984,7 +929,7 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 983,Earthquake,Iran,Asia,Torbat-e jam district (Khorasan province),35.242863,60.625202,,1,1090,,1091
 984,Earthquake,Iran,Asia,Bam district (Kerman province),29.108164,58.36108,26796,22628,200000,45000,294424
 985,Earthquake,Iran,Asia,Masjed-e soleiman district (Khuzestan province),31.323164,48.679254,,5,710,10,725
-986,Earthquake,Iran,Asia,"Khoy, Firoraq (Azerbaïdjan province)",38.545044,44.9588,,252,41426,,41678
+986,Earthquake,Iran,Asia,"Khoy, Firoraq",38.545044,44.9588,,252,41426,,41678
 987,Earthquake,Iran,Asia,"Nour, Baladeh cities (Nur district, Mazandaran province), Alamout area (Qasr-e shirin district, Ghazvin province), Taleghan area (Savojbolagh district, Tehran province), Chalus, Noshahr districts (Mazandaran province)",2.590998,32.926447,35,278,220,,533
 988,Flood,Iran,Asia,"Kalameh village (Dashtestan district, Bushehr province), Assalouyeh city (Kangan district, Bushehr province), Sarbaz city (Iranshahr district, Sistan-o baluchestan province), Tangestan district (Bushehr province), Bandar-e abbas district (Hormozgan province), Sirjan district (Kerman province)",2.590998,32.926447,34,43,,4000,4077
 989,Earthquake,Iran,Asia,"Agh Ghala area (Gorgan district, Golestan province)",36.839176,54.435223,,110,,,110
@@ -1071,7 +1016,6 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1070,Flood,Iraq,Asia,Baghdad province,33.30617,44.387221,4,,,,4
 1071,Flood,Iraq,Asia,"Nassriya district (Thi-Qar province), Diwaniya district (Qadissiya province), Hilla district (Babil province), Baghdad province",32.482245,44.432813,11,,,,11
 1072,Flood,Iraq,Asia,"Baghdad, Wassit provinces",33.30617,44.387221,58,,65000,,65058
-1073,Drought,Iraq,Asia,,33.048056,43.404716,,,7000000,,7000000
 1074,Flood,Iraq,Asia,"Baroshki, Nazarki, Atiti, Naoura, Mahalla Sheli, Hay Al-Jazma, Hay Al-Shurta, Al-Ulya, Kizabra, and Mahalla Kuli (Duhok province); Erbil Governorates (Kurdistan region.); Terawa, Badawa, Koyistan, and Dara Tow; Diyala and Maysan Governorates",36.876182,44.09768,3,17,18000,,18020
 1075,Flood,Iraq,Asia,"Anbar, Diyala, Erbil, Qadisiyah, Thi-Qar",33.719558,44.435044,,,30000,,30000
 1076,Flood,Iraq,Asia,"Baqubah City (Diyala Governorate), Nineveh and Salah ad-Din Governorates, Mosul City (Nineveh)",33.748728,44.645496,8,,1500,,1508
@@ -1157,7 +1101,6 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1156,Flood,Kenya,Africa,"Marsabit, Turkana, Tana River, Garissa, Kirinyaga, Muranga, Kiambu, Meru, Kisumu, Nairobi, Kitui, Kajiado, West Pokot",-1.497681,40.034911,353,188,306520,,307061
 1157,Flood,Kenya,Africa,"Nairobi, Marsabit, Turkana, Tana River, Garissa, Kirinyaga, Muranga, Kiambu, Meru, Kisumu, and Kitui",-1.497681,40.034911,13,2,15000,,15015
 1158,Flood,Kenya,Africa,Nairobi,-1.283253,36.817245,10,,,,10
-1159,Flood,Kenya,Africa,,-1.421779,34.786541,13,,3970,,3983
 1160,Flood,Kenya,Africa,"Near Nakuru, Rongai region",-0.173665,35.862054,47,,,,47
 1161,Flood,Kenya,Africa,"Dadaab town (Garissa district, North Eastern province), Rift Valley, Western provinces",-0.45671,39.640471,5,,10000,,10005
 1162,Flood,Kenya,Africa,"Garissa, Ijara, Wajir, Mandera districts (North Eastern province), Kilifi, Tana River, Kwale districts (Coast province), Moyale, Isiolo districts (Eastern province), Busia district (Western province), Turkana district (Rift Valley province), Kisumu district (Nyanza province)",-34.710758,-58.61067,114,,723000,,723114
@@ -1228,14 +1171,13 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1227,Flood,Laos,Asia,"Khammouan, Savannakhet, Champasak, Attapu provinces",15.120146,105.804397,,,453000,,453000
 1228,Flood,Laos,Asia,"Louang-Namtha, Bolikhamxai, Khammouan, Savannakhet, Champasak, Salavan, Vientiane, Vientiane capital province",17.964099,102.613371,15,,450000,,450015
 1229,Flood,Madagascar,Africa,Antananarivo (Analamanga Region),-18.909775,47.52709,34,2,62112,,62148
-1230,Drought,Madagascar,Africa,,8.60515,16.09095,,,1200000,,1200000
 1231,Flood,Madagascar,Africa,Taolagnaro district (Anosy province),-25.029694,46.990389,4,,,900,904
 1232,Drought,Madagascar,Africa,Vangaindrano district (Atsimo Atsinanana province),-23.349377,47.605103,,,14000,,14000
 1233,Flood,Madagascar,Africa,"Antananarivo I, Antananarivo II, Antananarivo III, Antananarivo IV, Antananarivo V, Antananarivo VI, Antananarivo Atsimondrano, Antananarivo Avaradrano districts (Analamanga province)",-18.909775,47.52709,7,,33000,,33007
 1234,Flood,Madagascar,Africa,"Antananarivo I, Antananarivo II, Antananarivo III, Antananarivo IV, Antananarivo V, Antananarivo VI, Antananarivo Atsimondrano, Antananarivo Avaradrano districts (Analamanga province)",-18.909775,47.52709,26,,,24000,24026
 1235,Drought,Madagascar,Africa,"South, South East",45.27767,5.648305,,,1260000,,1260000
 1236,Flood,Madagascar,Africa,Antananarivo,-18.909775,47.52709,9,,,,9
-1237,Drought,Madagascar,Africa,"Betioky, Ampanihy, Tuléar II, Amboasary and Bekily districts, Anosy, Androy, Atsimo Andrefana.",-24.1022,45.2886,,,1680000,,1680000
+1237,Drought,Madagascar,Africa,"Betioky, Ampanihy, Amboasary and Bekily districts, Anosy, Androy, Atsimo Andrefana.",-24.1022,45.2886,,,1680000,,1680000
 1238,Flood,Madagascar,Africa,Antananarivo city area,-18.909775,47.52709,,,3688,,3688
 1239,Flood,Madagascar,Africa,Analamanga region,-18.910012,47.525581,11,,,,11
 1240,Flood,Madagascar,Africa,"Antananarivo City (Analamanga Region), Alaotra-Mangoro, Analamanga, Melaky Menabe",-18.909775,47.52709,1,,1400,,1401
@@ -1250,10 +1192,6 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1249,Flood,Malawi,Africa,"Balaka, Chikwawa, Chiradzulu, Chitipa, Dedza, Dowa, Karonga, Kasungu, Lilongwe, Machinga, Mangochi, Mchinji, Mulanje, Mzimba, Mzuzu City, Neno, Nkhotakota, Nsanje, Ntcheu, Ntchisi, Phalombe, Salima, Thyolo and Zomba Districts",-34.710758,-58.61067,62,185,94000,,94247
 1250,Flood,Malawi,Africa,"Chikwawa District; Ntandire Township, Lilongwe",-16.027131,34.791215,,,200,,200
 1251,Flood,Malawi,Africa,"Karonga, Kyungu, Salima, Lilongwe district, Phalombe",-13.987511,33.768144,1,,300,,301
-1252,Drought,Malawi,Africa,,-13.215804,33.739164,,,2678193,,2678193
-1253,Flood,Malawi,Africa,"Karonga, Nkhotakota, Lilongwe, and Kasungu Districts",-13.039545,33.478408,6,4,14000,,14010
-1254,Flood,Malawi,Africa,,-13.215804,33.739164,11,80,48748,,48839
-1255,Drought,Malawi,Africa,,-13.215804,33.739164,,,6100000,,6100000
 1256,Flood,Malawi,Africa,"Mangochi, Chikwawa districts",-16.027131,34.791215,39,469,180801,,181309
 1257,Flood,Malawi,Africa,"Makhuwira, Paramount Chief Lundu (Chikwawa)",-16.027131,34.791215,,,15974,,15974
 1258,Flood,Malawi,Africa,"Balaka, Blantyre, Blantyre city, Chickwawa, Dedza, Machinga, Mangochi, Mulanje, Mwanza, Neno, Nsanje, Ntcheu, Phalombe, Thyiolo, Zomba city, Zomba, Chiradzulu",-15.786254,35.003569,60,672,975000,,975732
@@ -1273,7 +1211,6 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1272,Drought,Malawi,Africa,"Karonga, Mzimba districts (Northern Region province), Ntchisi district (Central Region province), Mulanje district (Southern Region province)",-11.898956,33.595159,,,520000,,520000
 1273,Flood,Malawi,Africa,"Thyolo, Phalombe, Chikwawa, Nsanje districts (Southern Region province), Dedza, Salima districts (Central Region province), Nkhata Bay, Rumphi, Karonga districts (Northern Region province)",-34.710758,-58.61067,,,26350,,26350
 1274,Flood,Malawi,Africa,"Mwakaboko, Kilipula, Kyungu villages (Karonga district, Northern Region province)",-16.526956,35.174832,4,1,23290,,23295
-1275,Drought,Malawi,Africa,23-25 districts affected (almost all the country): All provinces have been selected,42.398104,1.840199,,,6700000,,6700000
 1276,Flood,Malawi,Africa,"Kyungu, Kilipula, Mwakoboko (Karonga district)",-9.93935,33.927137,,,55921,,55921
 1277,Flood,Malawi,Africa,"Mzimba, Rumphi districts (Northern Region province)",-11.015993,33.85877,4,,,1000,1004
 1278,Flood,Malawi,Africa,"Chikwawa, Nsanje, Mangochi, Machinga district (Southern Region province), Ntcheu (Central Region province), Nkhata Bay (Northern Region province)",-11.606995,34.298391,1,,,44500,44501
@@ -1364,22 +1301,19 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1363,Flood,Malaysia,Asia,"Kuala Terengganu, Kemaman, Marang, Dungun districts (Terengganu province), Kota Bharu district (Kelantan province), Kuantan district (Pahang province)",5.205671,103.20531,5,,3000,,3005
 1364,Flood,Malaysia,Asia,"Teluk Ipil area (Seberang Perai Selatan district, Pulau Pinang province)",5.387747,100.38207,,,10000,,10000
 1365,Flood,Mali,Africa,"Ansongo, Ouatagouna, Talataye villages (Ansongo district, Gao province)",16.531413,1.516096,,,,125,125
-1366,Drought,Mali,Africa,"Ménaka, Gao, Mopti, Kidal, Koulikoro and Ségou",12.864632,-7.556129,,,6800000,,6800000
-1367,Flood,Mali,Africa,"Kayes city, Goumera village, Kita city (Kayes); Kolokani town, Kénèkoun, Toubakoro, Sandia (Koulikoro), Sikasso town, Biramabougou, Koutiala, Koury, Sona, Zegoua (Sikasso), Timbuktu, Diré, Niafunké (Timbuktu), Gao, Bourem, Ansongo (Gao), Aguelhok, Tessalit, Intachdayte, Essouk (Kidal)",-34.710758,-58.61067,,,13150,,13150
-1368,Drought,Mali,Africa,,45.926105,12.710776,,,1735753,,1735753
-1369,Flood,Mali,Africa,"Ségou, Timbuktu, Gao, Bamako, Mopti Koulikoro, Sikasso",12.649319,-8.000337,92,154,380000,,380246
+1366,Drought,Mali,Africa,"Gao, Mopti, Kidal, Koulikoro ",12.864632,-7.556129,,,6800000,,6800000
+1367,Flood,Mali,Africa,"Kayes city, Goumera village, Kita city (Kayes)",-34.710758,-58.61067,,,13150,,13150
 1370,Flood,Mali,Africa,Bamako,12.649319,-8.000337,15,2,505,,522
 1371,Flood,Mali,Africa,"Goundam, Tombouctou districts (Tombouctou province), Gao, Bamako provinces",16.787409,-3.013778,2,,22519,,22521
 1372,Drought,Mali,Africa,"Mopti, Kayes, Tombouctou, Gao provinces",16.771909,-3.008727,,,1000000,,1000000
 1373,Flood,Mali,Africa,Tombouctou district (Tombouctou province),16.787409,-3.013778,,,16000,,16000
 1374,Flood,Mali,Africa,"Kayes, Koulikoro, Segou, Sikasso, Mopti, Tombouctou, Gao, Kidal, Bamako provinces",12.380757,-5.449372,,,16000,,16000
 1375,Drought,Mali,Africa,"Kayes, Tombouctou, Kidal, Gao provinces",15.620588,-3.584112,,,600000,,600000
-1376,Flood,Mali,Africa,"Kidal, Koulikoro, Timbuktu, Ménaka, Mopti",16.771909,-3.008727,,,6474,,6474
+1376,Flood,Mali,Africa,"Kidal, Koulikoro, Timbuktu",16.771909,-3.008727,,,6474,,6474
 1377,Flood,Mali,Africa,Mopti region,14.487728,-4.189247,10,12,79000,,79022
 1378,Flood,Mali,Africa,"Sikasso, Gao provinces",11.316498,-5.67775,1,,,1000,1001
 1379,Drought,Mali,Africa,Kidal province,18.440836,1.40754,,,25000,,25000
 1380,Flood,Mali,Africa,"Segou, Kayes, Sikasso, Koulikoro, Gao, Mopti province",13.173698,-4.791705,9,17,42662,4576,47264
-1381,Flood,Mali,Africa,"Diancouté, Camara, Lambidou, Fatao villages (Kayes district, Kayes province)",14.313151,-9.551291,,,,2500,2500
 1382,Flood,Mali,Africa,"Goudam town (Goundam district, Tombouctou province), Gossi town (Gourma-Rharous district, Tombouctou province), Sana village (Koro district, Mopti province), Kidal city (Kidal district, Kidal province), Diboly village (Kayes district, Kayes province), Kangab district (Koulikoro province)",-34.710758,-58.61067,1,,15415,,15416
 1383,Drought,Mali,Africa,"Kayes, Koulikoro, Mopti, Segou provinces",12.864632,-7.556129,,,3500000,,3500000
 1384,Flood,Mali,Africa,Bamako district (Bamako province),12.649319,-8.000337,37,,34700,,34737
@@ -1400,8 +1334,6 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1399,Drought,Mauritania,Africa,"Tagant, Guidimakha, Assaba, Gorgol, Hodh El Charghi Adrar, Brakna, Hodh Chargui, Hodh Ech Chargi and Hodh El Gharbi",16.617334,-7.26638,,,1400000,,1400000
 1400,Flood,Mauritania,Africa,"Adrar, Assaba, Brakna, Dakhlet-Nouadhibou, Gorgol, Guidimakha, Hodh Ech Chargi, Hodh El Gharbi, Inchiri, Nouakchott, Tagant, Tiris-Zemmour, Trarza provinces",12.802933,14.887716,,,,9000,9000
 1401,Flood,Mauritania,Africa,"Achram area (Moudjeria district, Tagant province), Aleg, Maghta Lahjar districts (Brakna province), Kaedi district (Kaedi province), Akjoujt district (Inchiri province), Boutilimit district (Trarza province)",12.802933,14.887716,,,8750,,8750
-1402,Drought,Mauritania,Africa,,22.252018,114.13977,,,350600,,350600
-1403,Flood,Mauritania,Africa,"Néma, Aioun, Tintane, Kiffa, Boumdeid, Guerou, Barkéol, Moudjeria, M'bout, Monguel, Aoujeft, F'deirick, Rosso",16.613328,-11.399542,14,,28926,,28940
 1404,Flood,Mauritania,Africa,"Nouakchott, Assaba, Hodh Ech Chargui",16.617334,-7.26638,9,,10000,700,10709
 1405,Flood,Mauritania,Africa,Akjoujt district (Inchiri province),19.74358,-14.385524,,,,3000,3000
 1406,Flood,Mauritania,Africa,"Tintane district (Hodh El-Gharbi province), Barkeol district (Assaba province), Guidimakha, Gorgol provinces",16.395433,-10.167328,2,,53620,,53622
@@ -1409,33 +1341,31 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1408,Drought,Mauritania,Africa,"Assaba, Brakna, Gorgol, Guidimakha, Hodh Ech Gharbi, Nouakchott, Tagant, Trarza provinces; Amourj, Bassikounou, Djigueni, Nema, Timbedra districts (Hodh Ech Chargi province) (Southern Mauritania/Sahel region)",12.802933,14.887716,,,838000,,838000
 1409,Flood,Mauritania,Africa,"Rosso, Ouad Naga districts (Traza province), Moudjeria district (Tagant province), Akjoujt district (Inchiri province)",17.880401,-12.33242,8,,4225,2305,6538
 1410,Drought,Mauritania,Africa,"Brakna, Gorgol, Guidimakha",16.086486,-12.575445,,,3893774,,3893774
-1411,Flood,Mauritania,Africa,"Sélibaby, Ould Yenja districts (Guidimaka Region)",15.157989,-12.184782,3,,33600,,33603
-1412,Flood,Mauritania,Africa,"Bassiknou, Adel Begrou, Amourj, Néma departments",15.53373,-7.028246,,,9282,,9282
+1412,Flood,Mauritania,Africa,"Bassiknou, Adel Begrou, Amourj",15.53373,-7.028246,,,9282,,9282
 1413,Flood,Mauritania,Africa,"Trarza, Brakna provinces",16.513249,-15.809966,7,19,,1600,1626
 1414,Flood,Mauritania,Africa,"Assaba, Gorgol, Brakna, Adrar provinces",20.518194,-13.054393,9,,,21000,21009
 1415,Flood,Mauritania,Africa,"R'kiz, Mederdra, Rosso districts (Trarza province), Aleg, Boghe, Bababe, M'Bagne districts (Brakna province), Monguel, Kaedi districts (Gorgol province)",16.911111,-15.316111,25,,27500,,27525
-1416,Flood,Morocco,Africa,Safi province (Marrakesh-Safi region); Tinghir province (Drâa-Tafilalet region),32.297432,-9.241676,52,38,2800,,2890
+1416,Flood,Morocco,Africa,Safi province (Marrakesh-Safi region),32.297432,-9.241676,52,38,2800,,2890
 1417,Earthquake,Morocco,Africa,"Al Haouz and Taroudant Provinces; Marrakech; Ouarzazate, Azilal, Chichaoua",31.624541,-8.048296,2946,5674,840000,,848620
 1418,Flood,Morocco,Africa,"Tata, Tiznit, Errachidia, Tinghir and Taroudant provinces",29.696281,-9.732596,22,,,168,190
 1419,Flood,Morocco,Africa,Tanger,35.76956,-5.803091,24,10,,,34
 1420,Flood,Morocco,Africa,"Guercif area (Taza district, Taza - Al Hoceima - Taounate province)",35.239853,-3.933514,,,300,,300
-1421,Flood,Morocco,Africa,"Nador district (Nador province), Al Hoceïma district (Taza - Al Hoceima - Taounate province)",35.250901,-3.932516,35,,10000,,10035
+1421,Flood,Morocco,Africa,Nador district (Nador province),35.250901,-3.932516,35,,10000,,10035
 1422,Flood,Morocco,Africa,Tetouan and Martil Cities (Tanger Tetouan Al Hoceima Region),35.62151,-5.274552,,,1375,,1375
-1423,Flood,Morocco,Africa,"Tétouan, Tangiers, Chefchaouen, Larache districts (Tanger - Tétouan province), Settat, Khouribga districts (Chaouia - Ouardigha province), Kasba Tadla area (Béni Mellal district, Tadla - Azilal province)",35.283427,-2.947751,6,,650,,656
-1424,Flood,Morocco,Africa,Errachidia district (Meknès - Tafilalet province),33.899357,-5.547927,6,,1100,,1106
+1424,Flood,Morocco,Africa,Errachidia district ,33.899357,-5.547927,6,,1100,,1106
 1425,Flood,Morocco,Africa,"Essaouira district (Marrakech - Tensift - Al Haouz province), Safi district (Doukkala - Abda province)",31.513723,-9.771017,11,,,,11
 1426,Flood,Morocco,Africa,El Khank (Errachidia Province),31.930733,-4.425601,17,29,,,46
 1427,Flood,Morocco,Africa,Taroudant Province,30.468676,-8.879748,7,,200,,207
 1428,Flood,Morocco,Africa,"Settat district (Chaouia - Ouardigha province), Essaouira district (Marrakech - Tensift - Al Haouz province)",31.627455,-8.058431,15,,300,,315
-1429,Flood,Morocco,Africa,"Ouarzazate district (Souss - Massa - Draâ province), Errachidia district (Meknès - Tafilalet province)",30.390672,-9.533842,,,1000,,1000
-1430,Flood,Morocco,Africa,"Driouch area (Nador district, Oriental province), Tanger area (Tanger-Assilah district, Tanger - Tétouan province)",35.178032,-2.925881,30,,20000,,20030
-1431,Flood,Morocco,Africa,"Meknes - Tafilalet, Chaouia - Ouardigha, Doukkala - Abda, Fes-Boulemane, Gharb - Chrarda - Beni Hssen, Grand Casablanca, Marrakech - Tensift - Al Haouz, Rabat - Salé - Zemmour - Zaer, Tadla - Azilal, Tanger - Tétouan, Taza - Al Hoceima - Taounate provinces",35.283427,-2.947751,24,,2000,,2024
-1432,Flood,Morocco,Africa,"Rabat town (Rabat district, Rabat - Salé - Zemmour - Zare), Agadir town (Agadir - Ida Ou Tanane district, Souss - Massa - Draâ province)",30.418049,-9.597018,5,20,7500,,7525
-1433,Flood,Morocco,Africa,"Ait Hammou Abdessalam area (El Ksiba town, Béni Mellal district, Tadla - Azilal province), Taza town (Taza district, Taza - Al Hoceima - Taounate province), Midelt town, Khénifra town (Khénifra district, Meknès - Tafilalet province)",35.283427,-2.947751,10,6,2000,,2016
+1429,Flood,Morocco,Africa,Ouarzazate district ,30.390672,-9.533842,,,1000,,1000
+1430,Flood,Morocco,Africa,"Driouch area (Nador district, Oriental province), Tanger area",35.178032,-2.925881,30,,20000,,20030
+1431,Flood,Morocco,Africa,"Meknes - Tafilalet, Chaouia - Ouardigha",35.283427,-2.947751,24,,2000,,2024
+1432,Flood,Morocco,Africa,Rabat ,30.418049,-9.597018,5,20,7500,,7525
+1433,Flood,Morocco,Africa,Ait Hammou Abdessalam,35.283427,-2.947751,10,6,2000,,2016
 1434,Flood,Morocco,Africa,"Guelmim town (Guelmim district, Guelmim - Es-Semara province), Azilal town (Azilal district, Tadla - Azilal province), Imintanoute town (Chichaoua district, Marrakech - Tensift - Al Haouz province), Figuig town (Figuig district, Oriental province)",35.283427,-2.947751,11,,,,11
-1435,Flood,Morocco,Africa,"Tiflet area (Khémisset district, Rabat - Salé - Zemmour - Zaer province), Al Hoceima area (Al Hoceïma district, Taza - Al Hoceima - Tatounate province), Khenifra area (Khénifra district, Meknès - Tafilalet province), Ouezzane area (Sidi Kacem district, Gharb - Chrarda - Béni Hssen province), Bouznika area (Ben Slimane district, Chaouia - Ouardigha province), Ouarzazate, Zagora districts (Souss - Massa - Draâ province), Salé, Rabat districts (Rabat - Salé - Zemmour - Zaer province), Casablanca district (Grand Casablanca province)",35.283427,-2.947751,32,3,75000,,75035
+1435,Flood,Morocco,Africa,Tiflet area ,35.283427,-2.947751,32,3,75000,,75035
 1436,Earthquake,Morocco,Africa,"Tamassint village (Imrabten area, Bni Ouriagh sub-district, Al Hoceima district, Taza - Al Hoceima - Taounate province), Ajdir village (Ait Youssef Ouali area, Bni Ouriagh sub-district, Al Hoceima district, Taza - Al Hoceima - Taounate province), Ait Kamra, Bni Abdallah areas (Bni Ouriagh sub-district, Al Hoceima district, Taza - Al Hoceima - Taounate province), Imzouren sub-district (Al Hoceima district, Taza - Al Hoceima - Taounate province)",35.283427,-2.947751,628,926,,12539,14093
-1437,Flood,Morocco,Africa,"Settat, Ben Slimane, Khouribga districts (Chaouia - Ouardigha province), Fès district (Fès - Boulemane province)",33.614777,-7.122376,80,17,15000,,15097
+1437,Flood,Morocco,Africa,"Settat, Ben Slimane",33.614777,-7.122376,80,17,15000,,15097
 1438,Flood,Mozambique,Africa,"Cidade de Nampula district (Nampula province), Cidade da Beira (Sofala province)",-15.117289,39.26405,,,,500,500
 1439,Flood,Mozambique,Africa,"Matutuine, Manhica, Magude, Marracuene districts (Maputo province), Chibuto, Chokwe, Mabalane districts (Gaza Province), Inhambane, Sofala, Manica, Tete provinces",-25.738634,32.67289,800,,4500000,,4500800
 1440,Flood,Mozambique,Africa,"Buzi, Grudja areas (Buzi district, Sofala province), Caia, Sena areas (Caia district, Sofala province), Gurue, Quelimane, Namacurra, Mocuba, Maganja da Costa, Mopeia, Chinde, Nicoadala, Morrumbala districts (Zambezia province), Tambara, Guro, Sussundenga districts (Manica province), Marromeu, Chemba, Chibabava, Cidade da Beira districts (Sofala province), Mutarara, Zumbo, Chuita, Moatize, Magoe, Cahora Bassa, Changara districts (Tete province), Moma, Mogovolas districts (Nampula province)",12.802933,14.887716,29,,285000,,285029
@@ -1445,10 +1375,8 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1444,Flood,Mozambique,Africa,"Moma, Angoche, Mogovolas, Mongicual, Lalaua, Nampula, Cidade de Nampula, Murrupula, Ribaue, Malema, Mecuburi districts (Nampula province), Cidade de Quelimane, Nicoadala, Maganja da Costa, Namacurra, Mocuba, Pebane, Gurue districts (Zambezia province), Pemba, Cidade de Pemba districts (Cabo Delgado province), Tete province",12.802933,14.887716,4,3,100000,,100007
 1445,Flood,Mozambique,Africa,"KaMavota, KaMubukwana, KaMaxakeni boroughs (Cidade de Maputo district, Maputo province), Chigubo, Chibuto, Mandlakaze, Massangena, Chicualacuala, Guija, Chokwe, Bilene, Xai-Xai districts (Gaza province), Panda, Homoine, Govuro districts (Inhambane province), Milange, Gile, Nicoadala, Chinde, Namarroi, Maganja da Costa, Namacurra, Cidade de Quelimane, Morrumbala districts (Zambezia province), Cidade de Chimoio, Gondola, Sussundenga, Barue, Mossurize, Macossa districts (Manica province), Nhamatanda, Machanga, Muanza, Cidade de Beira, Chemba, Caia districts (Sofala province)",12.802933,14.887716,119,,240000,,240119
 1446,Flood,Mozambique,Africa,"Nhacolo town (Tambara district, Manica province), Nova Mambone area (Govuro district, Inhambane province), Nicoadala, Namacurra, Pebane, Chinde, Maganja da Costa, Morrumbala, Mopeia, Cidade de Quelimane districts (Zambezia province), Cidade da Beira, Buzi, Chibabava, Dondo, Marromeu, Nhamatanda, Caia, Chemba districts (Sofala province),Mutarara, Zumbo, Magoe, Macanga, Cidad de Tete districts (Tete province), Massangena district (Gaza province)",12.802933,14.887716,79,,549326,,549405
-1447,Flood,Mozambique,Africa,"Magude, Moamba, and Matutuíne districts (Maputo province); Gaza province",-25.602594,32.243053,,,11410,,11410
+1447,Flood,Mozambique,Africa,Magude,-25.602594,32.243053,,,11410,,11410
 1448,Flood,Mozambique,Africa,"Cidade de Maputo, Cidade de Matola districts (Maputo province) Cidade de Xai-Xai district (Gaza province)",-25.967094,32.46729,5,,300,,305
-1449,Drought,Mozambique,Africa,,22.252018,114.13977,,,2700000,,2700000
-1450,Flood,Mozambique,Africa,,22.252018,114.13977,88,98,78173,,78359
 1451,Drought,Mozambique,Africa,"Manica,Tete, Gaza, and Inhambane provinces",-23.865961,35.384363,,,3300000,,3300000
 1452,Flood,Mozambique,Africa,"Cabo Delgado, Nampula, Zambezia, Tete, Sofala provinces",-12.973555,40.52151,28,66,58000,,58094
 1453,Drought,Mozambique,Africa,Inhambane province,-23.865961,35.384363,,,100000,,100000
@@ -1462,7 +1390,7 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1461,Flood,Mozambique,Africa,"Cuamba district (Southern province), Zambezia, Nampula, Maputo provinces",-25.966213,32.56745,,,6925,,6925
 1462,Flood,Mozambique,Africa,"Buzi, Chemba, Nhamatanda, Caia, Dondo, Marromeu districts (Sofala province), Mopeia, Chinde, Morrumbala districts (Zambezia province), Mutarara, Cahora Bassa, Cidade de Tete districts (Tete province), Tambara, Sussundenga districts (Manica province), Nampula, Inhambane provinces",12.802933,14.887716,5,,17000,,17005
 1463,Flood,Mozambique,Africa,"Nhamatanda, Buzi, Chibabava, Cidade da Beira districts (Sofala province), Sussundenga district (Manica province), Cabo Delgado, Nampula provinces",-19.885988,34.598785,17,76,75910,,76003
-1464,Drought,Mozambique,Africa,"Magude, Manhiça districts (Maputo province), Massingir, Chibuto, Mabalane districts (Gaza province), Funhaloro, Panda, Govuro districts (Inhambane province), Sofala, Tete",-25.4059,32.804863,,,2300000,,2300000
+1464,Drought,Mozambique,Africa,"Magude districts, Massingir, Chibuto, Mabalane districts (Gaza province), Funhaloro, Panda, Govuro districts (Inhambane province), Sofala, Tete",-25.4059,32.804863,,,2300000,,2300000
 1465,Flood,Mozambique,Africa,Zambezia and Niassa provinces,-13.299912,35.245864,18,,,,18
 1466,Flood,Mozambique,Africa,"Nampula, Niassa, Cabo Delgado, Mozambique Isl.",-12.973555,40.52151,11,,,77150,77161
 1467,Flood,Mozambique,Africa,"Manica, Mossurize, Tambara districts (Manica province), Maputo, Inhambane, Gaza, Tete provinces",-18.936113,32.875698,25,,3500,,3525
@@ -1472,7 +1400,7 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1471,Flood,Mozambique,Africa,"South of the country and capital, Maputo, Gaza, Inhambane, Nampula,Tete, Sofala",-25.966213,32.56745,47,,165000,,165047
 1472,Flood,Mozambique,Africa,"Tete, Zambeze provinces",-16.15842,33.587936,10,,63000,,63010
 1473,Flood,Mozambique,Africa,"Grudja, Estaquinha, Bandua, Guara-Guara, Vila de Buzi, Muchanesse, Munimucua (Buzi distrcit, Sofala province); Sussundenga District (Manica)",-19.863963,34.466669,2,,8700,,8702
-1474,Flood,Mozambique,Africa,"Niassa, Nampula, Zambézia, Manica, Tete",-15.119406,39.261589,22,,145000,,145022
+1474,Flood,Mozambique,Africa,"Niassa, Nampula,Manica, Tete",-15.119406,39.261589,22,,145000,,145022
 1475,Drought,Mozambique,Africa,"Cabo Delgado, Niassa and Nampula provinces",-12.973555,40.52151,,,1562771,,1562771
 1476,Flood,Mozambique,Africa,"Boane, Magude, and Moamba Districts (Maputo Province)",-26.040318,32.327522,14,3,89090,,89107
 1477,Drought,Mozambique,Africa,"Gaza, Inhambane, Manica, Sofala, Maputo provinces (Centre and south of the country)",-25.966213,32.56745,,,520000,,520000
@@ -1544,9 +1472,7 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1543,Flood,Nepal,Asia,"Nuwakot, Okhaldhunga, Panchthar, Shankhuwasabha, Taplejung, Dhankuta and Ilam (Koshi province)",26.911564,87.9292,36,6,1500,,1542
 1544,Earthquake,Nepal,Asia,"Achham, Baitadi, Bajhang and Bajura districts",29.458551,81.47972,1,23,36250,,36274
 1545,Earthquake,Nepal,Asia,Jajarkot and Rukum Districts of Karnali Province,28.559341,82.406784,154,366,300000,,300520
-1546,Flood,Nepal,Asia,,27.927362,79.237366,24,29,2705,,2758
 1547,Flood,Nepal,Asia,"Kathmandu, Kavrepalanchowk, Lalitpur, Bagmati, Gandak",27.714186,85.31094,268,178,2590000,,2590446
-1548,Earthquake,Nepal,Asia,,27.927362,79.237366,,13,60,10,83
 1549,Flood,Nepal,Asia,Ilam district (Koshi province); Jhapa District,26.909847,87.92679,57,47,20295,,20399
 1550,Drought,Nepal,Asia,Madhesh province,26.728454,85.924901,,,1200000,,1200000
 1551,Flood,Nepal,Asia,"Parbat, Lamjung, Gorkha, Kalikot, Syangaja, Gulmi, Bajhang, Darchula, Bajura, Sindhupalchok, Kaski, Dailekh, Myagdi, Jajarkot, Rukum Paschim, Dhading, Shankhuwashaba, Jhapa, Tanahun, Baglung, Saptari, Lalitpur, Nawalparasi Purba, Chitwan, Dang,Surkhet, Kailali districts",-19.963132,-43.993204,448,287,117390,,118125
@@ -1591,8 +1517,6 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1590,Drought,Nicaragua,Americas,"Atlantico Norte, Atlantico Sur, Boaco, Carazo, Chinandega, Chontales, Esteli, Granada, Jinotega, Leon, Madriz, Managua, Masaya, Matagalpa, Nueva Segovia, Rio San Juan, Rivas provinces",39.58238,-74.56103,,,460000,,460000
 1591,Flood,Nicaragua,Americas,El Rama district (Atlantico Sur province),12.162104,-84.22021,,,5500,,5500
 1592,Flood,Nicaragua,Americas,"Esteli, Madriz, Chinandega, Leon, Managua, Masaya, Granada, Carazo, Rivas, Jinotega, Matagalpa provinces",12.14,-86.274,10,,24000,,24010
-1593,Flood,Nicaragua,Americas,"Matagalpa, Jinotega, Nueva Segovia, León, Managua, Chinandega ,Región Autónoma de la Costa Caribe Norte y Sur departments",14.029445,-83.383122,4,,13000,,13004
-1594,Drought,Nicaragua,Americas,,19.497992,101.88072,,,300000,,300000
 1595,Earthquake,Nicaragua,Americas,"Laguna de Apoyo nature reserve (Masaya district, Masaya province)",11.956151,-86.054842,7,42,1785,5650,7484
 1596,Drought,Nicaragua,Americas,"Nueva Segovia, Madriz, Esteli, Leon, Chinandega, Carazo, Boaco, Jinotega, Matagalpa provinces",13.633317,-86.476387,,,188000,,188000
 1597,Flood,Nicaragua,Americas,"Chinandega, Corinto, Chichigalpa districts (Chinandega province), Leon, Managua provinces",12.570726,-87.02678,,,4860,,4860
@@ -1611,7 +1535,6 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1610,Flood,Niger,Africa,"Zarmagandaye, Lamorde, Karadje boroughs (Communes 3 district, Niamey province)",13.492935,2.091279,7,,13000,,13007
 1611,Flood,Niger,Africa,Niamey,13.52,2.109,10,12,50000,,50022
 1612,Flood,Niger,Africa,"Maradi, Zinder, Agadez, Tahoua, Tilleberi",14.727898,6.193094,396,405,1526653,,1527454
-1613,Drought,Niger,Africa,"Diffa, Tahoua, Zinder, Maradi, Agadez, Tillabéri regions",14.594533,3.93665,,,3700000,,3700000
 1614,Flood,Niger,Africa,"Dosso, Maradi provinces",13.501206,7.102534,2,3,4156,,4161
 1615,Drought,Niger,Africa,"Ibanka, Rouafi I, Rouafi II, Chinagamane villages (Filingue district, Tillaberi province), Sabara I (Dogondoutchi district, Dosso province), Sabara II (Niamey province), Ayawa (Ouallam district, Tillaberi province), Kabefo (Tillaberi district, Tillaberi province), Dinkihmi villages (not found).",6.486113,3.367972,,,3584558,,3584558
 1616,Flood,Niger,Africa,"Dosso, Tahoua, Tillaberi, Zinder provinces",14.594533,3.93665,7,,30000,,30007
@@ -1624,7 +1547,6 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1623,Flood,Niger,Africa,"Agadez, Diffa, Dosso, Maradi, Tahoua, Tillaberi, Zinder, Niamey provinces",13.524834,2.109823,91,,530952,,531043
 1624,Flood,Niger,Africa,"Maradi, Agadez, Tillaberi, Dosso, Tahoua, Niamey, Zinder, Diffa provinces",13.524834,2.109823,32,,165943,,165975
 1625,Flood,Niger,Africa,"Diffa, Zinder provinces",14.2446,1.3234,,,15086,,15086
-1626,Drought,Niger,Africa,"NO DATA: all provinces have been selected: Maradi, Niamey, Tahoua, Tillaberi, Zinder provinces",13.52,2.109,,,2588128,,2588128
 1627,Flood,Niger,Africa,"Bazagor city (Tchin Tabaradene district, Tahoua province), Ingal city (Tchighozerine district, Agadez province), Maradi, Zinder, Dosso, Tillaberi, Diffa, Niamey province",6.486113,3.367972,50,27,123239,,123316
 1628,Flood,Niger,Africa,"Maradi, Agadez, Diffa , Zinder",16.841574,13.285175,36,,130468,,130504
 1629,Drought,Niger,Africa,"Agadez, Diffa, Tillaberi, Tahoua, Maradi",14.727898,6.193094,,,4400000,,4400000
@@ -1646,7 +1568,6 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1645,Flood,Nigeria,Africa,Lagos province,6.444008,3.482634,,,500,,500
 1646,Flood,Nigeria,Africa,Zamfara province,12.165836,6.66064,,,,10000,10000
 1647,Flood,Nigeria,Africa,Lagos province,6.444008,3.482634,,,1000,,1000
-1648,Drought,Nigeria,Africa,,8.898567,17.3088,,,19110398,,19110398
 1649,Flood,Nigeria,Africa,Emirates of Dukku and Nafada in Gombe State,10.824072,10.776239,,,1336,,1336
 1650,Flood,Nigeria,Africa,"Fufore, Demsa, Shelleng (Adamawa State)",9.221465,12.650262,275,,30000,,30275
 1651,Flood,Nigeria,Africa,"Adamawa, Borno, Bauchi, Sokoto, Zamfara and Jigawa states",10.163936,12.090777,321,2854,1374557,,1377732
@@ -1809,10 +1730,8 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1827,Flood,Panama,Americas,Colon province,9.355301,-79.897408,,,2000,,2000
 1828,Flood,Panama,Americas,"Las Tablas, Finca 03, Finca 01, Finca 02, Finca 04, Finca 67, Las Delicias, Teodroma, La Mesa, Sixaola/Guabito areas (Changuinola district, Bocas del Toro province), El Munoz, San Jos areas (Las Tablas district, Los Santos province)",30.177941,-85.805315,1,32,4298,,4331
 1829,Flood,Panama,Americas,Chiriqui province,8.437147,-82.428628,9,,116,,125
-1830,Flood,Panama,Americas,"Calovébora Commune (Veraguas Province, western Panama); Colon Province (eastern Panama)",9.355301,-79.897408,11,,150,,161
 1831,Flood,Panama,Americas,"Chiriqui, Bocas del Toro, Veraguas, Colon, Darien provinces",9.340296,-82.241817,12,5,23287,,23304
 1832,Flood,Panama,Americas,"Besiko, Mirono, Muna, Nola Duima districts (Ngobe Bugle province), Chiriqui province",8.480292,-82.086525,16,,545,,561
-1833,Flood,Panama,Americas,"Coclé, Colón, Kuna Yala, Herrera, Los Santos, Panamá, Bocas del Toro, Chiriquí, Darién, Emberá, Ngöbe Buglé, Veraguas provinces",9.340296,-82.241817,2,,129,,131
 1834,Flood,Panama,Americas,"Changuinola, Bocas del Toro, Chiriqui Grande districts (Bocas del Toro province), Veraguas, Chiriqui, Ngobe Bugle provinces",9.339877,-82.240204,3,,7000,,7003
 1835,Flood,Panama,Americas,Panama district (Panama province),8.971449,-79.53418,,,3400,,3400
 1836,Flood,Panama,Americas,"Bocas del Toro, Colon provinces",9.339877,-82.240204,,,1000,,1000
@@ -1846,9 +1765,7 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1864,Earthquake,Papua New Guinea,Oceania,Lae district (Morobe province),-6.730198,147.000811,1,,,200,201
 1865,Flood,Papua New Guinea,Oceania,"Arawa, Buin district (Northern Solomons province)",-6.748954,155.689591,1,,2493,,2494
 1866,Flood,Paraguay,Americas,"Asuncion, Distrito Capital",-25.280046,-57.634381,1,,2000,,2001
-1867,Flood,Paraguay,Americas,"Bañado Norte, Chacarita, Bañado Sur",-23.236211,-58.391024,,,5000,,5000
 1868,Flood,Paraguay,Americas,"Banado Norte, Chacarita, Banado Sur",-23.236211,-58.391024,,,41300,,41300
-1869,Flood,Paraguay,Americas,"Alto Paranà, Itapua, Misiones, Neembucu",-25.516901,-54.616864,6,19,7656,,7681
 1870,Drought,Paraguay,Americas,"Presidente Hayes, Boqueron, Alto Paraguay provinces",-25.092865,-57.524648,,,52990,,52990
 1871,Drought,Paraguay,Americas,"Filadelfia, Loma Plata, Mariscal Estigarribia towns (Mcal. Estigarribia district, Boqueron province), Alto Paraguay, Presidente Hayes provinces",-22.384535,-59.836674,4,,18000,,18004
 1872,Flood,Paraguay,Americas,"Ciudad Del Este, Pte. Franco districts (Alto Parana province), San Cosme Y Damian district (Itapua province), Ayolas district (Misiones province), Cerrito, Gral. Jose E. Diaz, Paso De Patria, Mayor Martinez, Villa Franca, Villalvin districts (Neembucu province)",-31.77448,-60.83842,,,61400,,61400
@@ -1857,7 +1774,6 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1875,Flood,Paraguay,Americas,Asuncion district (Central province),-25.280046,-57.634381,,,2000,,2000
 1876,Flood,Paraguay,Americas,"Asuncion, Pilar",-25.280046,-57.634381,23,,208602,,208625
 1877,Flood,Paraguay,Americas,"San Lazaro, Horqueta, Sargento Felix Lopez, Paso Horqueta and Paso Barreto (Concepción); Alto Paraguay, Amambay San Pedro departments",-22.38547,-56.91874,,,39000,,39000
-1878,Flood,Paraguay,Americas,"Ñeembucú, Presidente Hayes, Alto Paraguay, Concepción, Capital, Misiones, San Pedro, Central Departments",-24.091438,-57.077122,16,,310595,,310611
 1879,Flood,Paraguay,Americas,"Distrito Capital, Central, Paraguarí, Caaguazú and Canindeyú",-25.31293,-57.384658,10,,2000,,2010
 1880,Drought,Paraguay,Americas,"Presidente Hayes, Boqueron, Alto Paraguay, San Pedro, Concepcion, Amambay, Canindeyu, Alto Parana, Itapua, Cordillera, Guaira, Neembucu, Paraguari, Caazapa, Caaguazu provinces",-31.77448,-60.83842,,,75000,,75000
 1881,Flood,Paraguay,Americas,"Asuncion district (Central province), San Pedro, Guaira provinces",-24.091438,-57.077122,,,3700,,3700
@@ -1880,7 +1796,7 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1898,Earthquake,Peru,Americas,Near Arequipa province,40.707016,-86.127556,,30,9000,33,9063
 1899,Flood,Peru,Americas,Tiquillaca district (Puno region),-15.796944,-70.18671,,,150,,150
 1900,Flood,Peru,Americas,Huancavelica,-12.786563,-74.972336,7,,57000,,57007
-1901,Flood,Peru,Americas,"Amazonas, Áncash, Apurímac, Arequipa, Ayacucho, Cusco, Huancavelica, Huánuco, Ica, Junín, La Libertad, Lima, Moquegua, Pasco, Piura, Tacna, Tumbes, and Ucayali provinces",-16.42991,-71.510618,,,7966,,7966
+1901,Flood,Peru,Americas,"Amazonas, Ancash, Apurimac, Arequipa, Ayacucho, Cajamarca, Callao, Cusco, Huancavelica, Huanuco, Ica, Junin, La Libertad, Lambayeque, Lima, Loreto, Madre de Dios, Moquegua, Pasco, Piura, Puno, San Martin, Tacna, Tumbes, Ucayali provinces",-16.42991,-71.510618,,,7966,,7966
 1902,Earthquake,Peru,Americas,Lima region,-12.036875,-77.050729,2,135,492,12,641
 1903,Flood,Peru,Americas,"Arequipa, Ancash, Loreto, Tacna, Moquegua",-17.078237,-70.84399,10,,,,10
 1904,Flood,Peru,Americas,"Santa Rosa de Alto Yanajanca district, Marañón province (Huanuco Department)",-8.6533,-76.31429,1,,1875,,1876
@@ -2082,7 +1998,6 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 2100,Flood,Rwanda,Africa,Kigali,-1.950894,30.058876,3,,,,3
 2101,Flood,Rwanda,Africa,"Gisagara District; Gasabo (Kigali), Ngoma, Nyagatare",-1.952308,30.170479,3,22,5220,,5245
 2102,Flood,Rwanda,Africa,Northern area,-1.577277,30.064109,8,5,500,,513
-2103,Flood,Rwanda,Africa,,-1.865506,29.917652,10,,,,10
 2104,Flood,Rwanda,Africa,"Northern, western and southern provinces",-2.352455,29.750491,131,77,51905,,52113
 2105,Flood,Rwanda,Africa,"Nyanza, Burera, Gakenke, Ngororero",-1.800221,30.415374,14,27,,,41
 2106,Flood,Rwanda,Africa,"Ngororero, Nyabihu, Nyamasheke, Rusizi (Western province); Musanze, Rulindo (Northern Province); Gisagara (Southern province)",-1.50405,29.63631,16,33,5360,,5409
@@ -2261,7 +2176,6 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 2279,Flood,Sri Lanka,Asia,"Galle, Matara districts (Southern province)",5.947822,80.548292,2,,100000,,100002
 2280,Flood,Sudan,Africa,"Kas District (South Darfur State); Kassala, South Kordofan, White Nile; West Darfur",12.499984,32.500017,146,122,349000,,349268
 2281,Flood,Sudan,Africa,Zalingei (Westenr Darfur); El Tadamon (Blue Nile State),11.807364,34.36563,,,350,2400,2750
-2282,Drought,Sudan,Africa,,48.230422,12.543792,,,11839300,,11839300
 2283,Flood,Sudan,Africa,"Kassala, Aj Jazirah, East Darfur, Central Darfur, North Darfur, Khartoum, North Kordofan, Northern, Red Sea, River Nile, West Darfur, and White Nile states",-34.710758,-58.61067,132,107,317000,,317239
 2284,Flood,Sudan,Africa,"River Nile, Sennar States",17.583018,33.968702,32,,10000,,10032
 2285,Flood,Sudan,Africa,"En Nuhud, Ghebeish districts (Northern Kordofan), Abyei, As Salam, Lagawa districts (Souythern Kordofan), White Nile, Al Jazeera, Khartoum provinces",12.499984,32.500017,,,100000,,100000
@@ -2338,12 +2252,10 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 2356,Flood,Thailand,Asia,"Satun, Songkhla, Pattani,, Yala, Narathiwat provinces",7.197343,100.593205,6,,241473,,241479
 2357,Earthquake,Thailand,Asia,"Krabi, Phangnga, Phuket, Ranong, Satun, Trang provinces",7.88479,98.38915,8345,8457,58550,,75352
 2358,Flood,Thailand,Asia,"Phimai District (Nakhon Ratchasima Province); Khok Yai, Tha Li District (Loei Province); Bangkok; Khon Kaen, Rayong, Chon Buri, Samut Prakan, Nonthaburi provinces",14.77288,100.450954,2,,2300,,2302
-2359,Flood,Thailand,Asia,,18.777887,100.773732,6,,60000,,60006
 2360,Flood,Thailand,Asia,"Phetchabun, Chiang Rai, Chiang Mai, Nan, Phayao, Lampang, Phrae, Udon Thani, Rayong, Phuket, Sukhothai and Prae provinces",18.788278,98.98588,22,19,38331,,38372
 2361,Flood,Thailand,Asia,"Chumphon, Phatthalung, Ranong, Satun, Surat Thani, Nakhon Si Thammarat, Songkhla, Pattani, Narathiwat, and Yala provinces",8.432795,99.962797,35,,737000,,737035
 2362,Earthquake,Thailand,Asia,Bangkok,13.752494,100.493509,54,38,2313,,2405
 2363,Flood,Thailand,Asia,"Nakhon Sawan, Phichit, Phitsanulok, Phetchabun, Kalasin, Amnat Charoen, Nakhon Ratchasima, and Sa Kaeo provinces",14.974827,102.097849,1,,1244,,1245
-2364,Flood,Thailand,Asia,,18.777887,100.773732,,,600,,600
 2365,Flood,Thailand,Asia,"Ayutthaya, Phichit, and Phetchabun",16.418027,101.155683,4,,250000,,250004
 2366,Flood,Thailand,Asia,"Uttaradit, Ayutthaya, Yasothon, Phitsanulok, Phetchabun, and Phichit provinces",16.815026,100.26479,22,,369724,,369746
 2367,Flood,Thailand,Asia,"Phra Nakhon Si Ayutthaya province; Tha Din Daeng subdistrict in Bangkok; Chaiya and Kathu districts (Malay Peninsula); hitsanulok, Nakhon Sawan, Uthai Thani, Sing Buri, Chainat, Ang Thong, Suphan Buri, Pathum Thani, Nonthaburi and Nakhon Pathom provinces; Surat Thani, Nakhon Si Thammarat, Trang, Phatthalung, Satun, Songkhla, Pattani, Yala, Narathiwat Prachuap Khiri Khan, Chumphon, Krabi",14.77288,100.450954,276,5,4000000,,4000281
@@ -2489,7 +2401,6 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 2507,Flood,Uganda,Africa,"Kikajjo, Lubowaa, Lufuka (Kampala)",0.317714,32.581354,8,,2500,,2508
 2508,Flood,Uganda,Africa,"Mukono, Bulambuli, Butaleja, Kasese, Iganga, Busia districts",0.467581,34.09049,3,,4750,,4753
 2509,Flood,Uganda,Africa,Kasese District,0.172383,30.085695,11,,25000,,25011
-2510,Flood,Uganda,Africa,,2.23169,32.897323,16,,,130,146
 2511,Flood,Uganda,Africa,"Central Region, Eastern Region, Western Region",64.317081,-22.083351,77,296,57508,,57881
 2512,Flood,Uganda,Africa,"Mbale, Kapchorwa, Sironko, Bulambuli, Bukedea, Bududa and Butaleja districts",1.159924,34.396403,32,10,78328,,78370
 2513,Flood,Uganda,Africa,"Mbale, Sironko, Bundibugyo, Kapchorwa, Buhweju provinces",1.07119,34.174951,17,,760,,777
@@ -2641,7 +2552,6 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 2659,Flood,Vietnam,Asia,"Ha Tinh, Quang Binh, Quang Tri, Nghe An, Thua Thien - Hue provinces",17.773283,106.381714,84,75,679750,,679909
 2660,Flood,Vietnam,Asia,"Lao Cai, Son La, Quang Ninh, Tuyen Quang provinces",22.657359,104.705218,5,,5000,,5005
 2661,Flood,Vietnam,Asia,"Bac Giang, Bac Kan, Bac Ninh, Cao Bang, Da Nang City, Dien Bien, Ha Giang, Ha Nam, Ha Noi City, Ha Tay, Ha Tinh, Hai Duong, Hai Phong City, Hoa Binh, Hung Yen, Lai Chau, Lang Son, Lao Cai, Nam Dinh, Nghe An, Ninh Binh, Phu Tho, Quang Binh, Quang Nam, Quang Ninh, Quang Tri, Son La, Thai Binh, Thai Nguyen, Thanh Hoa, Thua Thien - Hue, Tuyen Quang, Vinh Phuc, Yen Bai provinces",50.28544,4.918766,29,,1000,,1029
-2662,Flood,Vietnam,Asia,"Thanh Hóa, Lào Cai, Yên Bái, Bac Kan, Dien Bien, Ha Thin, Son La, Thai Nguyen",21.70493,104.87911,8,4,410,95,517
 2663,Flood,Vietnam,Asia,"Ha Giang, Lao Cai, Dien Bien, Yen Bai (Mu Cang Chai district), Tuyen Quang, Thai Nguyen, Lai Chau, Bac Kan, Cao Bang (Hoa An district), Binh Thuan, An Giang, Cà Mau (Nam Can, Ngoc Hien and Dam Doi districts) Provinces",50.28544,4.918766,1,4,4100,,4105
 2664,Flood,Vietnam,Asia,"Ha Giang, Bac Kan, Cao Bang and Yen Bai Provinces",22.770097,106.131214,3,,,265,268
 2665,Flood,Vietnam,Asia,"Nghia Hanh and Duc Pho Districts (Quang Ngai province); Quang Nam,Thua Thien Hue",15.04662,108.77712,2,,10000,,10002
@@ -2651,7 +2561,6 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 2669,Flood,Vietnam,Asia,"Thua Thien - Hue, Quang Nam, Quang Ngai, Binh Dinh provinces",16.463932,107.586339,27,16,559255,2850,562148
 2670,Flood,Vietnam,Asia,"Quang Tri, Thua Thien-Hue, Da Nang, Quang Nam, Quang Ngai, Binh Dinh",16.631135,107.304304,8,,41500,,41508
 2671,Flood,Vietnam,Asia,"Thanh Hoa, Binh Dinh, Nghe An, Quang Tri, Quang Ngai, Quang Nam, Da Nang",16.068,108.212,14,,105000,,105014
-2672,Flood,Vietnam,Asia,"Qu?ng Ninh, L?ng S?n, Thanh Hóa",19.811719,105.77457,19,,1000,500,1519
 2673,Flood,Vietnam,Asia,"Quang Binh, Ha Tinh and Lao Cai provinces.",18.335636,105.90054,10,,36450,,36460
 2674,Flood,Vietnam,Asia,"Ha Giang, Bac Giang provinces",22.827894,104.98234,5,1,2620,,2626
 2675,Flood,Vietnam,Asia,"Minh Luong Commune, Viet Tien (Van Ban District, Lao Cai province); Bac Quang (Ha Giang province); Tan Dong (Yen Bai Province), Ha Giang Province",50.28544,4.918766,3,,180,,183
@@ -2696,7 +2605,6 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 2714,Flood,Vietnam,Asia,"Quang Nam, Quang Ngai, Ha Tinh, Nghe An, Quang Tri, Phu Yen provinces",17.773283,106.381714,20,6,35000,,35026
 2715,Flood,Yemen,Asia,"Marib, Al Mahwit, Taiz, Ibb, Hadramawt, Al Bayda, Amran, Sadaa, Dhamar, Al Hodeida, Sana'a, Hajjah, Al Mahra governorates",14.822489,42.945649,77,,175000,,175077
 2716,Flood,Yemen,Asia,"Ad Dali’, Al Hodeidah, Hadramawt, Hajjah and Ta’iz governorate",15.724413,43.372012,,,41000,,41000
-2717,Flood,Yemen,Asia,,29.365175,112.3921,174,,,,174
 2718,Flood,Yemen,Asia,"Hajjah, Marib, Hodeidah, Al Bayda, Al Jawf, Sana'a, Amran, Sa’ada, Ibb, Taiz, Dhamar, Shabwa and Al Mahwit governorates",13.975412,43.775451,248,183,308000,,308431
 2719,Flood,Yemen,Asia,"Abyan, Taiz, Al-Jawf, Hadramout, Shabwa, Sa'ada, Mareb, Al-Mahara, Al-Dhale'",16.163372,44.776557,,,39123,,39123
 2720,Flood,Yemen,Asia,"Maqbanah district (Taez governorate), Sadaa provinces; Al Hudaydah, Al Hajjah, Ma'rib governorates",14.797868,42.954487,62,16,171300,,171378
@@ -2725,7 +2633,7 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 2743,Flood,Yemen,Asia,Sana’a province,15.353857,44.205884,50,,,,50
 2744,Flood,Yemen,Asia,"Al Mashannah district (Ibb province), Dhamar, Sana'a provinces",15.500496,44.346276,15,,,,15
 2745,Flood,Yemen,Asia,Sana'a province,15.353857,44.205884,7,2,,1000,1009
-2746,Flood,Yemen,Asia,"Taëz, Lahj provinces, Portions of Jibla (south of Ibb), Taizz city, Ibb city",13.922493,44.145761,50,8,,,58
+2746,Flood,Yemen,Asia,Lahj provinces,13.922493,44.145761,50,8,,,58
 2747,Flood,Yemen,Asia,Sanaa,15.353857,44.205884,6,,,,6
 2748,Flood,Yemen,Asia,"Tarim, Sah, Shibam, Al Qatn, Wadi Al Ayn districts (Hadramaut province), Al Maharah, Taizz, Lahj, Al Mahwit provinces",13.332094,44.092858,90,64,25000,,25154
 2749,Flood,Yemen,Asia,"Hadramaut, Ibb provinces",16.732302,48.608497,36,18,600,,654
@@ -2758,8 +2666,6 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 2776,Flood,Zambia,Africa,Lusaka province,-15.416412,28.282479,4,,,1000,1004
 2777,Flood,Zambia,Africa,Gwembe district (Southern province),-16.49753,27.604973,,,,10000,10000
 2778,Flood,Zimbabwe,Africa,"Manicaland, Masvingo, Midlands, Mashonaland Central, Mashonaland East, Mashonaland West, Matabeleland South, Matabeleland North, Harare Metropolitan, and Bulawayo Metropolitan Provinces",-20.15606,28.588706,109,61,41475,,41645
-2779,Drought,Zimbabwe,Africa,,22.252018,114.13977,,,6900000,,6900000
-2780,Drought,Zimbabwe,Africa,,22.252018,114.13977,,,7600000,,7600000
 2781,Drought,Zimbabwe,Africa,"Masvingo, Matabeleland North, Matabeleland South, Midlands, Manicaland, Mashonaland Central, Mashonaland East, Mashonaland West provinces",-18.934672,27.772832,,,2100000,,2100000
 2782,Flood,Zimbabwe,Africa,"Matabeleland South, Matabeleland North, Midlands, Masvingo, Mashonaland Central, Manicaland provinces",-18.934672,27.772832,125,,9700,,9825
 2783,Flood,Zimbabwe,Africa,"Manicaland, Mashonaland Central, Mashonaland East, Mashonaland West, Midlands provinces",-18.190098,31.545542,11,,1500,,1511
