@@ -340,14 +340,25 @@ export default function Simulation() {
             clusters[locName].total_affected += d.total_affected;
         });
 
-        const allZones = Object.values(clusters)
-            .sort((a, b) => b.events - a.events)
-            .map((zone) => ({
-                ...zone,
-                severity: zone.events >= 8 ? 'Critical'
-                    : zone.events >= 4 ? 'Severe'
-                        : zone.events >= 2 ? 'Moderate' : 'Low',
-            }));
+        // Rank by composite score: blend event frequency (40%) + impact (60%)
+        const rawZones = Object.values(clusters);
+        const maxEvents = Math.max(...rawZones.map(z => z.events), 1);
+        const maxImpact = Math.max(...rawZones.map(z => z.deaths + z.total_affected), 1);
+
+        const allZones = rawZones
+            .map(zone => {
+                const normEvents = zone.events / maxEvents;
+                const normImpact = (zone.deaths + zone.total_affected) / maxImpact;
+                const score = normEvents * 0.4 + normImpact * 0.6;
+                return {
+                    ...zone,
+                    score,
+                    severity: score >= 0.7 ? 'Critical'
+                        : score >= 0.4 ? 'Severe'
+                            : score >= 0.15 ? 'Moderate' : 'Low',
+                };
+            })
+            .sort((a, b) => b.score - a.score);
 
         const topZones = allZones.slice(0, 3);
 
