@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell,
@@ -7,7 +8,7 @@ import {
 import {
   X, Heart, Droplets, BookOpen, Home, ShieldCheck, Wheat,
   Activity, Users, Baby, AlertCircle, Apple, TrendingDown,
-  ChevronDown, ChevronUp,
+  ChevronDown, ChevronUp, MessageSquare,
 } from 'lucide-react';
 import './CountryModal.css';
 
@@ -324,6 +325,7 @@ function SectorRow({ cat, data, history, isOpen, onToggle }) {
 // ── Main modal ────────────────────────────────────────────────────
 export default function CountryModal({ country, onClose }) {
   const overlayRef = useRef(null);
+  const navigate   = useNavigate();
   const [openSector,   setOpenSector]   = useState(null);
 
   useEffect(() => {
@@ -339,6 +341,71 @@ export default function CountryModal({ country, onClose }) {
     name, cbpf_timeline=[], cluster_breakdown={},
     cluster_history={}, affected={}, world:wi={}, pop_impact_pct=0,
   } = country;
+
+  // ── Build a specific, data-rich prompt for the Wiki AI ──────────
+  const buildWikiPrompt = () => {
+    const pcts      = country.issue_pct_funded || {};
+    const total     = affected.total || 0;
+    const reached   = affected.total_reached || 0;
+    const children  = (affected.boys || 0) + (affected.girls || 0);
+    const childPct  = total > 0 ? Math.round(children / total * 100) : 0;
+    const pop       = wi.population || 0;
+    const popPct    = pop > 0 ? (total / pop * 100).toFixed(1) : null;
+    const vuln      = wi.vulnerability_score;
+    const lifeExp   = wi.life_expectancy;
+    const latestCbpf = cbpf_timeline.at(-1);
+    const cbpfCovPct = latestCbpf?.cbpf_target > 0
+      ? Math.round(latestCbpf.cbpf_funding / latestCbpf.cbpf_target * 100) : null;
+
+    // Worst 3 sectors by funding %
+    const worstSectors = Object.entries(pcts)
+      .sort((a, b) => a[1] - b[1])
+      .slice(0, 3)
+      .map(([s, p]) => `${s} (${p}% funded)`)
+      .join(', ');
+
+    // Best 2 sectors for contrast
+    const bestSectors = Object.entries(pcts)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 2)
+      .map(([s, p]) => `${s} (${p}% funded)`)
+      .join(', ');
+
+    let prompt =
+      `Explain ${name}'s humanitarian crisis in depth. ` +
+      `Use all available data — CBPF project records, HRP funding history, and sector breakdowns — to answer:\n\n` +
+      `1. **Funding severity**: ${name}'s most underfunded sectors are ${worstSectors}. ` +
+      `Its best-funded are ${bestSectors}. Why is this pattern occurring and what drives the gaps?\n\n` +
+      `2. **Scale of need**: ${total.toLocaleString()} people are targeted for assistance` +
+      (popPct ? ` (${popPct}% of the population)` : '') +
+      `, of whom ${childPct}% are children. Only ${reached.toLocaleString()} have actually been reached. ` +
+      `Which groups are most underserved and why?\n\n`;
+
+    if (cbpfCovPct !== null) {
+      prompt +=
+        `3. **Funding trend**: In ${latestCbpf.year}, CBPF allocations covered only ${cbpfCovPct}% of the target. ` +
+        `How has this coverage changed over the years, and is the situation improving or worsening?\n\n`;
+    }
+
+    prompt += `4. **Country context**: `;
+    if (vuln) prompt += `Vulnerability score is ${vuln}/100. `;
+    if (lifeExp) prompt += `Life expectancy is ${lifeExp} years. `;
+    prompt +=
+      `How do these structural factors drive the humanitarian situation?\n\n` +
+      `5. **Comparable cases**: Which other crisis countries face similar patterns, ` +
+      `and what interventions have worked there?\n\n` +
+      `6. **Recommendations**: Based on the data, what specific actions — sectors, partners, funding mechanisms — ` +
+      `would most effectively close the gap for ${name}?`;
+
+    return prompt;
+  };
+
+  const handleLearnMore = () => {
+    const prompt = buildWikiPrompt();
+    localStorage.setItem('wiki_autoprompt', prompt);
+    onClose();
+    navigate('/wiki');
+  };
 
   // 1. CBPF two-line chart: Target (required) vs Received (funded), dollars on Y-axis
   const cbpfChart = cbpf_timeline.map(d => ({
@@ -385,7 +452,14 @@ export default function CountryModal({ country, onClose }) {
                 )}
               </div>
             </div>
-            <button className="cm-close" onClick={onClose} aria-label="Close"><X size={17}/></button>
+            <div className="cm-header-actions">
+              <button className="cm-learn-more-btn" onClick={handleLearnMore}
+                title={`Ask AI to explain ${name}'s crisis ranking`}>
+                <MessageSquare size={13} />
+                More Information!
+              </button>
+              <button className="cm-close" onClick={onClose} aria-label="Close"><X size={17}/></button>
+            </div>
           </div>
 
           <div className="cm-body">

@@ -290,42 +290,45 @@ export default function Wiki() {
     const chatEndRef = useRef(null);
     const inputRef   = useRef(null);
 
+    // Auto-fire prompt written by CountryModal's "Ask AI" button
+    useEffect(() => {
+        const autoPrompt = localStorage.getItem('wiki_autoprompt');
+        if (autoPrompt) {
+            localStorage.removeItem('wiki_autoprompt');
+            // Small delay so the component is fully mounted
+            setTimeout(() => handleSendPrompt(autoPrompt), 120);
+        }
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
     useEffect(() => {
         chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [messages, loading]);
 
-    const handleSend = async () => {
-        if (!input.trim() || loading) return;
+    // Core send function — accepts optional text (for auto-prompt) or uses input state
+    const handleSendPrompt = async (textOverride) => {
+        const currentInput = textOverride ?? input;
+        if (!currentInput.trim() || loading) return;
 
-        const currentInput = input;
-        const userMsg = { role: 'user', content: currentInput };
-        setMessages(prev => [...prev, userMsg]);
-        setInput('');
+        if (!textOverride) setInput('');
         setLoading(true);
         setStreaming(false);
 
-        // ── Detect context from the query ────────────────────────
-        const mentionedCCs = detectCountries(currentInput);
-        const mentionedYear = detectYear(currentInput);
+        const userMsg = { role: 'user', content: currentInput };
+        setMessages(prev => [...prev, userMsg]);
 
-        // Detect sector hints
-        const SECTOR_HINTS = ['health','wash','water','education','shelter','nfi',
-                              'nutrition','protection','food','livelihoods'];
+        // ── Detect context from the query ────────────────────────
+        const mentionedCCs  = detectCountries(currentInput);
+        const mentionedYear = detectYear(currentInput);
+        const SECTOR_HINTS  = ['health','wash','water','education','shelter','nfi',
+                               'nutrition','protection','food','livelihoods'];
         const sectorHint = SECTOR_HINTS.find(s => currentInput.toLowerCase().includes(s)) || null;
 
-        // Build the rich data context from all three CSV sources
         const dataCtx = buildDataContext(mentionedCCs, mentionedYear, sectorHint);
 
-        // Build API messages — inject data context into the user turn
-        const historyForApi = messages.map(m => ({ role: m.role, content: m.content }));
+        const historyForApi    = messages.map(m => ({ role: m.role, content: m.content }));
         const userContentForApi = currentInput + dataCtx;
+        const apiMessages = [...historyForApi, { role: 'user', content: userContentForApi }];
 
-        const apiMessages = [
-            ...historyForApi,
-            { role: 'user', content: userContentForApi },
-        ];
-
-        // Placeholder assistant message for streaming effect
         setMessages(prev => [...prev, { role: 'assistant', content: '' }]);
         const assistantIdx = messages.length + 1;
 
@@ -366,8 +369,10 @@ export default function Wiki() {
         setLoading(false);
     };
 
+    const handleSend = () => handleSendPrompt();
+
     const handleKeyDown = e => {
-        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); }
+        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSendPrompt(); }
     };
 
     const suggestedQueries = [
