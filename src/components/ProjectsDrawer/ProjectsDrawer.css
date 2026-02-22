@@ -23,7 +23,6 @@
   height: 100%;
   background: var(--cm-panel-bg, #ffffff);
   border-left: 1px solid var(--cm-panel-border, rgba(0,0,0,0.10));
-  border-left-top: 3px solid #009EDB;
   display: flex;
   flex-direction: column;
   overflow: hidden;
