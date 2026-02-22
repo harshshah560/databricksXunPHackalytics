@@ -29,6 +29,28 @@ function fmt(n) {
     return n.toLocaleString();
 }
 
+/* ── Mapbox Geocoding API ── */
+const geocodeCache = {};
+async function geocodePlace(placeName, country = '') {
+    const key = `${placeName}|${country}`;
+    if (geocodeCache[key]) return geocodeCache[key];
+    try {
+        const query = country ? `${placeName}, ${country}` : placeName;
+        const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json?access_token=${MAPBOX_TOKEN}&limit=1`;
+        const res = await fetch(url);
+        const data = await res.json();
+        if (data.features && data.features.length > 0) {
+            const [lng, lat] = data.features[0].center;
+            const result = { lat, lng, displayName: data.features[0].place_name };
+            geocodeCache[key] = result;
+            return result;
+        }
+    } catch (e) {
+        console.warn('Geocoding failed for:', placeName, e);
+    }
+    return null;
+}
+
 const DISASTER_CONFIG = {
     Flood: { icon: '🌊', color: '#3b82f6', label: 'Flood', desc: 'Riverine flooding, flash floods, coastal surges' },
     Earthquake: { icon: '🫨', color: '#f59e0b', label: 'Earthquake', desc: 'Seismic activity & ground shaking' },
@@ -78,7 +100,7 @@ async function loadGeocodedData() {
             homeless: parseInt(f[10]) || 0,
             total_affected: parseInt(f[11]) || 0,
         };
-    }).filter(d => !isNaN(d.lat) && !isNaN(d.lng) && d.disaster_type);
+    }).filter(d => d.disaster_type);
 }
 
 async function loadEpidemicCities() {
@@ -118,10 +140,6 @@ export default function Simulation() {
     const [phase, setPhase] = useState('disaster');
     const [result, setResult] = useState(null);
     const [activeZone, setActiveZone] = useState(0);
-
-    // Map animation
-    const [heatmapOpacity, setHeatmapOpacity] = useState(0);
-    const [animatingIn, setAnimatingIn] = useState(false);
 
     // Map
     const [mapViewState, setMapViewState] = useState({
@@ -184,56 +202,10 @@ export default function Simulation() {
         );
     }, [rankedCountries, searchQuery]);
 
-    /* ── Country centers ── */
-    const countryCenters = useMemo(() => {
-        const centers = {};
-        geoData.forEach(d => {
-            if (!centers[d.country]) centers[d.country] = { lats: [], lngs: [] };
-            centers[d.country].lats.push(d.lat);
-            centers[d.country].lngs.push(d.lng);
-        });
-        const result = {};
-        for (const [country, coords] of Object.entries(centers)) {
-            result[country] = {
-                lat: coords.lats.reduce((a, b) => a + b, 0) / coords.lats.length,
-                lng: coords.lngs.reduce((a, b) => a + b, 0) / coords.lngs.length,
-            };
-        }
-        return result;
-    }, [geoData]);
+    /* ── Loading state for geocoding ── */
+    const [geocoding, setGeocoding] = useState(false);
 
-    /* ── GeoJSON for heatmap ── */
-    const heatmapGeoJSON = useMemo(() => {
-        if (!result || result.type === 'epidemic') return null;
-        return {
-            type: 'FeatureCollection',
-            features: result.points.map(d => ({
-                type: 'Feature',
-                geometry: { type: 'Point', coordinates: [d.lng, d.lat] },
-                properties: {
-                    weight: Math.log10(Math.max(d.total_affected, 1) + 1),
-                },
-            })),
-        };
-    }, [result]);
 
-    /* ── Animate heatmap in ── */
-    useEffect(() => {
-        if (!animatingIn) return;
-        setHeatmapOpacity(0);
-        let frame = 0;
-        const totalFrames = 40;
-        const tick = () => {
-            frame++;
-            const progress = frame / totalFrames;
-            // ease-out cubic
-            const eased = 1 - Math.pow(1 - progress, 3);
-            setHeatmapOpacity(Math.min(eased * 0.85, 0.85));
-            if (frame < totalFrames) requestAnimationFrame(tick);
-            else setAnimatingIn(false);
-        };
-        requestAnimationFrame(tick);
-    }, [animatingIn]);
 
     /* ── Handlers ── */
     const handleSelectDisaster = (type) => {
@@ -244,11 +216,12 @@ export default function Simulation() {
         setPhase('country');
     };
 
-    const handleSelectCountry = (name) => {
+    const handleSelectCountry = async (name) => {
         setSelectedCountry(name);
-        const center = countryCenters[name];
-        if (center) {
-            setMapViewState({ latitude: center.lat, longitude: center.lng, zoom: 5, pitch: 20 });
+        // Geocode the country to fly the map there
+        const geo = await geocodePlace(name);
+        if (geo) {
+            setMapViewState({ latitude: geo.lat, longitude: geo.lng, zoom: 5, pitch: 20 });
         }
     };
 
@@ -263,25 +236,37 @@ export default function Simulation() {
             }
         } else if (result.topZones[idx]) {
             const zone = result.topZones[idx];
-            setMapViewState({ latitude: zone.lat, longitude: zone.lng, zoom: 8, pitch: 30 });
+            if (zone.lat && zone.lng) {
+                setMapViewState({ latitude: zone.lat, longitude: zone.lng, zoom: 8, pitch: 30 });
+            }
         }
     }, [result]);
 
-    /* ── Run analysis (instant, no fake loading) ── */
-    const handleRun = () => {
+    /* ── Run analysis ── */
+    const handleRun = async () => {
         if (!selectedCountry || !selectedDisaster) return;
+        setGeocoding(true);
 
-        if (selectedDisaster === 'Epidemic') {
-            runEpidemic();
-        } else {
-            runDisaster();
+        try {
+            if (selectedDisaster === 'Epidemic') {
+                await runEpidemic();
+            } else {
+                await runDisaster();
+            }
+        } finally {
+            setGeocoding(false);
         }
     };
 
     /* ── Epidemic ── */
-    const runEpidemic = () => {
+    const runEpidemic = async () => {
         const countryData = epidemicData.find(d => d.country === selectedCountry);
         if (!countryData) return;
+
+        // Geocode all cities in parallel
+        const geocodeResults = await Promise.all(
+            countryData.cities.map(city => geocodePlace(city.name, selectedCountry))
+        );
 
         const cities = countryData.cities.map((city, i) => {
             const infectionRate = 0.12 + Math.random() * 0.08;
@@ -290,8 +275,11 @@ export default function Simulation() {
             const infected = Math.round(city.population * infectionRate);
             const deaths = Math.round(infected * mortalityRate);
             const hospitalized = Math.round(infected * hospitalizationRate);
+            const geo = geocodeResults[i];
             return {
                 ...city,
+                lat: geo?.lat || 0,
+                lng: geo?.lng || 0,
                 infected, deaths, hospitalized,
                 infectionRate: (infectionRate * 100).toFixed(1),
                 severity: i === 0 ? 'Critical' : i === 1 ? 'Severe' : 'Moderate',
@@ -302,6 +290,11 @@ export default function Simulation() {
         const totalInfected = cities.reduce((s, c) => s + c.infected, 0);
         const totalDeaths = cities.reduce((s, c) => s + c.deaths, 0);
         const totalHospitalized = cities.reduce((s, c) => s + c.hospitalized, 0);
+
+        // Fly to first city
+        if (cities[0]?.lat) {
+            setMapViewState({ latitude: cities[0].lat, longitude: cities[0].lng, zoom: 7, pitch: 30 });
+        }
 
         setResult({
             type: 'epidemic',
@@ -319,7 +312,7 @@ export default function Simulation() {
     };
 
     /* ── Disaster (Flood / Earthquake / Drought) ── */
-    const runDisaster = () => {
+    const runDisaster = async () => {
         const points = geoData.filter(
             d => d.disaster_type === selectedDisaster && d.country === selectedCountry
         );
@@ -329,21 +322,22 @@ export default function Simulation() {
         const totalHomeless = points.reduce((s, d) => s + d.homeless, 0);
         const totalAffected = points.reduce((s, d) => s + d.total_affected, 0);
 
-        // Cluster by lat/lng grid
+        // Cluster by location NAME (not lat/lng since CSV coords are unreliable)
         const clusters = {};
         points.forEach(d => {
-            const key = `${d.lat.toFixed(1)},${d.lng.toFixed(1)}`;
-            if (!clusters[key]) {
-                clusters[key] = {
-                    lat: d.lat, lng: d.lng, location: d.location,
+            // Use first part of location as the cluster key
+            const locName = (d.location || '').split(',')[0].trim() || 'Unknown';
+            if (!clusters[locName]) {
+                clusters[locName] = {
+                    location: locName,
                     events: 0, deaths: 0, injuries: 0, homeless: 0, total_affected: 0,
                 };
             }
-            clusters[key].events++;
-            clusters[key].deaths += d.deaths;
-            clusters[key].injuries += d.injuries;
-            clusters[key].homeless += d.homeless;
-            clusters[key].total_affected += d.total_affected;
+            clusters[locName].events++;
+            clusters[locName].deaths += d.deaths;
+            clusters[locName].injuries += d.injuries;
+            clusters[locName].homeless += d.homeless;
+            clusters[locName].total_affected += d.total_affected;
         });
 
         const allZones = Object.values(clusters)
@@ -357,8 +351,18 @@ export default function Simulation() {
 
         const topZones = allZones.slice(0, 3);
 
+        // Geocode top 3 zones via Mapbox
+        const geocodeResults = await Promise.all(
+            topZones.map(z => geocodePlace(z.location, selectedCountry))
+        );
+        topZones.forEach((zone, i) => {
+            const geo = geocodeResults[i];
+            zone.lat = geo?.lat || 0;
+            zone.lng = geo?.lng || 0;
+        });
+
         const chartData = topZones.map(z => ({
-            name: z.location?.split(',')[0]?.substring(0, 15) || 'Zone',
+            name: z.location?.substring(0, 15) || 'Zone',
             events: z.events,
             deaths: z.deaths,
             affected: z.total_affected,
@@ -366,7 +370,7 @@ export default function Simulation() {
 
         const insights = [];
         if (topZones[0]) {
-            insights.push(`**${topZones[0].location?.split(',')[0] || 'Primary zone'}** is the most disaster-prone area with **${topZones[0].events}** recorded ${selectedDisaster.toLowerCase()} events.`);
+            insights.push(`**${topZones[0].location || 'Primary zone'}** is the most disaster-prone area with **${topZones[0].events}** recorded ${selectedDisaster.toLowerCase()} events.`);
         }
         insights.push(`Historical data shows **${fmt(totalDeaths)} deaths** and **${fmt(totalAffected)} people affected** in ${selectedCountry}.`);
         if (totalHomeless > 0) {
@@ -376,11 +380,15 @@ export default function Simulation() {
             insights.push(`With **${points.length} events** on record, ${selectedCountry} has significant ${selectedDisaster.toLowerCase()} vulnerability.`);
         }
 
+        // Fly to top zone
+        if (topZones[0]?.lat) {
+            setMapViewState({ latitude: topZones[0].lat, longitude: topZones[0].lng, zoom: 7, pitch: 30 });
+        }
+
         setResult({
             type: 'disaster',
             country: selectedCountry,
             disasterType: selectedDisaster,
-            points,
             topZones,
             allZones,
             chartData,
@@ -388,11 +396,6 @@ export default function Simulation() {
             insights,
         });
 
-        // Fly to top zone and animate heatmap in
-        if (topZones[0]) {
-            setMapViewState({ latitude: topZones[0].lat, longitude: topZones[0].lng, zoom: 7, pitch: 30 });
-        }
-        setAnimatingIn(true);
         setPhase('results');
     };
 
@@ -403,7 +406,6 @@ export default function Simulation() {
         setSelectedDisaster(null);
         setSearchQuery('');
         setActiveZone(0);
-        setHeatmapOpacity(0);
         setMapViewState({ latitude: 20, longitude: 25, zoom: 2, pitch: 0 });
     };
 
@@ -440,43 +442,6 @@ export default function Simulation() {
                     mapboxAccessToken={MAPBOX_TOKEN}
                 >
                     <NavigationControl position="bottom-right" />
-
-                    {/* Heatmap — animated opacity */}
-                    {heatmapGeoJSON && (
-                        <Source id="disaster-heat" type="geojson" data={heatmapGeoJSON}>
-                            <Layer
-                                id="heatmap-layer"
-                                type="heatmap"
-                                paint={{
-                                    'heatmap-weight': ['get', 'weight'],
-                                    'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 0, 1, 9, 3],
-                                    'heatmap-color': [
-                                        'interpolate', ['linear'], ['heatmap-density'],
-                                        0, 'rgba(0,0,0,0)',
-                                        0.1, `${cfg?.color || '#3b82f6'}33`,
-                                        0.3, `${cfg?.color || '#3b82f6'}88`,
-                                        0.5, 'rgba(255,195,0,0.6)',
-                                        0.7, 'rgba(245,130,48,0.8)',
-                                        1.0, 'rgba(220,38,38,0.9)',
-                                    ],
-                                    'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 0, 15, 5, 30, 10, 50],
-                                    'heatmap-opacity': heatmapOpacity,
-                                }}
-                            />
-                            <Layer
-                                id="disaster-points"
-                                type="circle"
-                                minzoom={7}
-                                paint={{
-                                    'circle-radius': 6,
-                                    'circle-color': cfg?.color || '#3b82f6',
-                                    'circle-stroke-width': 1,
-                                    'circle-stroke-color': 'rgba(255,255,255,0.5)',
-                                    'circle-opacity': heatmapOpacity,
-                                }}
-                            />
-                        </Source>
-                    )}
 
                     {/* Top zone markers */}
                     {result?.type === 'disaster' && result.topZones.map((zone, i) => (
@@ -541,12 +506,12 @@ export default function Simulation() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.5 }}
                     >
-                        <span className="legend-title">{selectedDisaster} Risk Density</span>
+                        <span className="legend-title">{selectedDisaster} Risk Zones</span>
                         <div className="legend-gradient">
                             <div className="gradient-bar" />
                             <div className="gradient-labels"><span>Low</span><span>High</span></div>
                         </div>
-                        <div className="legend-stats">{result.points.length} events mapped</div>
+                        <div className="legend-stats">{result.summary.totalEvents} events analyzed</div>
                     </motion.div>
                 )}
 
@@ -705,8 +670,8 @@ export default function Simulation() {
                                             background: `linear-gradient(135deg, ${cfg?.color}, ${cfg?.color}cc)`,
                                         }}
                                     >
-                                        <Play size={18} />
-                                        Visualize {cfg?.label} Risk
+                                        {geocoding ? <span className="geocoding-spinner" /> : <Play size={18} />}
+                                        {geocoding ? 'Locating zones…' : `Visualize ${cfg?.label} Risk`}
                                     </motion.button>
                                 )}
                             </AnimatePresence>
