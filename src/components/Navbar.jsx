@@ -16,7 +16,6 @@ import './Navbar.css';
 const navItems = [
     { path: '/', label: 'Home', icon: Globe },
     { path: '/wiki', label: 'Wiki', icon: BookOpen },
-    { path: '/forecast', label: 'Forecast', icon: Radar },
 ];
 
 export default function Navbar() {

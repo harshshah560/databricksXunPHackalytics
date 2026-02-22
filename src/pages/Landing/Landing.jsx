@@ -417,10 +417,30 @@ export default function Landing() {
     ? issueSet.reduce((s,c) => s + (c.issue_pct_funded[activeIssue]||0), 0) / issueSet.length : 0;
   const totalTargeted = issueSet.reduce((s,c) => s + (c.cluster_breakdown?.[activeIssue]?.targeted_people||0), 0);
 
-  // Popup anchor: if country is in top half, show below; otherwise above
+  // Popup anchor: compute based on actual pixel position within map container
+  // to prevent cutoff near any edge. Popup is 280px wide, ~420px tall.
   const popupAnchor = useMemo(() => {
-    if (!hoveredPos) return 'bottom';
-    return hoveredPos.lat > 20 ? 'bottom' : 'top';
+    if (!hoveredPos || !mapRef.current) return 'bottom';
+    try {
+      const map       = mapRef.current.getMap();
+      const container = map.getContainer();
+      const { width, height } = container.getBoundingClientRect();
+      const px = map.project([hoveredPos.lng, hoveredPos.lat]);
+
+      const POPUP_W = 300;
+      const POPUP_H = 440;
+      const MARGIN  = 20;
+
+      const tooRight  = px.x + POPUP_W / 2 + MARGIN > width;
+      const tooLeft   = px.x - POPUP_W / 2 - MARGIN < 0;
+      const tooBottom = px.y + POPUP_H + MARGIN > height;
+
+      if (tooRight)  return tooBottom ? 'top-right'  : 'bottom-right';
+      if (tooLeft)   return tooBottom ? 'top-left'   : 'bottom-left';
+      return tooBottom ? 'top' : 'bottom';
+    } catch {
+      return 'bottom';
+    }
   }, [hoveredPos]);
 
   return (
@@ -481,7 +501,7 @@ export default function Landing() {
               closeButton={false}
               closeOnClick={false}
               anchor={popupAnchor}
-              offset={popupAnchor === 'bottom' ? 16 : -16}
+              offset={16}
               className="hpop-outer"
             >
               <HoverPopup
@@ -540,7 +560,7 @@ export default function Landing() {
         {/* Nation navigator — worst countries for this sector/mode */}
         {rankedNations.length > 0 && (
           <div className="snav-navigator">
-            <span className="snav-leg-title">Navigate</span>
+            <span className="snav-leg-title">Navigate worst</span>
             <div className="snav-nav-row">
               <button
                 className="snav-nav-arrow"
@@ -588,9 +608,30 @@ export default function Landing() {
             </div>
           </div>
         )}
+        <div className="snav-legend">
+          {mapMode === 'funding' && (<>
+            <span className="snav-leg-title">% Funded</span>
+            {[['< 10%','#C0392B'],['10–35%','#E67E22'],['35–70%','#F39C12'],['>70%','#27AE60']].map(([l,c])=>(
+              <span key={l} className="snav-leg-item"><span className="snav-leg-dot" style={{background:c}}/><span>{l}</span></span>
+            ))}
+          </>)}
+          {mapMode === 'efficiency' && (<>
+            <span className="snav-leg-title">$/person vs median</span>
+            {[['Underspending (<0.5×)','#C0392B'],['Near median','#F39C12'],['Well-resourced (>1.75×)','#27AE60']].map(([l,c])=>(
+              <span key={l} className="snav-leg-item"><span className="snav-leg-dot" style={{background:c}}/><span>{l}</span></span>
+            ))}
+          </>)}
+          {mapMode === 'priority' && (<>
+            <span className="snav-leg-title">Priority score</span>
+            {[['≥ 60 critical','#C0392B'],['40–59 high','#E67E22'],['< 40','#27AE60']].map(([l,c])=>(
+              <span key={l} className="snav-leg-item"><span className="snav-leg-dot" style={{background:c}}/><span>{l}</span></span>
+            ))}
+          </>)}
+        </div>
       </nav>
 
       {/* ══ BOTTOM: STATS BAR ══ */}
+      {!selectedCountry && (
       <div className="stats-footer" role="status" aria-live="polite">
         <div className="sf-icon-wrap" style={{ background:`${issueColor}18`, border:`1px solid ${issueColor}35` }}>
           <IssueIcon size={16} color={issueColor} aria-hidden="true" />
@@ -619,6 +660,7 @@ export default function Landing() {
           </div>
         </>)}
       </div>
+      )}
 
       {/* Loading */}
       <AnimatePresence>
