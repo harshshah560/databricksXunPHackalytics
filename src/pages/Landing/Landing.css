@@ -289,7 +289,6 @@
   color: #C0392B;
 }
 .hpop-stat-row--gap { background: rgba(192,57,43,0.04); border-radius: 3px; padding: 3px 4px; }
-.hpop-stat-row--funded .hpop-stat-val { }
 .hpop-stat-row--people { border-top: 1px solid var(--rule); margin-top: 2px; padding-top: 5px; }
 
 /* Gender bars */
