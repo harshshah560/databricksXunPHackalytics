@@ -106,6 +106,18 @@
     position: relative;
 }
 
+.chat-panel.full-width .chat-messages {
+    max-width: 900px;
+}
+
+.chat-panel.full-width .chat-input-area {
+    max-width: 900px;
+}
+
+.chat-panel.full-width .suggested-queries {
+    max-width: 900px;
+}
+
 .sources-toggle {
     position: absolute;
     top: var(--space-md);
@@ -137,7 +149,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-lg);
-    max-width: 800px;
+    max-width: 1300px;
     margin: 0 auto;
     width: 100%;
 }
