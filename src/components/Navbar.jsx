@@ -3,7 +3,6 @@ import { useTheme } from '../context/ThemeContext';
 import {
     Globe,
     BookOpen,
-    BarChart3,
     Radar,
     Sun,
     Moon,
@@ -17,7 +16,6 @@ import './Navbar.css';
 const navItems = [
     { path: '/', label: 'Home', icon: Globe },
     { path: '/wiki', label: 'Wiki', icon: BookOpen },
-    { path: '/visualizations', label: 'Insights', icon: BarChart3 },
     { path: '/forecast', label: 'Forecast', icon: Radar },
 ];
 
