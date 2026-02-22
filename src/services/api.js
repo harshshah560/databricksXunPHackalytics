@@ -1,311 +1,359 @@
-/* ═══════════════════════════════════════════════
-   API SERVICE LAYER
-   Uses Databricks SQL Statement Execution API
-   to pull live data from your warehouse tables.
-   Falls back to mock data if env vars are missing.
-   ═══════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════════════
+   API SERVICE — Humanitarian Crisis Data Platform
+   Primary:  Databricks SQL Statement Execution API
+             Tables live at: workspace.frontend_tables.*
+   Fallback: Local CSV-derived JSON (fallback_data.json)
+             placed in same directory as this file
+   ═══════════════════════════════════════════════════════════════════ */
 
-import {
-    CRISIS_COUNTRIES,
-    DATA_SOURCES,
-    MOCK_WIKI_RESPONSES,
-    CLUSTER_FUNDING,
-    TOP_DONORS,
-    FUNDING_TRENDS,
-    CBPF_DATA,
-    MOCK_SIMULATION_RESULT,
-} from './mockData';
+// ── Databricks Config ─────────────────────────────────────────────
+const DATABRICKS_HOST         = import.meta.env.VITE_DATABRICKS_HOST;
+const DATABRICKS_TOKEN        = import.meta.env.VITE_DATABRICKS_TOKEN;
+const DATABRICKS_WAREHOUSE_ID = import.meta.env.VITE_DATABRICKS_WAREHOUSE_ID;
 
-// ── Databricks Config ──────────────────────────
-const DATABRICKS_HOST = import.meta.env.VITE_DATABRICKS_HOST;       // e.g. https://adb-xxxx.azuredatabricks.net
-const DATABRICKS_TOKEN = import.meta.env.VITE_DATABRICKS_TOKEN;     // Personal Access Token
-const DATABRICKS_WAREHOUSE_ID = import.meta.env.VITE_DATABRICKS_WAREHOUSE_ID; // SQL Warehouse ID
-const DATABRICKS_CATALOG = import.meta.env.VITE_DATABRICKS_CATALOG || 'main';
-const DATABRICKS_SCHEMA = import.meta.env.VITE_DATABRICKS_SCHEMA || 'default';
+// Tables are in workspace.frontend_tables — NOT main.default
+const DB_TABLE = (name) => `workspace.frontend_tables.${name}`;
 
 const USE_DATABRICKS = !!(DATABRICKS_HOST && DATABRICKS_TOKEN && DATABRICKS_WAREHOUSE_ID);
 
-// ── Databricks SQL Statement Execution API ─────
-async function executeDatabricksSQL(sql) {
-    const url = `${DATABRICKS_HOST}/api/2.0/sql/statements/`;
+// ── Cluster category normalisation ───────────────────────────────
+// 400+ messy multilingual cluster names → 6 canonical buckets
+const CATEGORY_KEYWORDS = {
+  'Food Security': [
+    'FOOD', 'NUTRITION', 'AGRICULTURE', 'LIVELIHOODS', 'LIVELIHOOD',
+    'ALIMENTAIRE', 'ALIMENTARIA', 'SECURITE ALIMENTAIRE',
+    'SÉCURITÉ ALIMENTAIRE', 'SEGURIDAD ALIMENTARIA',
+  ],
+  Health: ['HEALTH', 'SANTE', 'SANTÉ', 'SALUD'],
+  WASH: [
+    'WASH', 'WATER', 'SANITATION', 'HYGIENE',
+    'EAU', 'AGUA', 'ASSAINISSEMENT', 'EHA',
+  ],
+  Shelter: [
+    'SHELTER', 'ABRIS', 'ALOJAMIENTO', 'HOUSING',
+    'NFI', 'NON-FOOD', 'CCCM', 'CAMP COORD',
+  ],
+  Protection: [
+    'PROTECTION', 'CHILD PROTECT', 'GBV', 'GENDER',
+    'MINE ACTION', 'VBG',
+  ],
+  Education: ['EDUCATION', 'ÉDUCATION', 'EDUCACION', 'EDUCACIÓN'],
+};
 
-    const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${DATABRICKS_TOKEN}`,
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            warehouse_id: DATABRICKS_WAREHOUSE_ID,
-            catalog: DATABRICKS_CATALOG,
-            schema: DATABRICKS_SCHEMA,
-            statement: sql,
-            wait_timeout: '30s',
-            disposition: 'INLINE',
-            format: 'JSON_ARRAY',
-        }),
+export const ISSUE_CATEGORIES = Object.keys(CATEGORY_KEYWORDS);
+
+export function categorizeCluster(clusterName) {
+  const upper = (clusterName || '').toUpperCase();
+  for (const [cat, keywords] of Object.entries(CATEGORY_KEYWORDS)) {
+    if (keywords.some((k) => upper.includes(k))) return cat;
+  }
+  return null;
+}
+
+// ── Databricks helpers ────────────────────────────────────────────
+async function executeSQL(sql) {
+  const url = `${DATABRICKS_HOST.replace(/\/$/, '')}/api/2.0/sql/statements/`;
+
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${DATABRICKS_TOKEN}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      warehouse_id: DATABRICKS_WAREHOUSE_ID,
+      statement: sql,
+      wait_timeout: '30s',
+      disposition: 'INLINE',
+      format: 'JSON_ARRAY',
+    }),
+  });
+
+  if (!res.ok) throw new Error(`Databricks HTTP ${res.status}`);
+
+  const data = await res.json();
+
+  if (data.status?.state === 'PENDING' || data.status?.state === 'RUNNING') {
+    return pollStatement(data.statement_id);
+  }
+  if (data.status?.state === 'FAILED') {
+    throw new Error(data.status.error?.message || 'Query failed');
+  }
+  return parseStatement(data);
+}
+
+async function pollStatement(id, retries = 25) {
+  for (let i = 0; i < retries; i++) {
+    await delay(1500);
+    const res = await fetch(
+      `${DATABRICKS_HOST.replace(/\/$/, '')}/api/2.0/sql/statements/${id}`,
+      { headers: { Authorization: `Bearer ${DATABRICKS_TOKEN}` } },
+    );
+    const data = await res.json();
+    if (data.status?.state === 'SUCCEEDED') return parseStatement(data);
+    if (data.status?.state === 'FAILED')
+      throw new Error(data.status.error?.message || 'Query failed');
+  }
+  throw new Error('Query timed out after 37.5 s');
+}
+
+function parseStatement(data) {
+  const cols = (data.manifest?.schema?.columns || []).map((c) => c.name);
+  return (data.result?.data_array || []).map((row) => {
+    const obj = {};
+    cols.forEach((col, i) => { obj[col] = row[i]; });
+    return obj;
+  });
+}
+
+function delay(ms) { return new Promise((r) => setTimeout(r, ms)); }
+
+// ── Fallback loader ───────────────────────────────────────────────
+let _fallbackCache = null;
+
+async function loadFallback() {
+  if (_fallbackCache) return _fallbackCache;
+  // Vite resolves this relative to /src — adjust path to match your project
+  const mod = await import('./fallback_data.json');
+  _fallbackCache = mod.default;
+  return _fallbackCache;
+}
+
+// ── Data transformation helpers ───────────────────────────────────
+function groupBy(rows, key) {
+  return rows.reduce((acc, row) => {
+    const k = row[key];
+    if (!acc[k]) acc[k] = [];
+    acc[k].push(row);
+    return acc;
+  }, {});
+}
+
+const COUNTRY_NAMES = {
+  AFG: 'Afghanistan', BFA: 'Burkina Faso', CAF: 'Central African Rep.',
+  COD: 'DR Congo', COL: 'Colombia', ETH: 'Ethiopia', HTI: 'Haiti',
+  IRQ: 'Iraq', LBN: 'Lebanon', MLI: 'Mali', MMR: 'Myanmar',
+  MOZ: 'Mozambique', NER: 'Niger', NGA: 'Nigeria', PSE: 'Palestine',
+  SDN: 'Sudan', SOM: 'Somalia', SSD: 'South Sudan', SYR: 'Syria',
+  TCD: 'Chad', UKR: 'Ukraine', VEN: 'Venezuela', YEM: 'Yemen',
+  CAR: 'Central African Rep.', DRC: 'DR Congo', JOR: 'Jordan', PAK: 'Pakistan',
+};
+
+// ── Primary data fetch: all countries enriched ────────────────────
+/**
+ * Returns an array of country objects, each containing:
+ *   code, name, lat, lng,
+ *   cbpf_timeline[]       — [{year, cbpf_funding, cbpf_target}]
+ *   cluster_breakdown{}   — {[category]: {req, fund, pct}}
+ *   cluster_history{}     — {[category]: [{year, req, fund}]}
+ *   issue_pct_funded{}    — {[category]: pct}   ← used for map colouring
+ *   affected{}            — {boys, girls, men, women, total}
+ *   world{}               — all world_indicators fields
+ *   pop_impact_pct        — (affected.total / world.population) * 100
+ */
+export async function fetchAllCountries() {
+  if (USE_DATABRICKS) {
+    try {
+      return await fetchFromDatabricks();
+    } catch (err) {
+      console.warn('[API] Databricks failed, falling back to CSV data:', err.message);
+    }
+  }
+  return loadFallback();
+}
+
+async function fetchFromDatabricks() {
+  // Run all four queries in parallel
+  const [cbpfRows, clusterRows, affectedRows, worldRows] = await Promise.all([
+    executeSQL(`SELECT countrycode, year, cbpf_funding, cbpf_target
+                FROM ${DB_TABLE('cbpfvshrp')}
+                ORDER BY countrycode, year`),
+
+    executeSQL(`SELECT countrycode, year, cluster, requirements, funding
+                FROM ${DB_TABLE('fts_cluster')}
+                ORDER BY countrycode, year`),
+
+    executeSQL(`SELECT year, countrycode,
+                       boys_targeted, girls_targeted,
+                       men_targeted, women_targeted, total_targeted
+                FROM ${DB_TABLE('affected_persons_clean')}
+                ORDER BY countrycode, year DESC`),
+
+    executeSQL(`SELECT countrycode, life_expectancy, infant_mortality,
+                       maternal_mortality_ratio, physicians_per_thousand,
+                       out_of_pocket_health_pct, birth_rate, fertility_rate,
+                       gdp, population, urban_population, unemployment_rate,
+                       latitude, longitude, vulnerability_score
+                FROM ${DB_TABLE('world_indicators')}`),
+  ]);
+
+  return buildCountries({ cbpfRows, clusterRows, affectedRows, worldRows });
+}
+
+/**
+ * Shared builder — works for both Databricks rows and fallback JSON rows
+ */
+function buildCountries({ cbpfRows, clusterRows, affectedRows, worldRows }) {
+  // --- CBPF timeline ---
+  const cbpfByCountry = groupBy(cbpfRows, 'countrycode');
+
+  // --- World indicators ---
+  const worldByCountry = {};
+  worldRows.forEach((r) => {
+    worldByCountry[r.countrycode] = {
+      life_expectancy:         +r.life_expectancy || 0,
+      infant_mortality:        +r.infant_mortality || 0,
+      maternal_mortality_ratio:+r.maternal_mortality_ratio || 0,
+      physicians_per_thousand: +r.physicians_per_thousand || 0,
+      out_of_pocket_health_pct:+r.out_of_pocket_health_pct || 0,
+      birth_rate:              +r.birth_rate || 0,
+      fertility_rate:          +r.fertility_rate || 0,
+      gdp:                     +r.gdp || 0,
+      population:              +r.population || 0,
+      urban_population:        +r.urban_population || 0,
+      unemployment_rate:       +r.unemployment_rate || 0,
+      latitude:                +r.latitude || 0,
+      longitude:               +r.longitude || 0,
+      vulnerability_score:     +r.vulnerability_score || 0,
+    };
+  });
+
+  // --- Affected persons (latest year per country) ---
+  const affectedByCountry = {};
+  affectedRows.forEach((r) => {
+    const yr = +r.year;
+    if (!affectedByCountry[r.countrycode] || yr > affectedByCountry[r.countrycode]._year) {
+      affectedByCountry[r.countrycode] = {
+        _year:  yr,
+        boys:   +r.boys_targeted   || 0,
+        girls:  +r.girls_targeted  || 0,
+        men:    +r.men_targeted    || 0,
+        women:  +r.women_targeted  || 0,
+        total:  +r.total_targeted  || 0,
+      };
+    }
+  });
+
+  // --- Cluster data: aggregate by (country, year, category) ---
+  const clusterAgg = {};           // key → {req, fund}
+  const clusterHistory = {};       // country → category → [{year,req,fund}]
+
+  clusterRows.forEach((r) => {
+    const cat = categorizeCluster(r.cluster);
+    if (!cat) return;
+    const cc = r.countrycode;
+    const yr = +r.year;
+    const req  = +r.requirements || 0;
+    const fund = +r.funding || 0;
+    const key = `${cc}|${yr}|${cat}`;
+    if (!clusterAgg[key]) clusterAgg[key] = { cc, yr, cat, req: 0, fund: 0 };
+    clusterAgg[key].req  += req;
+    clusterAgg[key].fund += fund;
+
+    if (!clusterHistory[cc]) clusterHistory[cc] = {};
+    if (!clusterHistory[cc][cat]) clusterHistory[cc][cat] = {};
+    if (!clusterHistory[cc][cat][yr]) clusterHistory[cc][cat][yr] = { req: 0, fund: 0 };
+    clusterHistory[cc][cat][yr].req  += req;
+    clusterHistory[cc][cat][yr].fund += fund;
+  });
+
+  // For each country pick latest available year for cluster_breakdown
+  const breakdownByCountry = {};
+  const PREFERRED_YEARS = [2025, 2024, 2026, 2023];
+  const allCCs = new Set([
+    ...Object.keys(cbpfByCountry),
+    ...Object.keys(worldByCountry),
+  ]);
+
+  allCCs.forEach((cc) => {
+    for (const yr of PREFERRED_YEARS) {
+      const cats = {};
+      ISSUE_CATEGORIES.forEach((cat) => {
+        const agg = clusterAgg[`${cc}|${yr}|${cat}`];
+        if (agg && agg.req > 0) cats[cat] = agg;
+      });
+      if (Object.keys(cats).length > 0) {
+        breakdownByCountry[cc] = cats;
+        break;
+      }
+    }
+  });
+
+  // Serialise cluster history
+  const historyByCountry = {};
+  Object.entries(clusterHistory).forEach(([cc, catMap]) => {
+    historyByCountry[cc] = {};
+    Object.entries(catMap).forEach(([cat, yrMap]) => {
+      historyByCountry[cc][cat] = Object.entries(yrMap)
+        .map(([yr, vals]) => ({ year: +yr, req: vals.req, fund: vals.fund }))
+        .sort((a, b) => a.year - b.year);
+    });
+  });
+
+  // --- Assemble final country objects ---
+  return [...allCCs].map((cc) => {
+    const wi       = worldByCountry[cc] || {};
+    const af       = affectedByCountry[cc] || { boys:0, girls:0, men:0, women:0, total:0 };
+    const bdRaw    = breakdownByCountry[cc] || {};
+    const cbpfList = (cbpfByCountry[cc] || [])
+      .map((r) => ({ year: +r.year, cbpf_funding: +r.cbpf_funding || 0, cbpf_target: +r.cbpf_target || 0 }))
+      .sort((a, b) => a.year - b.year);
+
+    const cluster_breakdown = {};
+    const issue_pct_funded  = {};
+    Object.entries(bdRaw).forEach(([cat, v]) => {
+      const pct = v.req > 0 ? Math.round((v.fund / v.req) * 1000) / 10 : 0;
+      cluster_breakdown[cat] = { req: v.req, fund: v.fund, pct };
+      issue_pct_funded[cat]  = pct;
     });
 
-    if (!response.ok) {
-        const err = await response.text();
-        console.error('Databricks SQL error:', err);
-        throw new Error(`Databricks query failed: ${response.status}`);
-    }
+    const pop            = wi.population || 0;
+    const pop_impact_pct = pop > 0 ? Math.round((af.total / pop) * 1000) / 10 : 0;
 
-    const data = await response.json();
-
-    // If the query is still running, poll for result
-    if (data.status?.state === 'PENDING' || data.status?.state === 'RUNNING') {
-        return pollForResult(data.statement_id);
-    }
-
-    if (data.status?.state === 'FAILED') {
-        throw new Error(`Query failed: ${data.status.error?.message || 'Unknown error'}`);
-    }
-
-    return parseResult(data);
+    return {
+      code: cc,
+      name: COUNTRY_NAMES[cc] || cc,
+      lat:  wi.latitude  || 0,
+      lng:  wi.longitude || 0,
+      cbpf_timeline:     cbpfList,
+      cluster_breakdown,
+      cluster_history:   historyByCountry[cc] || {},
+      issue_pct_funded,
+      affected: { boys: af.boys, girls: af.girls, men: af.men, women: af.women, total: af.total },
+      world: wi,
+      pop_impact_pct,
+    };
+  }).filter((c) => c.lat !== 0 || c.lng !== 0); // drop countries with no coords
 }
 
-async function pollForResult(statementId, maxRetries = 20) {
-    for (let i = 0; i < maxRetries; i++) {
-        await new Promise(r => setTimeout(r, 1500));
+// ── Convenience selectors (memoised after first call) ─────────────
+let _countriesCache = null;
 
-        const response = await fetch(
-            `${DATABRICKS_HOST}/api/2.0/sql/statements/${statementId}`,
-            { headers: { 'Authorization': `Bearer ${DATABRICKS_TOKEN}` } }
-        );
-
-        const data = await response.json();
-        if (data.status?.state === 'SUCCEEDED') return parseResult(data);
-        if (data.status?.state === 'FAILED') {
-            throw new Error(`Query failed: ${data.status.error?.message}`);
-        }
-    }
-    throw new Error('Query timed out');
+export async function getCountries() {
+  if (!_countriesCache) _countriesCache = await fetchAllCountries();
+  return _countriesCache;
 }
 
-function parseResult(data) {
-    const columns = data.manifest?.schema?.columns?.map(c => c.name) || [];
-    const rows = data.result?.data_array || [];
-    return rows.map(row => {
-        const obj = {};
-        columns.forEach((col, i) => { obj[col] = row[i]; });
-        return obj;
-    });
+/** Returns a flat list of {cc, name, lat, lng, pct} for a given issue,
+ *  used to drive map circle colours. */
+export async function getMapDataForIssue(issue) {
+  const countries = await getCountries();
+  return countries
+    .filter((c) => c.issue_pct_funded[issue] !== undefined)
+    .map((c) => ({
+      code: c.code,
+      name: c.name,
+      lat:  c.lat,
+      lng:  c.lng,
+      pct:  c.issue_pct_funded[issue] ?? null,
+    }));
 }
 
-// ── Helper ─────────────────────────────────────
-async function simulateDelay(ms = 800) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-// ── Landing Page ───────────────────────────────
-export async function fetchCrisisCountries() {
-    if (USE_DATABRICKS) {
-        try {
-            const rows = await executeDatabricksSQL(`
-                SELECT f.countryCode, f.name, f.year,
-                       f.requirements, f.funding, f.percentFunded,
-                       d.DisasterType, d.TotalDeaths, d.TotalAffected
-                FROM fts_requirements_funding_global f
-                LEFT JOIN emdat_disasters d ON f.countryCode = d.ISO
-                WHERE f.year >= 2024
-                  AND f.requirements > 0
-                ORDER BY (f.requirements - COALESCE(f.funding, 0)) DESC
-                LIMIT 20
-            `);
-            return rows.map(r => ({
-                code: r.countryCode,
-                name: r.name?.replace(/Humanitarian.*$/, '').trim() || r.countryCode,
-                crisis: r.DisasterType || 'Humanitarian Crisis',
-                funding: { required: Number(r.requirements) || 0, received: Number(r.funding) || 0 },
-                percentFunded: Number(r.percentFunded) || 0,
-                affected: Number(r.TotalAffected) || 0,
-            }));
-        } catch (e) {
-            console.warn('Databricks fetch failed, using mock data:', e.message);
-        }
-    }
-    await simulateDelay(300);
-    return CRISIS_COUNTRIES;
-}
-
-// ── Wiki / Chat ────────────────────────────────
-export async function fetchDataSources() {
-    if (USE_DATABRICKS) {
-        try {
-            // Get table metadata from Databricks
-            const tables = await executeDatabricksSQL(`
-                SHOW TABLES IN ${DATABRICKS_CATALOG}.${DATABRICKS_SCHEMA}
-            `);
-            return tables.map(t => ({
-                id: t.tableName,
-                name: t.tableName.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
-                description: `Data table: ${t.tableName}`,
-                rows: '—',
-                file: t.tableName,
-            }));
-        } catch (e) {
-            console.warn('Databricks fetch failed, using mock data:', e.message);
-        }
-    }
-    await simulateDelay(200);
-    return DATA_SOURCES;
-}
-
-export async function sendChatMessage(message, history = []) {
-    // 1. Try custom RAG endpoint if configured
-    const RAG_ENDPOINT = import.meta.env.VITE_RAG_ENDPOINT;
-    if (RAG_ENDPOINT) {
-        try {
-            const res = await fetch(RAG_ENDPOINT, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${DATABRICKS_TOKEN}`,
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ message, history }),
-            });
-            if (res.ok) return await res.json();
-        } catch (e) {
-            console.warn('RAG endpoint failed, using mock:', e.message);
-        }
-    }
-
-    // 3. Fallback to mock responses
-    await simulateDelay(1500);
-    const lower = message.toLowerCase();
-    if (lower.includes('afghanistan') || lower.includes('afg')) {
-        return MOCK_WIKI_RESPONSES['afghanistan'];
-    } else if (lower.includes('sudan') || lower.includes('sdn')) {
-        return MOCK_WIKI_RESPONSES['sudan'];
-    } else {
-        return MOCK_WIKI_RESPONSES['default'];
-    }
-}
-
-// ── Visualizations ─────────────────────────────
-export async function fetchClusterFunding() {
-    if (USE_DATABRICKS) {
-        try {
-            const rows = await executeDatabricksSQL(`
-                SELECT cluster, 
-                       SUM(requirements) as required, 
-                       SUM(funding) as funded,
-                       AVG(percentFunded) as pctFunded
-                FROM fts_requirements_funding_cluster_global
-                WHERE year >= 2024
-                GROUP BY cluster
-                ORDER BY SUM(requirements) DESC
-                LIMIT 10
-            `);
-            return rows.map(r => ({
-                cluster: r.cluster,
-                required: Number(r.required) || 0,
-                funded: Number(r.funded) || 0,
-                pctFunded: Number(r.pctFunded) || 0,
-            }));
-        } catch (e) {
-            console.warn('Databricks fetch failed, using mock data:', e.message);
-        }
-    }
-    await simulateDelay(400);
-    return CLUSTER_FUNDING;
-}
-
-export async function fetchTopDonors() {
-    if (USE_DATABRICKS) {
-        try {
-            const rows = await executeDatabricksSQL(`
-                SELECT name as donor,
-                       SUM(funding) as totalFunding
-                FROM cbpf_vs_hrp
-                GROUP BY name
-                ORDER BY SUM(funding) DESC
-                LIMIT 10
-            `);
-            return rows.map(r => ({
-                donor: r.donor,
-                amount: Number(r.totalFunding) || 0,
-            }));
-        } catch (e) {
-            console.warn('Databricks fetch failed, using mock data:', e.message);
-        }
-    }
-    await simulateDelay(400);
-    return TOP_DONORS;
-}
-
-export async function fetchFundingTrends() {
-    if (USE_DATABRICKS) {
-        try {
-            const rows = await executeDatabricksSQL(`
-                SELECT year,
-                       SUM(requirements) as required,
-                       SUM(funding) as funded
-                FROM fts_requirements_funding_global
-                WHERE year >= 2019 AND year <= 2026
-                GROUP BY year
-                ORDER BY year
-            `);
-            return rows.map(r => ({
-                year: Number(r.year),
-                required: Number(r.required) || 0,
-                funded: Number(r.funded) || 0,
-            }));
-        } catch (e) {
-            console.warn('Databricks fetch failed, using mock data:', e.message);
-        }
-    }
-    await simulateDelay(400);
-    return FUNDING_TRENDS;
-}
-
-export async function fetchCBPFData() {
-    if (USE_DATABRICKS) {
-        try {
-            const rows = await executeDatabricksSQL(`
-                SELECT *
-                FROM cbpf_vs_hrp
-                ORDER BY CBPFFunding DESC
-                LIMIT 15
-            `);
-            return rows.map(r => ({
-                name: r.CBPFName || r.name,
-                cbpfFunding: Number(r.CBPFFunding) || 0,
-                cbpfTarget: Number(r.CBPFTarget) || 0,
-                cbpfPctOfHRP: Number(r['CBPFFundingAsPercentOfHRPFunding']) || 0,
-                hrpFunding: Number(r.HRPFunding) || 0,
-                hrpRequirements: Number(r.HRPRequirements) || 0,
-            }));
-        } catch (e) {
-            console.warn('Databricks fetch failed, using mock data:', e.message);
-        }
-    }
-    await simulateDelay(400);
-    return CBPF_DATA;
-}
-
-// ── Simulation ─────────────────────────────────
-export async function runSimulation(countryCode, crisisType) {
-    // Simulation uses a GPT agent endpoint if available
-    const SIM_ENDPOINT = import.meta.env.VITE_SIMULATION_ENDPOINT;
-    if (SIM_ENDPOINT) {
-        try {
-            const res = await fetch(SIM_ENDPOINT, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${DATABRICKS_TOKEN}`,
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ countryCode, crisisType }),
-            });
-            if (res.ok) return await res.json();
-        } catch (e) {
-            console.warn('Simulation endpoint failed, using mock:', e.message);
-        }
-    }
-
-    await simulateDelay(4000);
-    return MOCK_SIMULATION_RESULT;
-}
+// Legacy exports kept for backward-compat with existing components
+export async function fetchCrisisCountries() { return getCountries(); }
+export async function fetchClusterFunding()  { return []; }
+export async function fetchTopDonors()       { return []; }
+export async function fetchFundingTrends()   { return []; }
+export async function fetchCBPFData()        { return []; }
+export async function fetchDataSources() {return []};
+export async function sendChatMessage() {return []};
