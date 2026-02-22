@@ -6,11 +6,11 @@ import {
     Tooltip, ResponsiveContainer, Cell,
 } from 'recharts';
 import {
-    Crosshair, Play, RotateCcw, AlertTriangle,
-    Users, MapPin, Loader2, CheckCircle2, ArrowRight,
-    Shield, Activity, TrendingDown, Skull, Home,
+    Radar, Play, RotateCcw, AlertTriangle,
+    Users, MapPin, ArrowRight,
+    Target, Skull, Home, ChevronLeft,
     HeartPulse, Droplets, Mountain, Sun, Bug,
-    ChevronRight, Target, Zap,
+    ChevronRight, Search,
 } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -30,10 +30,10 @@ function fmt(n) {
 }
 
 const DISASTER_CONFIG = {
-    Flood: { icon: '🌊', color: '#3b82f6', emoji: <Droplets size={18} />, label: 'Flood', desc: 'Riverine flooding, flash floods, coastal surges' },
-    Earthquake: { icon: '🫨', color: '#f59e0b', emoji: <Mountain size={18} />, label: 'Earthquake', desc: 'Seismic activity & ground shaking' },
-    Drought: { icon: '☀️', color: '#a855f7', emoji: <Sun size={18} />, label: 'Drought', desc: 'Prolonged water scarcity & crop failure' },
-    Epidemic: { icon: '🦠', color: '#ef4444', emoji: <Bug size={18} />, label: 'Epidemic', desc: 'Disease outbreaks in urban populations' },
+    Flood: { icon: '🌊', color: '#3b82f6', label: 'Flood', desc: 'Riverine flooding, flash floods, coastal surges' },
+    Earthquake: { icon: '🫨', color: '#f59e0b', label: 'Earthquake', desc: 'Seismic activity & ground shaking' },
+    Drought: { icon: '☀️', color: '#a855f7', label: 'Drought', desc: 'Prolonged water scarcity & crop failure' },
+    Epidemic: { icon: '🦠', color: '#ef4444', label: 'Epidemic', desc: 'Disease outbreaks in urban populations' },
 };
 
 const severityColors = {
@@ -42,14 +42,6 @@ const severityColors = {
     Moderate: '#3b82f6',
     Low: '#10b981',
 };
-
-const simulationSteps = [
-    { label: 'Loading disaster database', icon: Shield },
-    { label: 'Filtering events by region', icon: Activity },
-    { label: 'Computing spatial clusters', icon: MapPin },
-    { label: 'Aggregating impact data', icon: TrendingDown },
-    { label: 'Rendering risk visualization', icon: Crosshair },
-];
 
 /* ═══════════════════════════════════════════════
    CSV PARSERS
@@ -122,11 +114,14 @@ export default function Simulation() {
     const [selectedCountry, setSelectedCountry] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
 
-    // Simulation
-    const [phase, setPhase] = useState('disaster'); // disaster | country | simulating | results
-    const [simStep, setSimStep] = useState(0);
+    // Flow: disaster → country → results
+    const [phase, setPhase] = useState('disaster');
     const [result, setResult] = useState(null);
     const [activeZone, setActiveZone] = useState(0);
+
+    // Map animation
+    const [heatmapOpacity, setHeatmapOpacity] = useState(0);
+    const [animatingIn, setAnimatingIn] = useState(false);
 
     // Map
     const [mapViewState, setMapViewState] = useState({
@@ -148,7 +143,6 @@ export default function Simulation() {
         geoData.forEach(d => {
             counts[d.disaster_type] = (counts[d.disaster_type] || 0) + 1;
         });
-        // Add Epidemic from epidemic cities
         counts['Epidemic'] = epidemicData.length;
         return counts;
     }, [geoData, epidemicData]);
@@ -178,7 +172,7 @@ export default function Simulation() {
             .map(([name, count]) => ({
                 name,
                 count,
-                label: `${count} events`,
+                label: `${count} recorded events`,
             }));
     }, [selectedDisaster, geoData, epidemicData]);
 
@@ -218,11 +212,28 @@ export default function Simulation() {
                 geometry: { type: 'Point', coordinates: [d.lng, d.lat] },
                 properties: {
                     weight: Math.log10(Math.max(d.total_affected, 1) + 1),
-                    disaster_type: d.disaster_type,
                 },
             })),
         };
     }, [result]);
+
+    /* ── Animate heatmap in ── */
+    useEffect(() => {
+        if (!animatingIn) return;
+        setHeatmapOpacity(0);
+        let frame = 0;
+        const totalFrames = 40;
+        const tick = () => {
+            frame++;
+            const progress = frame / totalFrames;
+            // ease-out cubic
+            const eased = 1 - Math.pow(1 - progress, 3);
+            setHeatmapOpacity(Math.min(eased * 0.85, 0.85));
+            if (frame < totalFrames) requestAnimationFrame(tick);
+            else setAnimatingIn(false);
+        };
+        requestAnimationFrame(tick);
+    }, [animatingIn]);
 
     /* ── Handlers ── */
     const handleSelectDisaster = (type) => {
@@ -256,45 +267,32 @@ export default function Simulation() {
         }
     }, [result]);
 
-    const handleRunSimulation = async () => {
+    /* ── Run analysis (instant, no fake loading) ── */
+    const handleRun = () => {
         if (!selectedCountry || !selectedDisaster) return;
-        setPhase('simulating');
-        setSimStep(0);
-        setActiveZone(0);
-
-        for (let i = 0; i < simulationSteps.length; i++) {
-            await new Promise(r => setTimeout(r, 550));
-            setSimStep(i + 1);
-        }
 
         if (selectedDisaster === 'Epidemic') {
-            await runEpidemicSim();
+            runEpidemic();
         } else {
-            await runDisasterSim();
+            runDisaster();
         }
-        setPhase('results');
     };
 
-    /* ── Epidemic simulation ── */
-    const runEpidemicSim = async () => {
+    /* ── Epidemic ── */
+    const runEpidemic = () => {
         const countryData = epidemicData.find(d => d.country === selectedCountry);
         if (!countryData) return;
 
-        // Simulate epidemic impact per city
         const cities = countryData.cities.map((city, i) => {
-            // Simulated spread rates based on population density
-            const infectionRate = 0.12 + Math.random() * 0.08; // 12-20%
-            const mortalityRate = 0.015 + Math.random() * 0.01; // 1.5-2.5%
-            const hospitalizationRate = 0.08 + Math.random() * 0.04; // 8-12%
+            const infectionRate = 0.12 + Math.random() * 0.08;
+            const mortalityRate = 0.015 + Math.random() * 0.01;
+            const hospitalizationRate = 0.08 + Math.random() * 0.04;
             const infected = Math.round(city.population * infectionRate);
             const deaths = Math.round(infected * mortalityRate);
             const hospitalized = Math.round(infected * hospitalizationRate);
-
             return {
                 ...city,
-                infected,
-                deaths,
-                hospitalized,
+                infected, deaths, hospitalized,
                 infectionRate: (infectionRate * 100).toFixed(1),
                 severity: i === 0 ? 'Critical' : i === 1 ? 'Severe' : 'Moderate',
             };
@@ -309,12 +307,7 @@ export default function Simulation() {
             type: 'epidemic',
             country: selectedCountry,
             cities,
-            summary: {
-                totalPopulation: totalPop,
-                totalInfected,
-                totalDeaths,
-                totalHospitalized,
-            },
+            summary: { totalPopulation: totalPop, totalInfected, totalDeaths, totalHospitalized },
             insights: [
                 `**${cities[0].name}** is the most vulnerable with ${fmt(cities[0].population)} residents and a projected **${cities[0].infectionRate}%** infection rate.`,
                 `An epidemic could affect **${fmt(totalInfected)} people** across ${cities.length} major urban centers.`,
@@ -322,10 +315,11 @@ export default function Simulation() {
                 totalDeaths > 0 ? `Projected mortality: **${fmt(totalDeaths)}** — early intervention is critical.` : null,
             ].filter(Boolean),
         });
+        setPhase('results');
     };
 
-    /* ── Disaster simulation (Flood / Earthquake / Drought) ── */
-    const runDisasterSim = async () => {
+    /* ── Disaster (Flood / Earthquake / Drought) ── */
+    const runDisaster = () => {
         const points = geoData.filter(
             d => d.disaster_type === selectedDisaster && d.country === selectedCountry
         );
@@ -335,7 +329,7 @@ export default function Simulation() {
         const totalHomeless = points.reduce((s, d) => s + d.homeless, 0);
         const totalAffected = points.reduce((s, d) => s + d.total_affected, 0);
 
-        // Spatial clustering: round lat/lng to 1 decimal
+        // Cluster by lat/lng grid
         const clusters = {};
         points.forEach(d => {
             const key = `${d.lat.toFixed(1)},${d.lng.toFixed(1)}`;
@@ -343,7 +337,6 @@ export default function Simulation() {
                 clusters[key] = {
                     lat: d.lat, lng: d.lng, location: d.location,
                     events: 0, deaths: 0, injuries: 0, homeless: 0, total_affected: 0,
-                    points: [],
                 };
             }
             clusters[key].events++;
@@ -351,12 +344,11 @@ export default function Simulation() {
             clusters[key].injuries += d.injuries;
             clusters[key].homeless += d.homeless;
             clusters[key].total_affected += d.total_affected;
-            clusters[key].points.push(d);
         });
 
         const allZones = Object.values(clusters)
             .sort((a, b) => b.events - a.events)
-            .map((zone, i) => ({
+            .map((zone) => ({
                 ...zone,
                 severity: zone.events >= 8 ? 'Critical'
                     : zone.events >= 4 ? 'Severe'
@@ -365,15 +357,13 @@ export default function Simulation() {
 
         const topZones = allZones.slice(0, 3);
 
-        // Impact chart data
         const chartData = topZones.map(z => ({
-            name: z.location?.split(',')[0]?.substring(0, 15) || `Zone`,
+            name: z.location?.split(',')[0]?.substring(0, 15) || 'Zone',
             events: z.events,
             deaths: z.deaths,
             affected: z.total_affected,
         }));
 
-        // Insights
         const insights = [];
         if (topZones[0]) {
             insights.push(`**${topZones[0].location?.split(',')[0] || 'Primary zone'}** is the most disaster-prone area with **${topZones[0].events}** recorded ${selectedDisaster.toLowerCase()} events.`);
@@ -394,25 +384,16 @@ export default function Simulation() {
             topZones,
             allZones,
             chartData,
-            summary: {
-                totalEvents: points.length,
-                totalDeaths,
-                totalInjuries,
-                totalHomeless,
-                totalAffected,
-            },
+            summary: { totalEvents: points.length, totalDeaths, totalInjuries, totalHomeless, totalAffected },
             insights,
         });
 
-        // Zoom to top zone
+        // Fly to top zone and animate heatmap in
         if (topZones[0]) {
-            setMapViewState({
-                latitude: topZones[0].lat,
-                longitude: topZones[0].lng,
-                zoom: 7,
-                pitch: 30,
-            });
+            setMapViewState({ latitude: topZones[0].lat, longitude: topZones[0].lng, zoom: 7, pitch: 30 });
         }
+        setAnimatingIn(true);
+        setPhase('results');
     };
 
     const handleReset = () => {
@@ -422,6 +403,7 @@ export default function Simulation() {
         setSelectedDisaster(null);
         setSearchQuery('');
         setActiveZone(0);
+        setHeatmapOpacity(0);
         setMapViewState({ latitude: 20, longitude: 25, zoom: 2, pitch: 0 });
     };
 
@@ -434,6 +416,7 @@ export default function Simulation() {
         } else if (phase === 'results') {
             setPhase('country');
             setResult(null);
+            setHeatmapOpacity(0);
         }
     };
 
@@ -458,7 +441,7 @@ export default function Simulation() {
                 >
                     <NavigationControl position="bottom-right" />
 
-                    {/* Heatmap for Flood/Earthquake/Drought */}
+                    {/* Heatmap — animated opacity */}
                     {heatmapGeoJSON && (
                         <Source id="disaster-heat" type="geojson" data={heatmapGeoJSON}>
                             <Layer
@@ -477,7 +460,7 @@ export default function Simulation() {
                                         1.0, 'rgba(220,38,38,0.9)',
                                     ],
                                     'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 0, 15, 5, 30, 10, 50],
-                                    'heatmap-opacity': 0.8,
+                                    'heatmap-opacity': heatmapOpacity,
                                 }}
                             />
                             <Layer
@@ -489,7 +472,7 @@ export default function Simulation() {
                                     'circle-color': cfg?.color || '#3b82f6',
                                     'circle-stroke-width': 1,
                                     'circle-stroke-color': 'rgba(255,255,255,0.5)',
-                                    'circle-opacity': 0.8,
+                                    'circle-opacity': heatmapOpacity,
                                 }}
                             />
                         </Source>
@@ -498,62 +481,85 @@ export default function Simulation() {
                     {/* Top zone markers */}
                     {result?.type === 'disaster' && result.topZones.map((zone, i) => (
                         <Marker key={i} latitude={zone.lat} longitude={zone.lng} anchor="center">
-                            <div
+                            <motion.div
                                 className={`zone-marker ${activeZone === i ? 'active' : ''} ${zone.severity.toLowerCase()}`}
                                 onClick={() => handleZoneClick(i)}
+                                initial={{ scale: 0, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                transition={{ delay: 0.3 + i * 0.2, type: 'spring', stiffness: 300 }}
                             >
                                 <div className="zone-marker-ring" />
                                 <div className="zone-marker-core">
                                     <span>{i + 1}</span>
                                 </div>
                                 {activeZone === i && (
-                                    <div className="zone-marker-label">
+                                    <motion.div
+                                        className="zone-marker-label"
+                                        initial={{ opacity: 0, y: 5 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                    >
                                         <span>{zone.location?.split(',')[0] || 'Zone'}</span>
-                                    </div>
+                                    </motion.div>
                                 )}
-                            </div>
+                            </motion.div>
                         </Marker>
                     ))}
 
                     {/* Epidemic city markers */}
                     {result?.type === 'epidemic' && result.cities.map((city, i) => (
                         <Marker key={i} latitude={city.lat || 0} longitude={city.lng || 0} anchor="center">
-                            <div
+                            <motion.div
                                 className={`zone-marker ${activeZone === i ? 'active' : ''} ${city.severity.toLowerCase()}`}
                                 onClick={() => handleZoneClick(i)}
+                                initial={{ scale: 0 }}
+                                animate={{ scale: 1 }}
+                                transition={{ delay: 0.2 + i * 0.15, type: 'spring' }}
                             >
                                 <div className="zone-marker-ring" />
                                 <div className="zone-marker-core">
                                     <span>{i + 1}</span>
                                 </div>
                                 {activeZone === i && (
-                                    <div className="zone-marker-label">
+                                    <motion.div
+                                        className="zone-marker-label"
+                                        initial={{ opacity: 0, y: 5 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                    >
                                         <span>{city.name}</span>
-                                    </div>
+                                    </motion.div>
                                 )}
-                            </div>
+                            </motion.div>
                         </Marker>
                     ))}
                 </Map>
 
                 {/* Legend */}
                 {result?.type === 'disaster' && (
-                    <div className="map-legend glass">
+                    <motion.div
+                        className="map-legend glass"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.5 }}
+                    >
                         <span className="legend-title">{selectedDisaster} Risk Density</span>
                         <div className="legend-gradient">
                             <div className="gradient-bar" />
                             <div className="gradient-labels"><span>Low</span><span>High</span></div>
                         </div>
                         <div className="legend-stats">{result.points.length} events mapped</div>
-                    </div>
+                    </motion.div>
                 )}
 
                 {/* Top overlay */}
                 {selectedCountry && phase !== 'disaster' && (
-                    <div className="map-overlay-info glass">
+                    <motion.div
+                        className="map-overlay-info glass"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                    >
                         <span className="map-overlay-country">{selectedCountry}</span>
-                        {cfg && <span className="map-overlay-crisis">{cfg.icon} {cfg.label}</span>}
-                    </div>
+                        {cfg && <span className="map-overlay-tag" style={{ background: `${cfg.color}20`, color: cfg.color }}>{cfg.icon} {cfg.label}</span>}
+                    </motion.div>
                 )}
             </div>
 
@@ -561,14 +567,14 @@ export default function Simulation() {
             <div className="sim-panel">
                 <div className="sim-panel-header">
                     <div className="sim-panel-title">
-                        <Crosshair size={20} />
-                        <h2>Crisis Simulator</h2>
+                        <Radar size={20} />
+                        <h2>Disaster Forecast</h2>
                     </div>
                     <span className="sim-badge">LIVE DATA</span>
                 </div>
 
                 <AnimatePresence mode="wait">
-                    {/* ═══ Phase: Disaster Type Selection ═══ */}
+                    {/* ═══ Phase 1: Disaster Type Selection ═══ */}
                     {phase === 'disaster' && (
                         <motion.div
                             key="disaster"
@@ -576,18 +582,21 @@ export default function Simulation() {
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: -20 }}
+                            transition={{ duration: 0.2 }}
                         >
                             <div className="sim-section">
                                 <label className="sim-label">
                                     <AlertTriangle size={14} />
-                                    What disaster do you want to simulate?
+                                    Select a disaster type to forecast
                                 </label>
                                 <div className="disaster-type-grid">
                                     {Object.entries(DISASTER_CONFIG).map(([type, config]) => (
-                                        <button
+                                        <motion.button
                                             key={type}
                                             className="disaster-type-card"
                                             onClick={() => handleSelectDisaster(type)}
+                                            whileHover={{ x: 4 }}
+                                            whileTap={{ scale: 0.98 }}
                                         >
                                             <div className="dtc-icon" style={{ background: `${config.color}15`, color: config.color }}>
                                                 <span className="dtc-emoji">{config.icon}</span>
@@ -601,19 +610,19 @@ export default function Simulation() {
                                                 <span className="dtc-count-label">{type === 'Epidemic' ? 'countries' : 'events'}</span>
                                             </div>
                                             <ChevronRight size={16} className="dtc-arrow" />
-                                        </button>
+                                        </motion.button>
                                     ))}
                                 </div>
                             </div>
 
                             <div className="sim-info-card">
-                                <Shield size={16} />
-                                <p>Select a disaster type to see which countries are most vulnerable based on historical data and demographics.</p>
+                                <Radar size={16} />
+                                <p>Choose a disaster type to view country-level vulnerability rankings based on historical data and demographic analysis.</p>
                             </div>
                         </motion.div>
                     )}
 
-                    {/* ═══ Phase: Country Selection ═══ */}
+                    {/* ═══ Phase 2: Country Selection ═══ */}
                     {phase === 'country' && (
                         <motion.div
                             key="country"
@@ -621,37 +630,44 @@ export default function Simulation() {
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: -20 }}
+                            transition={{ duration: 0.2 }}
                         >
                             <button className="back-btn" onClick={handleBack}>
-                                ← Back to disaster types
+                                <ChevronLeft size={14} /> Back
                             </button>
 
-                            <div className="selected-disaster-badge" style={{ borderColor: cfg?.color }}>
+                            <div className="selected-disaster-badge" style={{ borderColor: cfg?.color, background: `${cfg?.color}08` }}>
                                 <span className="sdb-icon">{cfg?.icon}</span>
-                                <span className="sdb-label">{cfg?.label} Simulation</span>
+                                <span className="sdb-label">{cfg?.label} Forecast</span>
                             </div>
 
                             <div className="sim-section">
                                 <label className="sim-label">
                                     <MapPin size={14} />
                                     {selectedDisaster === 'Epidemic'
-                                        ? 'Select country (ranked by urban population)'
-                                        : `Select country (ranked by ${selectedDisaster?.toLowerCase()} events)`
+                                        ? 'Countries ranked by urban population at risk'
+                                        : `Countries ranked by ${selectedDisaster?.toLowerCase()} frequency`
                                     }
                                 </label>
-                                <input
-                                    type="text"
-                                    className="sim-search"
-                                    placeholder="Search countries..."
-                                    value={searchQuery}
-                                    onChange={e => setSearchQuery(e.target.value)}
-                                />
+                                <div className="search-wrap">
+                                    <Search size={14} className="search-icon" />
+                                    <input
+                                        type="text"
+                                        className="sim-search"
+                                        placeholder="Search countries..."
+                                        value={searchQuery}
+                                        onChange={e => setSearchQuery(e.target.value)}
+                                    />
+                                </div>
                                 <div className="country-list">
                                     {filteredCountries.map((c, idx) => (
-                                        <button
+                                        <motion.button
                                             key={c.name}
                                             className={`country-row-btn ${selectedCountry === c.name ? 'active' : ''}`}
                                             onClick={() => handleSelectCountry(c.name)}
+                                            initial={{ opacity: 0, y: 8 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ delay: Math.min(idx * 0.02, 0.3) }}
                                         >
                                             <span className="crb-rank">#{idx + 1}</span>
                                             <div className="crb-info">
@@ -659,15 +675,15 @@ export default function Simulation() {
                                                 <span className="crb-count">{c.label}</span>
                                             </div>
                                             <div className="crb-bar-wrap">
-                                                <div
+                                                <motion.div
                                                     className="crb-bar"
-                                                    style={{
-                                                        width: `${(c.count / (rankedCountries[0]?.count || 1)) * 100}%`,
-                                                        background: cfg?.color,
-                                                    }}
+                                                    initial={{ width: 0 }}
+                                                    animate={{ width: `${(c.count / (rankedCountries[0]?.count || 1)) * 100}%` }}
+                                                    transition={{ delay: Math.min(idx * 0.02, 0.3), duration: 0.5 }}
+                                                    style={{ background: cfg?.color }}
                                                 />
                                             </div>
-                                        </button>
+                                        </motion.button>
                                     ))}
                                     {filteredCountries.length === 0 && (
                                         <p className="no-results">No countries match your search</p>
@@ -675,63 +691,29 @@ export default function Simulation() {
                                 </div>
                             </div>
 
-                            {selectedCountry && (
-                                <motion.button
-                                    className="run-btn"
-                                    onClick={handleRunSimulation}
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    whileHover={{ scale: 1.02 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    style={{
-                                        background: `linear-gradient(135deg, ${cfg?.color}, ${cfg?.color}cc)`,
-                                    }}
-                                >
-                                    <Play size={18} />
-                                    Run {cfg?.label} Simulation
-                                </motion.button>
-                            )}
+                            <AnimatePresence>
+                                {selectedCountry && (
+                                    <motion.button
+                                        className="run-btn"
+                                        onClick={handleRun}
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: 10 }}
+                                        whileHover={{ scale: 1.02 }}
+                                        whileTap={{ scale: 0.98 }}
+                                        style={{
+                                            background: `linear-gradient(135deg, ${cfg?.color}, ${cfg?.color}cc)`,
+                                        }}
+                                    >
+                                        <Play size={18} />
+                                        Visualize {cfg?.label} Risk
+                                    </motion.button>
+                                )}
+                            </AnimatePresence>
                         </motion.div>
                     )}
 
-                    {/* ═══ Phase: Simulating ═══ */}
-                    {phase === 'simulating' && (
-                        <motion.div
-                            key="simulating"
-                            className="sim-phase simulating-phase"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                        >
-                            <div className="sim-progress-header">
-                                <Loader2 size={20} className="spin" style={{ color: cfg?.color }} />
-                                <h3>Simulating {cfg?.label}...</h3>
-                            </div>
-                            <p className="sim-progress-sub">
-                                {selectedDisaster === 'Epidemic'
-                                    ? `Modeling epidemic spread in ${selectedCountry}'s major cities`
-                                    : `Processing disaster events in ${selectedCountry}`
-                                }
-                            </p>
-                            <div className="sim-steps">
-                                {simulationSteps.map((step, i) => {
-                                    const StepIcon = step.icon;
-                                    const done = simStep > i;
-                                    const active = simStep === i;
-                                    return (
-                                        <div key={i} className={`sim-step ${done ? 'done' : ''} ${active ? 'active' : ''}`}>
-                                            <div className="sim-step-icon">
-                                                {done ? <CheckCircle2 size={16} /> : <StepIcon size={16} />}
-                                            </div>
-                                            <span>{step.label}</span>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </motion.div>
-                    )}
-
-                    {/* ═══ Phase: Results ═══ */}
+                    {/* ═══ Phase 3: Results ═══ */}
                     {phase === 'results' && result && (
                         <motion.div
                             key="results"
@@ -739,50 +721,59 @@ export default function Simulation() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
+                            transition={{ duration: 0.3 }}
                         >
                             <div className="results-header">
-                                <h3>{cfg?.icon} {cfg?.label} Impact — {selectedCountry}</h3>
-                                <button className="btn-ghost" onClick={handleReset}>
-                                    <RotateCcw size={14} /> New
+                                <button className="back-btn" onClick={handleBack}>
+                                    <ChevronLeft size={14} /> Back
                                 </button>
+                                <button className="btn-ghost" onClick={handleReset}>
+                                    <RotateCcw size={14} /> Reset
+                                </button>
+                            </div>
+
+                            <div className="results-title-row">
+                                <span className="results-title-icon" style={{ background: `${cfg?.color}15` }}>{cfg?.icon}</span>
+                                <div>
+                                    <h3>{cfg?.label} Impact</h3>
+                                    <span className="results-subtitle">{selectedCountry}</span>
+                                </div>
                             </div>
 
                             {result.type === 'epidemic' ? (
                                 /* ─── Epidemic Results ─── */
                                 <>
-                                    {/* Stats */}
                                     <div className="result-stats">
-                                        <div className="result-stat">
+                                        <motion.div className="result-stat" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.1 }}>
                                             <Users size={16} />
                                             <div>
                                                 <div className="result-stat-val">{fmt(result.summary.totalPopulation)}</div>
                                                 <div className="result-stat-label">Urban Pop.</div>
                                             </div>
-                                        </div>
-                                        <div className="result-stat">
+                                        </motion.div>
+                                        <motion.div className="result-stat" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.15 }}>
                                             <Bug size={16} />
                                             <div>
                                                 <div className="result-stat-val danger">{fmt(result.summary.totalInfected)}</div>
                                                 <div className="result-stat-label">Infected</div>
                                             </div>
-                                        </div>
-                                        <div className="result-stat">
+                                        </motion.div>
+                                        <motion.div className="result-stat" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.2 }}>
                                             <HeartPulse size={16} />
                                             <div>
                                                 <div className="result-stat-val">{fmt(result.summary.totalHospitalized)}</div>
                                                 <div className="result-stat-label">Hospitalized</div>
                                             </div>
-                                        </div>
-                                        <div className="result-stat">
+                                        </motion.div>
+                                        <motion.div className="result-stat" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.25 }}>
                                             <Skull size={16} />
                                             <div>
                                                 <div className="result-stat-val danger">{fmt(result.summary.totalDeaths)}</div>
                                                 <div className="result-stat-label">Projected Deaths</div>
                                             </div>
-                                        </div>
+                                        </motion.div>
                                     </div>
 
-                                    {/* City breakdown */}
                                     <div className="city-impact-section">
                                         <h4>Urban Impact Breakdown</h4>
                                         {result.cities.map((city, i) => (
@@ -790,9 +781,9 @@ export default function Simulation() {
                                                 key={i}
                                                 className={`city-impact-card ${activeZone === i ? 'active' : ''}`}
                                                 onClick={() => handleZoneClick(i)}
-                                                initial={{ opacity: 0, y: 10 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                transition={{ delay: i * 0.1 }}
+                                                initial={{ opacity: 0, x: 10 }}
+                                                animate={{ opacity: 1, x: 0 }}
+                                                transition={{ delay: 0.3 + i * 0.1 }}
                                             >
                                                 <div className="cic-header">
                                                     <div className="cic-rank" style={{ background: severityColors[city.severity] }}>
@@ -822,12 +813,12 @@ export default function Simulation() {
                                                 </div>
                                                 <div className="cic-bar-container">
                                                     <div className="cic-bar-bg">
-                                                        <div
+                                                        <motion.div
                                                             className="cic-bar-fill"
-                                                            style={{
-                                                                width: `${parseFloat(city.infectionRate)}%`,
-                                                                background: severityColors[city.severity],
-                                                            }}
+                                                            initial={{ width: 0 }}
+                                                            animate={{ width: `${parseFloat(city.infectionRate)}%` }}
+                                                            transition={{ delay: 0.5 + i * 0.1, duration: 0.8, ease: 'easeOut' }}
+                                                            style={{ background: severityColors[city.severity] }}
                                                         />
                                                     </div>
                                                     <span className="cic-bar-label">{city.infectionRate}% infection rate</span>
@@ -837,51 +828,49 @@ export default function Simulation() {
                                     </div>
                                 </>
                             ) : (
-                                /* ─── Disaster Results (Flood/Earthquake/Drought) ─── */
+                                /* ─── Disaster Results ─── */
                                 <>
-                                    {/* Stats */}
                                     <div className="result-stats">
-                                        <div className="result-stat">
+                                        <motion.div className="result-stat" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.1 }}>
                                             <AlertTriangle size={16} />
                                             <div>
                                                 <div className="result-stat-val">{result.summary.totalEvents}</div>
                                                 <div className="result-stat-label">Events</div>
                                             </div>
-                                        </div>
-                                        <div className="result-stat">
+                                        </motion.div>
+                                        <motion.div className="result-stat" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.15 }}>
                                             <Skull size={16} />
                                             <div>
                                                 <div className="result-stat-val danger">{fmt(result.summary.totalDeaths)}</div>
                                                 <div className="result-stat-label">Deaths</div>
                                             </div>
-                                        </div>
-                                        <div className="result-stat">
+                                        </motion.div>
+                                        <motion.div className="result-stat" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.2 }}>
                                             <HeartPulse size={16} />
                                             <div>
                                                 <div className="result-stat-val">{fmt(result.summary.totalInjuries)}</div>
                                                 <div className="result-stat-label">Injuries</div>
                                             </div>
-                                        </div>
-                                        <div className="result-stat">
+                                        </motion.div>
+                                        <motion.div className="result-stat" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.25 }}>
                                             <Home size={16} />
                                             <div>
                                                 <div className="result-stat-val">{fmt(result.summary.totalHomeless)}</div>
-                                                <div className="result-stat-label">Homeless</div>
+                                                <div className="result-stat-label">Displaced</div>
                                             </div>
-                                        </div>
+                                        </motion.div>
                                     </div>
 
-                                    {/* Top 3 Risk Zones */}
                                     <div className="top-zones">
-                                        <h4><Target size={14} /> Most Prone Zones</h4>
+                                        <h4><Target size={14} /> Highest Risk Zones</h4>
                                         {result.topZones.map((zone, i) => (
                                             <motion.button
                                                 key={i}
                                                 className={`zone-card ${activeZone === i ? 'active' : ''}`}
                                                 onClick={() => handleZoneClick(i)}
-                                                initial={{ opacity: 0, y: 10 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                transition={{ delay: i * 0.1 }}
+                                                initial={{ opacity: 0, x: 10 }}
+                                                animate={{ opacity: 1, x: 0 }}
+                                                transition={{ delay: 0.3 + i * 0.1 }}
                                             >
                                                 <div className="zc-rank" style={{ background: severityColors[zone.severity] }}>
                                                     {i + 1}
@@ -901,11 +890,15 @@ export default function Simulation() {
                                         ))}
                                     </div>
 
-                                    {/* Chart */}
                                     {result.chartData.length > 0 && (
-                                        <div className="result-chart">
+                                        <motion.div
+                                            className="result-chart"
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ delay: 0.6 }}
+                                        >
                                             <h4>Events by Risk Zone</h4>
-                                            <ResponsiveContainer width="100%" height={160}>
+                                            <ResponsiveContainer width="100%" height={140}>
                                                 <BarChart data={result.chartData} margin={{ top: 5, right: 5, bottom: 5, left: -10 }}>
                                                     <CartesianGrid strokeDasharray="3 3" stroke="var(--border-secondary)" />
                                                     <XAxis dataKey="name" tick={{ fill: 'var(--text-tertiary)', fontSize: 10 }} />
@@ -928,13 +921,18 @@ export default function Simulation() {
                                                     </Bar>
                                                 </BarChart>
                                             </ResponsiveContainer>
-                                        </div>
+                                        </motion.div>
                                     )}
                                 </>
                             )}
 
-                            {/* Insights (shared) */}
-                            <div className="result-insights">
+                            {/* Insights */}
+                            <motion.div
+                                className="result-insights"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.7 }}
+                            >
                                 <h4>Key Insights</h4>
                                 <ul>
                                     {result.insights.map((insight, i) => (
@@ -946,7 +944,7 @@ export default function Simulation() {
                                         </li>
                                     ))}
                                 </ul>
-                            </div>
+                            </motion.div>
                         </motion.div>
                     )}
                 </AnimatePresence>

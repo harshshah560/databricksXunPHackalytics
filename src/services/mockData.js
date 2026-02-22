@@ -329,7 +329,7 @@ export const CRISIS_TYPES = [
 export const SAMPLE_CHAT = [
     {
         role: 'assistant',
-        content: `Welcome to the **CrisisMap Knowledge Base**. I can answer questions about global humanitarian funding, response plans, and disaster data using our datasets.\n\nTry asking me about:\n- Funding gaps for specific countries\n- How CBPF funds are allocated\n- Disaster impact statistics\n- Cluster-level humanitarian spending`,
+        content: `Welcome to the **NexAtlas Knowledge Base**. I can answer questions about global humanitarian funding, response plans, and disaster data using our datasets.\n\nTry asking me about:\n- Funding gaps for specific countries\n- How CBPF funds are allocated\n- Disaster impact statistics\n- Cluster-level humanitarian spending`,
         citations: [],
     },
 ];

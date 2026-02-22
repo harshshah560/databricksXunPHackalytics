@@ -4,12 +4,12 @@ import {
     Globe,
     BookOpen,
     BarChart3,
-    Crosshair,
+    Radar,
     Sun,
     Moon,
     Menu,
     X,
-    AlertTriangle
+    Compass
 } from 'lucide-react';
 import { useState } from 'react';
 import './Navbar.css';
@@ -18,7 +18,7 @@ const navItems = [
     { path: '/', label: 'Home', icon: Globe },
     { path: '/wiki', label: 'Wiki', icon: BookOpen },
     { path: '/visualizations', label: 'Insights', icon: BarChart3 },
-    { path: '/simulation', label: 'Simulate', icon: Crosshair },
+    { path: '/forecast', label: 'Forecast', icon: Radar },
 ];
 
 export default function Navbar() {
@@ -30,8 +30,8 @@ export default function Navbar() {
         <>
             <nav className="navbar glass">
                 <div className="navbar-brand">
-                    <AlertTriangle size={22} className="brand-icon" />
-                    <span className="brand-text">CRISISMAP</span>
+                    <Compass size={22} className="brand-icon" />
+                    <span className="brand-text">NEXATLAS</span>
                 </div>
 
                 <div className={`navbar-links ${mobileOpen ? 'open' : ''}`}>

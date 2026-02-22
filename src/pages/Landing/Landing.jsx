@@ -191,8 +191,8 @@ export default function Landing() {
                             Explore Knowledge Base
                             <ArrowRight size={16} />
                         </button>
-                        <button className="btn-secondary" onClick={() => navigate('/simulation')}>
-                            Run Crisis Simulation
+                        <button className="btn-secondary" onClick={() => navigate('/forecast')}>
+                            Disaster Forecast
                         </button>
                     </div>
                 </motion.div>

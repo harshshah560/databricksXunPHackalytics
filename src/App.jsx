@@ -15,7 +15,7 @@ function App() {
             <Route path="/" element={<Landing />} />
             <Route path="/wiki" element={<Wiki />} />
             <Route path="/visualizations" element={<Visualizations />} />
-            <Route path="/simulation" element={<Simulation />} />
+            <Route path="/forecast" element={<Simulation />} />
           </Route>
         </Routes>
       </BrowserRouter>
