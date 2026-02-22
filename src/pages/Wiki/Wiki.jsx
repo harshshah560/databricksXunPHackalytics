@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { motion } from 'framer-motion';
-import { Send, Sparkles } from 'lucide-react';
+import { Send, Sparkles, Database, BarChart3 } from 'lucide-react';
 import {
     BarChart, Bar, LineChart, Line, PieChart, Pie, Cell,
     XAxis, YAxis, CartesianGrid,
@@ -14,7 +14,7 @@ import './Wiki.css';
 
 const CHART_COLORS = ['#e94560', '#f59e0b', '#3b82f6', '#10b981', '#8b5cf6', '#ec4899', '#06b6d4', '#84cc16'];
 
-// Parse ```chart blocks from markdown text
+/* ── Parse ```chart blocks from response ─────────────── */
 function parseCharts(text) {
     const parts = [];
     const regex = /```chart\s*\n([\s\S]*?)\n```/g;
@@ -26,54 +26,45 @@ function parseCharts(text) {
             parts.push({ type: 'text', content: text.slice(lastIndex, match.index) });
         }
         try {
-            const chartData = JSON.parse(match[1].trim());
-            parts.push({ type: 'chart', data: chartData });
+            parts.push({ type: 'chart', data: JSON.parse(match[1].trim()) });
         } catch {
             parts.push({ type: 'text', content: match[0] });
         }
         lastIndex = regex.lastIndex;
     }
-
     if (lastIndex < text.length) {
         parts.push({ type: 'text', content: text.slice(lastIndex) });
     }
-
     return parts.length ? parts : [{ type: 'text', content: text }];
 }
 
+/* ── Chart renderer ──────────────────────────────────── */
 function ChartRenderer({ chart }) {
-    if (!chart || !chart.data?.length) return null;
+    if (!chart?.data?.length) return null;
+
+    const tooltipStyle = {
+        background: 'rgba(15,15,25,0.95)',
+        border: '1px solid rgba(255,255,255,0.1)',
+        borderRadius: 10,
+        color: '#fff',
+        fontSize: 12,
+        backdropFilter: 'blur(10px)',
+    };
 
     if (chart.type === 'pie') {
         return (
             <div className="chat-chart">
-                <h4 className="chart-title">{chart.title}</h4>
-                <ResponsiveContainer width="100%" height={250}>
+                <div className="chart-header">
+                    <BarChart3 size={14} />
+                    <h4 className="chart-title">{chart.title}</h4>
+                </div>
+                <ResponsiveContainer width="100%" height={260}>
                     <PieChart>
-                        <Pie
-                            data={chart.data}
-                            cx="50%"
-                            cy="50%"
-                            innerRadius={50}
-                            outerRadius={90}
-                            paddingAngle={3}
-                            dataKey="value"
-                            nameKey="name"
-                            label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                        >
-                            {chart.data.map((_, i) => (
-                                <Cell key={i} fill={CHART_COLORS[i % CHART_COLORS.length]} />
-                            ))}
+                        <Pie data={chart.data} cx="50%" cy="50%" innerRadius={55} outerRadius={95} paddingAngle={3} dataKey="value" nameKey="name"
+                            label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}>
+                            {chart.data.map((_, i) => <Cell key={i} fill={CHART_COLORS[i % CHART_COLORS.length]} />)}
                         </Pie>
-                        <Tooltip
-                            contentStyle={{
-                                background: 'var(--bg-elevated)',
-                                border: '1px solid var(--border-primary)',
-                                borderRadius: 8,
-                                color: 'var(--text-primary)',
-                                fontSize: 12,
-                            }}
-                        />
+                        <Tooltip contentStyle={tooltipStyle} />
                     </PieChart>
                 </ResponsiveContainer>
             </div>
@@ -85,61 +76,48 @@ function ChartRenderer({ chart }) {
         const labels = chart.labels || keys;
         return (
             <div className="chat-chart">
-                <h4 className="chart-title">{chart.title}</h4>
-                <ResponsiveContainer width="100%" height={220}>
-                    <LineChart data={chart.data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="var(--border-secondary)" />
-                        <XAxis dataKey={chart.data[0]?.year !== undefined ? 'year' : 'name'} tick={{ fill: 'var(--text-tertiary)', fontSize: 11 }} />
-                        <YAxis tick={{ fill: 'var(--text-tertiary)', fontSize: 11 }} />
-                        <Tooltip
-                            contentStyle={{
-                                background: 'var(--bg-elevated)',
-                                border: '1px solid var(--border-primary)',
-                                borderRadius: 8,
-                                color: 'var(--text-primary)',
-                                fontSize: 12,
-                            }}
-                        />
+                <div className="chart-header">
+                    <BarChart3 size={14} />
+                    <h4 className="chart-title">{chart.title}</h4>
+                </div>
+                <ResponsiveContainer width="100%" height={240}>
+                    <LineChart data={chart.data} margin={{ top: 5, right: 20, bottom: 5, left: 10 }}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                        <XAxis dataKey={chart.data[0]?.year !== undefined ? 'year' : 'name'} tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
+                        <YAxis tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
+                        <Tooltip contentStyle={tooltipStyle} />
                         <Legend />
-                        {keys.map((key, i) => (
-                            <Line key={key} type="monotone" dataKey={key} stroke={CHART_COLORS[i % CHART_COLORS.length]} strokeWidth={2} dot={{ r: 3 }} name={labels[i] || key} />
-                        ))}
+                        {keys.map((key, i) => <Line key={key} type="monotone" dataKey={key} stroke={CHART_COLORS[i]} strokeWidth={2.5} dot={{ r: 3, fill: CHART_COLORS[i] }} name={labels[i] || key} />)}
                     </LineChart>
                 </ResponsiveContainer>
             </div>
         );
     }
 
-    // Default: bar chart
+    // Default: bar
     const keys = chart.keys || Object.keys(chart.data[0]).filter(k => k !== 'name');
     const labels = chart.labels || keys;
     return (
         <div className="chat-chart">
-            <h4 className="chart-title">{chart.title}</h4>
-            <ResponsiveContainer width="100%" height={220}>
-                <BarChart data={chart.data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="var(--border-secondary)" />
-                    <XAxis dataKey="name" tick={{ fill: 'var(--text-tertiary)', fontSize: 11 }} />
-                    <YAxis tick={{ fill: 'var(--text-tertiary)', fontSize: 11 }} />
-                    <Tooltip
-                        contentStyle={{
-                            background: 'var(--bg-elevated)',
-                            border: '1px solid var(--border-primary)',
-                            borderRadius: 8,
-                            color: 'var(--text-primary)',
-                            fontSize: 12,
-                        }}
-                    />
+            <div className="chart-header">
+                <BarChart3 size={14} />
+                <h4 className="chart-title">{chart.title}</h4>
+            </div>
+            <ResponsiveContainer width="100%" height={240}>
+                <BarChart data={chart.data} margin={{ top: 5, right: 20, bottom: 5, left: 10 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                    <XAxis dataKey="name" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
+                    <YAxis tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
+                    <Tooltip contentStyle={tooltipStyle} cursor={{ fill: 'rgba(255,255,255,0.03)' }} />
                     <Legend />
-                    {keys.map((key, i) => (
-                        <Bar key={key} dataKey={key} fill={CHART_COLORS[i % CHART_COLORS.length]} radius={[4, 4, 0, 0]} name={labels[i] || key} />
-                    ))}
+                    {keys.map((key, i) => <Bar key={key} dataKey={key} fill={CHART_COLORS[i]} radius={[6, 6, 0, 0]} name={labels[i] || key} />)}
                 </BarChart>
             </ResponsiveContainer>
         </div>
     );
 }
 
+/* ── Main Component ──────────────────────────────────── */
 export default function Wiki() {
     const [messages, setMessages] = useState(SAMPLE_CHAT);
     const [input, setInput] = useState('');
@@ -161,30 +139,21 @@ export default function Wiki() {
         setLoading(true);
 
         const assistantIdx = messages.length + 1;
-        setMessages(prev => [...prev, {
-            role: 'assistant',
-            content: '',
-        }]);
+        setMessages(prev => [...prev, { role: 'assistant', content: '' }]);
 
         try {
             await streamChatMessage(currentInput, messages, (partialText) => {
                 setStreaming(true);
                 setMessages(prev => {
                     const updated = [...prev];
-                    updated[assistantIdx] = {
-                        ...updated[assistantIdx],
-                        content: partialText,
-                    };
+                    updated[assistantIdx] = { ...updated[assistantIdx], content: partialText };
                     return updated;
                 });
             });
         } catch {
             setMessages(prev => {
                 const updated = [...prev];
-                updated[assistantIdx] = {
-                    ...updated[assistantIdx],
-                    content: 'Sorry, I encountered an error. Please try again.',
-                };
+                updated[assistantIdx] = { ...updated[assistantIdx], content: 'Sorry, something went wrong. Please try again.' };
                 return updated;
             });
         }
@@ -193,29 +162,31 @@ export default function Wiki() {
     };
 
     const handleKeyDown = (e) => {
-        if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault();
-            handleSend();
-        }
+        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); }
     };
 
     const suggestedQueries = [
         'How is Afghanistan funded in 2026?',
-        'Show me Sudan\'s CBPF allocation vs HRP',
-        'What is the global funding gap trend?',
+        'Show Sudan\'s CBPF allocation vs HRP',
+        'Global funding gap trend since 2015',
         'Which clusters are most underfunded?',
-        'Compare top donors and their contributions',
-        'Show me the CBPF data for all countries',
+        'Compare top humanitarian donors',
+        'CBPF data for all countries',
     ];
 
     const renderMessageContent = (msg) => {
         const parts = parseCharts(msg.content || '');
         return parts.map((part, i) => {
-            if (part.type === 'chart') {
-                return <ChartRenderer key={i} chart={part.data} />;
-            }
+            if (part.type === 'chart') return <ChartRenderer key={i} chart={part.data} />;
             return (
-                <ReactMarkdown key={i} remarkPlugins={[remarkGfm]}>
+                <ReactMarkdown key={i} remarkPlugins={[remarkGfm]}
+                    components={{
+                        // Style inline citation markers [1] [2] etc
+                        p: ({ children, ...props }) => <p {...props}>{children}</p>,
+                        a: ({ href, children, ...props }) => <a href={href} target="_blank" rel="noopener noreferrer" {...props}>{children}</a>,
+                        hr: () => <div className="sources-divider" />,
+                    }}
+                >
                     {part.content}
                 </ReactMarkdown>
             );
@@ -224,19 +195,40 @@ export default function Wiki() {
 
     return (
         <div className="wiki-page">
-            <div className="chat-panel full-width">
+            <div className="chat-panel">
+                {/* Header */}
+                <div className="chat-header">
+                    <div className="chat-header-left">
+                        <div className="chat-header-icon">
+                            <Sparkles size={18} />
+                        </div>
+                        <div>
+                            <h2>NexAtlas AI</h2>
+                            <span className="chat-header-sub">
+                                <Database size={12} />
+                                Powered by Databricks · FTS · CBPF · EM-DAT
+                            </span>
+                        </div>
+                    </div>
+                    <div className="chat-header-badge">
+                        <span className="status-dot" />
+                        Online
+                    </div>
+                </div>
+
+                {/* Messages */}
                 <div className="chat-messages">
                     {messages.map((msg, i) => (
                         <motion.div
                             key={i}
                             className={`message ${msg.role}`}
-                            initial={{ opacity: 0, y: 10 }}
+                            initial={{ opacity: 0, y: 12 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3 }}
+                            transition={{ duration: 0.25, delay: 0.05 }}
                         >
                             {msg.role === 'assistant' && (
                                 <div className="message-avatar">
-                                    <Sparkles size={16} />
+                                    <Sparkles size={14} />
                                 </div>
                             )}
                             <div className="message-body">
@@ -246,13 +238,9 @@ export default function Wiki() {
                     ))}
 
                     {loading && !streaming && (
-                        <motion.div
-                            className="message assistant"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                        >
+                        <motion.div className="message assistant" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                             <div className="message-avatar">
-                                <Sparkles size={16} />
+                                <Sparkles size={14} />
                             </div>
                             <div className="message-body">
                                 <div className="typing-indicator">
@@ -265,36 +253,37 @@ export default function Wiki() {
                     <div ref={chatEndRef} />
                 </div>
 
+                {/* Suggested chips */}
                 {messages.length <= 1 && (
                     <div className="suggested-queries">
                         {suggestedQueries.map((q, i) => (
-                            <button
-                                key={i}
-                                className="suggested-chip"
-                                onClick={() => { setInput(q); inputRef.current?.focus(); }}
-                            >
+                            <button key={i} className="suggested-chip" onClick={() => { setInput(q); inputRef.current?.focus(); }}>
                                 {q}
                             </button>
                         ))}
                     </div>
                 )}
 
-                <div className="chat-input-area glass">
-                    <textarea
-                        ref={inputRef}
-                        placeholder="Ask about humanitarian funding, crises, or any dataset..."
-                        value={input}
-                        onChange={e => setInput(e.target.value)}
-                        onKeyDown={handleKeyDown}
-                        rows={1}
-                    />
-                    <button
-                        className={`send-btn ${input.trim() ? 'active' : ''}`}
-                        onClick={handleSend}
-                        disabled={!input.trim() || loading}
-                    >
-                        <Send size={18} />
-                    </button>
+                {/* Input */}
+                <div className="chat-input-wrap">
+                    <div className="chat-input-area">
+                        <textarea
+                            ref={inputRef}
+                            placeholder="Ask about humanitarian funding, crises, or any dataset..."
+                            value={input}
+                            onChange={e => setInput(e.target.value)}
+                            onKeyDown={handleKeyDown}
+                            rows={1}
+                        />
+                        <button
+                            className={`send-btn ${input.trim() ? 'active' : ''}`}
+                            onClick={handleSend}
+                            disabled={!input.trim() || loading}
+                        >
+                            <Send size={16} />
+                        </button>
+                    </div>
+                    <p className="chat-disclaimer">NexAtlas AI uses data from Databricks + UN OCHA. Always verify critical figures.</p>
                 </div>
             </div>
         </div>
