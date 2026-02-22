@@ -343,7 +343,8 @@ export function getCountries() {
           total_reached: af.total_reached || 0,
         },
         world:           wi,
-        pop_impact_pct:  pop > 0 ? Math.round(tot / pop * 1000) / 10 : 0,
+        // % of people in need who are actually receiving aid (reached / targeted)
+        pop_impact_pct:  tot > 0 ? Math.round((af.total_reached || 0) / tot * 1000) / 10 : 0,
       };
     })
     .filter(Boolean);
