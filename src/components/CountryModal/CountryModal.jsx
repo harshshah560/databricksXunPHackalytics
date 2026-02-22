@@ -63,6 +63,35 @@ function PctTip({ active, payload, label }) {
   );
 }
 
+// CBPF two-line chart tooltip: shows $ amounts + % funded
+function CbpfTip({ active, payload, label }) {
+  if (!active || !payload?.length) return null;
+  const target   = payload.find(p => p.dataKey === 'Target')?.value   ?? 0;
+  const received = payload.find(p => p.dataKey === 'Received')?.value ?? 0;
+  const pct      = target > 0 ? Math.round(received / target * 100)  : 0;
+  const gap      = Math.max(target - received, 0);
+  return (
+    <div className="cm-tip cm-tip--cbpf">
+      <span className="cm-tip-yr">{label}</span>
+      <span style={{ color:'#94a3b8' }}>
+        Target: <strong style={{ color:'var(--cm-text)' }}>{fmt(target)}</strong>
+      </span>
+      <span style={{ color:'#009EDB' }}>
+        Received: <strong>{fmt(received)}</strong>
+      </span>
+      <div className="cm-tip-divider"/>
+      <span style={{ color: pctColor(pct) }}>
+        Funded: <strong>{pct}%</strong>
+      </span>
+      {gap > 0 && (
+        <span style={{ color:'#C0392B' }}>
+          Gap: <strong>{fmt(gap)}</strong>
+        </span>
+      )}
+    </div>
+  );
+}
+
 // ── Gender breakdown bars ─────────────────────────────────────────
 function GenderBars({ affected }) {
   const { boys=0, girls=0, men=0, women=0, total=0,
@@ -152,6 +181,25 @@ function Pictogram({ boys, girls, men, women }) {
     </div>
   );
 }
+
+// ── Efficiency/priority color helpers (mirrors Landing.jsx) ──────
+const effColor = (ratio) => {
+  if (ratio == null) return '#718096';
+  if (ratio < 0.5)  return '#27AE60';
+  if (ratio < 0.75) return '#7CB342';
+  if (ratio < 1.25) return '#F39C12';
+  if (ratio < 1.75) return '#E67E22';
+  return '#C0392B';
+};
+const priorityColor = (score) => {
+  if (score == null) return '#718096';
+  if (score >= 60)   return '#C0392B';
+  if (score >= 50)   return '#E74C3C';
+  if (score >= 40)   return '#E67E22';
+  if (score >= 30)   return '#F39C12';
+  if (score >= 20)   return '#7CB342';
+  return '#27AE60';
+};
 
 // ── Stat badge ────────────────────────────────────────────────────
 function Stat({ label, value, note, accent }) {
@@ -292,10 +340,11 @@ export default function CountryModal({ country, onClose }) {
     cluster_history={}, affected={}, world:wi={}, pop_impact_pct=0,
   } = country;
 
-  // 1. CBPF % funded timeline
+  // 1. CBPF two-line chart: Target (required) vs Received (funded), dollars on Y-axis
   const cbpfChart = cbpf_timeline.map(d => ({
-    year: d.year,
-    'Funded %': d.cbpf_target > 0 ? Math.round(Math.min(d.cbpf_funding/d.cbpf_target*100,200)) : 0,
+    year:     d.year,
+    Target:   d.cbpf_target,
+    Received: d.cbpf_funding,
   }));
   const latest    = cbpf_timeline.at(-1);
   const latestPct = latest?.cbpf_target > 0 ? Math.round(latest.cbpf_funding/latest.cbpf_target*100) : 0;
@@ -346,7 +395,7 @@ export default function CountryModal({ country, onClose }) {
               <h3 className="cm-sec-title">
                 <Activity size={13}/>
                 CBPF Funding Coverage
-                <span className="cm-sec-sub">% of target met · {cbpf_timeline[0]?.year}–{cbpf_timeline.at(-1)?.year}</span>
+                <span className="cm-sec-sub">Required vs. received · {cbpf_timeline[0]?.year}–{cbpf_timeline.at(-1)?.year}</span>
               </h3>
               {cbpfGap > 0 && (
                 <div className="cm-alert">
@@ -358,26 +407,57 @@ export default function CountryModal({ country, onClose }) {
                 </div>
               )}
               {cbpfChart.length > 0 ? (
-                <ResponsiveContainer width="100%" height={190}>
-                  <AreaChart data={cbpfChart} margin={{top:6,right:12,left:-14,bottom:0}}>
+                <ResponsiveContainer width="100%" height={210}>
+                  <AreaChart data={cbpfChart} margin={{top:8,right:16,left:8,bottom:0}}>
                     <defs>
-                      <linearGradient id="cbpfG" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%"  stopColor="#009EDB" stopOpacity={0.45}/>
-                        <stop offset="95%" stopColor="#009EDB" stopOpacity={0.02}/>
+                      {/* Gap zone: red fill between Target and Received */}
+                      <linearGradient id="gapFill" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%"   stopColor="#C0392B" stopOpacity={0.20}/>
+                        <stop offset="100%" stopColor="#C0392B" stopOpacity={0.04}/>
+                      </linearGradient>
+                      {/* Received fill: OCHA blue beneath the received line */}
+                      <linearGradient id="recvFill" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%"   stopColor="#009EDB" stopOpacity={0.38}/>
+                        <stop offset="100%" stopColor="#009EDB" stopOpacity={0.04}/>
                       </linearGradient>
                     </defs>
-                    <XAxis dataKey="year" tick={{fill:'var(--cm-muted)',fontSize:10}} axisLine={false} tickLine={false}/>
-                    <YAxis tick={{fill:'var(--cm-muted)',fontSize:10}} axisLine={false} tickLine={false}
-                      tickFormatter={v=>`${v}%`} width={36}/>
-                    <Tooltip content={<PctTip/>}/>
-                    <ReferenceLine y={100} stroke="var(--cm-rule-color)" strokeDasharray="4 3" strokeWidth={1}
-                      label={{value:'100% (target met)',position:'right',fontSize:9,fill:'var(--cm-muted)'}}/>
-                    <ReferenceLine y={50} stroke="var(--cm-rule-color)" strokeDasharray="3 2" strokeWidth={0.7}/>
-                    <Area type="monotone" dataKey="Funded %" stroke="#009EDB" fill="url(#cbpfG)"
-                      strokeWidth={2.5} dot={{r:3,fill:'#009EDB',strokeWidth:0}}/>
+                    <XAxis dataKey="year" tick={{fill:'var(--cm-muted)',fontSize:10}}
+                      axisLine={false} tickLine={false}/>
+                    <YAxis tickFormatter={v => fmt(v)} tick={{fill:'var(--cm-muted)',fontSize:9}}
+                      axisLine={false} tickLine={false} width={56}/>
+                    <Tooltip content={<CbpfTip/>}/>
+                    {/* Target — dashed grey line, fills gap area red above received */}
+                    <Area type="monotone" dataKey="Target"
+                      stroke="#94a3b8" strokeWidth={1.5} strokeDasharray="5 3"
+                      fill="url(#gapFill)"
+                      dot={false}
+                      activeDot={{r:4, fill:'#94a3b8', strokeWidth:0}}/>
+                    {/* Received — solid OCHA blue, fills area below in blue */}
+                    <Area type="monotone" dataKey="Received"
+                      stroke="#009EDB" strokeWidth={2.5}
+                      fill="url(#recvFill)"
+                      dot={{r:3, fill:'#009EDB', strokeWidth:0}}
+                      activeDot={{r:5, fill:'#009EDB', stroke:'var(--cm-panel-bg)', strokeWidth:2}}/>
                   </AreaChart>
                 </ResponsiveContainer>
               ) : <p className="cm-empty">No CBPF data</p>}
+              {/* Chart legend */}
+              {cbpfChart.length > 0 && (
+                <div className="cm-cbpf-legend">
+                  <span className="cm-cbpf-leg-item">
+                    <span className="cm-cbpf-leg-line cm-cbpf-leg-line--target"/>
+                    Target (required)
+                  </span>
+                  <span className="cm-cbpf-leg-item">
+                    <span className="cm-cbpf-leg-line cm-cbpf-leg-line--recv"/>
+                    Received
+                  </span>
+                  <span className="cm-cbpf-leg-item">
+                    <span className="cm-cbpf-leg-box"/>
+                    Funding gap
+                  </span>
+                </div>
+              )}
             </section>
 
             {/* ━━━ SECTION 2: Sector funding (expandable, with people counts) ━━━ */}
@@ -483,6 +563,72 @@ export default function CountryModal({ country, onClose }) {
                 </div>
               </div>
             </section>
+
+            {/* ━━━ SECTION 5: Efficiency & Priority Benchmarking ━━━ */}
+            {Object.keys(country.cost_per_person || {}).length > 0 && (
+            <section className="cm-sec">
+              <h3 className="cm-sec-title">
+                <Activity size={13}/>
+                Cost Efficiency &amp; Priority Benchmarking
+                <span className="cm-sec-sub">$/person vs global median · priority score breakdown</span>
+              </h3>
+
+              <div className="cm-eff-intro">
+                Cost efficiency = CBPF allocation ÷ people targeted. Lower than the global sector
+                median means more lives reachable per dollar — a higher funding priority signal.
+              </div>
+
+              <div className="cm-eff-table">
+                <div className="cm-eff-header">
+                  <span>Sector</span>
+                  <span>$/person</span>
+                  <span>vs. median</span>
+                  <span>Priority</span>
+                </div>
+                {Object.entries(country.cluster_breakdown || {})
+                  .filter(([,bd]) => bd.cost_per_person != null)
+                  .sort((a, b) => (country.priority_index?.[b[0]] ?? 0) - (country.priority_index?.[a[0]] ?? 0))
+                  .map(([cat, bd]) => {
+                    const ratio    = bd.cost_ratio;
+                    const glMed    = bd.global_median_cpp;
+                    const priScore = country.priority_index?.[cat];
+                    const meta     = ISSUE_META[cat] || {};
+                    const Icon     = meta.icon || AlertCircle;
+                    const diffPct  = ratio != null ? Math.round(Math.abs(ratio - 1) * 100) : null;
+                    const cheaper  = ratio != null && ratio < 1;
+                    return (
+                      <div key={cat} className="cm-eff-row">
+                        <span className="cm-eff-cat">
+                          <Icon size={11} color={meta.color} style={{flexShrink:0}}/>
+                          {cat}
+                        </span>
+                        <span className="cm-eff-cpp">${bd.cost_per_person?.toFixed(0)}</span>
+                        <span className="cm-eff-ratio">
+                          {ratio != null ? (
+                            <span className={`cm-eff-badge ${cheaper ? 'cm-eff-badge--good' : ratio < 1.75 ? 'cm-eff-badge--mid' : 'cm-eff-badge--bad'}`}>
+                              {cheaper ? '↓' : '↑'}{diffPct}% {cheaper ? 'below' : 'above'}
+                              <span className="cm-eff-med"> (med ${glMed?.toFixed(0)})</span>
+                            </span>
+                          ) : '—'}
+                        </span>
+                        <span className="cm-eff-pri" style={{ color: priorityColor(priScore) }}>
+                          {priScore ?? '—'}
+                          {priScore != null && priScore >= 55 && (
+                            <span className="cm-eff-flag">⚑ High</span>
+                          )}
+                        </span>
+                      </div>
+                    );
+                  })}
+              </div>
+
+              <div className="cm-eff-note">
+                <strong>Priority Index</strong> (0–100) combines: funding gap (30%) · population
+                impact (20%) · vulnerability (15%) · chronic neglect (15%) · cost efficiency
+                (10%) · scale of need (10%).
+              </div>
+            </section>
+            )}
 
           </div>
         </motion.div>

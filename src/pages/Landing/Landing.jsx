@@ -30,15 +30,8 @@ const ISSUE_META = {
   'Water, Sanitation, Hygiene': { icon: Droplets,    color: '#0070C0', short: 'WASH'    },
 };
 
-// ISO-3 → Mapbox name_en for choropleth
-const ISO3_MAPBOX = {
-  AFG:'Afghanistan', BFA:'Burkina Faso', CAF:'Central African Republic',
-  COD:'Democratic Republic of the Congo', COL:'Colombia', ETH:'Ethiopia',
-  HTI:'Haiti', IRQ:'Iraq', LBN:'Lebanon', MLI:'Mali', MMR:'Myanmar',
-  MOZ:'Mozambique', NER:'Niger', NGA:'Nigeria', PSE:'Palestine',
-  SDN:'Sudan', SOM:'Somalia', SSD:'South Sudan', SYR:'Syria',
-  TCD:'Chad', UKR:'Ukraine', VEN:'Venezuela', YEM:'Yemen',
-};
+// ISO-3 codes match directly in Mapbox Streets v8 "country" source-layer
+// via the iso_3166_1_alpha_3 property — no translation needed
 
 // ── Helpers ───────────────────────────────────────────────────────
 const fmt = (n) => {
@@ -65,37 +58,102 @@ const pctColor = (pct) => {
   return '#27AE60';
 };
 
+// ── Map display modes ─────────────────────────────────────────────
+export const MAP_MODES = [
+  { id: 'funding',    label: 'Funding Gap',     icon: '💸' },
+  { id: 'efficiency', label: 'Cost Efficiency',  icon: '⚡' },
+  { id: 'priority',   label: 'Priority Index',   icon: '🎯' },
+];
+
+// Cost efficiency color: green=cheap (high impact/$), red=expensive (low impact/$)
+// ratio < 1 = cheaper than median = more efficient = green
+// ratio > 1 = more expensive than median = less efficient = red
+const effColor = (ratio) => {
+  if (ratio == null) return '#94a3b8';
+  if (ratio < 0.5)  return '#27AE60';  // very efficient — 2× cheaper than median
+  if (ratio < 0.75) return '#7CB342';  // efficient
+  if (ratio < 1.25) return '#F39C12';  // near median
+  if (ratio < 1.75) return '#E67E22';  // expensive
+  return '#C0392B';                    // very expensive
+};
+
+// Priority color: same scale as funding gap (higher score = more urgent)
+const priorityColor = (score) => {
+  if (score == null) return '#94a3b8';
+  if (score >= 60) return '#C0392B';
+  if (score >= 50) return '#E74C3C';
+  if (score >= 40) return '#E67E22';
+  if (score >= 30) return '#F39C12';
+  if (score >= 20) return '#7CB342';
+  return '#27AE60';
+};
+
+// Efficiency label
+const effLabel = (ratio) => {
+  if (ratio == null) return 'No data';
+  if (ratio < 0.5)  return 'Very efficient';
+  if (ratio < 0.75) return 'Efficient';
+  if (ratio < 1.25) return 'Near median';
+  if (ratio < 1.75) return 'Above median';
+  return 'High cost';
+};
+
 // ── Hover popup — compact, pie + gender ───────────────────────────
-function HoverPopup({ country, activeIssue, onExpand }) {
-  const pct  = country.issue_pct_funded?.[activeIssue];
-  const bd   = country.cluster_breakdown?.[activeIssue];
-  const wi   = country.world || {};
-  const meta = ISSUE_META[activeIssue] || {};
-  const Icon = meta.icon || AlertTriangle;
+function HoverPopup({ country, activeIssue, mapMode, onExpand }) {
+  const pct      = country.issue_pct_funded?.[activeIssue];
+  const bd       = country.cluster_breakdown?.[activeIssue];
+  const wi       = country.world || {};
+  const meta     = ISSUE_META[activeIssue] || {};
+  const Icon     = meta.icon || AlertTriangle;
+  const cpp      = country.cost_per_person?.[activeIssue];
+  const ratio    = country.cost_ratio?.[activeIssue];
+  const glMed    = bd?.global_median_cpp;
+  const priScore = country.priority_index?.[activeIssue];
 
   const { boys=0, girls=0, men=0, women=0, total=0 } = country.affected || {};
   const children   = boys + girls;
-  const adults     = men + women;
   const childPct   = total > 0 ? Math.round(children / total * 100) : 0;
 
-  // Gender breakdown bars (targeted)
   const genderBars = [
-    { label: 'Boys',   val: boys,  color: '#4A90D9', pct: total > 0 ? boys/total*100 : 0 },
-    { label: 'Girls',  val: girls, color: '#E91E8C', pct: total > 0 ? girls/total*100 : 0 },
-    { label: 'Men',    val: men,   color: '#1565C0', pct: total > 0 ? men/total*100 : 0 },
-    { label: 'Women',  val: women, color: '#AD1457', pct: total > 0 ? women/total*100 : 0 },
+    { label: 'Boys',  val: boys,  color: '#4A90D9', pct: total > 0 ? boys/total*100 : 0 },
+    { label: 'Girls', val: girls, color: '#E91E8C', pct: total > 0 ? girls/total*100 : 0 },
+    { label: 'Men',   val: men,   color: '#1565C0', pct: total > 0 ? men/total*100 : 0 },
+    { label: 'Women', val: women, color: '#AD1457', pct: total > 0 ? women/total*100 : 0 },
   ].filter(g => g.val > 0);
 
-  // Donut: funded vs gap
-  const funded = bd?.fund || 0;
-  const needed = bd?.req  || 0;
-  const gap    = bd?.gap  || 0;
-  const pieData = needed > 0 ? [
-    { name: 'Funded',  value: funded, color: pctColor(pct) },
-    { name: 'Unfunded', value: gap,   color: '#E5E9F0' },
-  ] : [];
+  const funded  = bd?.fund || 0;
+  const needed  = bd?.req  || 0;
+  const gap     = bd?.gap  || 0;
 
-  // People impacted by this sector
+  // Donut data depends on mode
+  let donutData, donutCenterVal, donutCenterSub, donutColor;
+  if (mapMode === 'efficiency') {
+    const effPct = ratio != null ? Math.min(Math.round((2 - Math.min(ratio, 2)) / 2 * 100), 100) : null;
+    donutColor   = effColor(ratio);
+    donutData    = effPct != null ? [
+      { name: effLabel(ratio), value: effPct,       color: donutColor },
+      { name: 'Remaining',     value: 100 - effPct, color: '#E5E9F0' },
+    ] : [];
+    donutCenterVal = cpp != null ? `$${cpp.toFixed(0)}` : '—';
+    donutCenterSub = 'per person';
+  } else if (mapMode === 'priority') {
+    donutColor   = priorityColor(priScore);
+    donutData    = priScore != null ? [
+      { name: 'Priority',    value: priScore,       color: donutColor },
+      { name: 'Remaining',   value: 100 - priScore, color: '#E5E9F0' },
+    ] : [];
+    donutCenterVal = priScore != null ? `${priScore}` : '—';
+    donutCenterSub = 'priority';
+  } else {
+    donutColor   = pctColor(pct);
+    donutData    = needed > 0 ? [
+      { name: 'Funded',   value: funded, color: donutColor },
+      { name: 'Unfunded', value: gap,    color: '#E5E9F0' },
+    ] : [];
+    donutCenterVal = pct != null ? `${pct}%` : '—';
+    donutCenterSub = 'funded';
+  }
+
   const targetedPeople = bd?.targeted_people || 0;
   const reachedPeople  = bd?.reached_people  || 0;
 
@@ -118,49 +176,39 @@ function HoverPopup({ country, activeIssue, onExpand }) {
 
       {/* Donut + key stats */}
       <div className="hpop-body">
-        {/* Left: donut */}
         <div className="hpop-donut-wrap">
           <ResponsiveContainer width={96} height={96}>
             <PieChart>
               <Pie
-                data={pieData.length ? pieData : [{ name:'No data', value:1, color:'#E5E9F0' }]}
+                data={donutData.length ? donutData : [{ name:'No data', value:1, color:'#E5E9F0' }]}
                 cx="50%" cy="50%"
                 innerRadius={28} outerRadius={42}
                 startAngle={90} endAngle={-270}
-                paddingAngle={pieData.length > 1 ? 2 : 0}
-                dataKey="value"
-                strokeWidth={0}
+                paddingAngle={donutData.length > 1 ? 2 : 0}
+                dataKey="value" strokeWidth={0}
               >
-                {(pieData.length ? pieData : [{ color:'#E5E9F0' }]).map((e, i) => (
+                {(donutData.length ? donutData : [{ color:'#E5E9F0' }]).map((e, i) => (
                   <Cell key={i} fill={e.color} />
                 ))}
               </Pie>
-              <Tooltip
-                formatter={(val, name) => [name === 'Funded' ? `${pct}%` : fmt(val), name]}
-                contentStyle={{
-                  background: 'var(--hpop-bg)',
-                  border: '1px solid var(--hpop-border)',
-                  borderRadius: 6,
-                  fontSize: 11,
-                }}
-              />
+              <Tooltip contentStyle={{ background:'var(--hpop-bg)', border:'1px solid var(--hpop-border)', borderRadius:6, fontSize:11 }}/>
             </PieChart>
           </ResponsiveContainer>
           <div className="hpop-donut-center">
-            <span className="hpop-pct-big" style={{ color: pctColor(pct) }}>
-              {pct != null ? `${pct}%` : '—'}
+            <span className="hpop-pct-big" style={{ color: donutColor }}>
+              {donutCenterVal}
             </span>
-            <span className="hpop-pct-sub">funded</span>
+            <span className="hpop-pct-sub">{donutCenterSub}</span>
           </div>
         </div>
 
-        {/* Right: stats */}
         <div className="hpop-stats">
+          {/* Always show funding stats */}
           <div className="hpop-stat-row">
             <span className="hpop-stat-label">Required</span>
             <span className="hpop-stat-val">{fmt(needed)}</span>
           </div>
-          <div className="hpop-stat-row hpop-stat-row--funded">
+          <div className="hpop-stat-row">
             <span className="hpop-stat-label">Funded</span>
             <span className="hpop-stat-val" style={{ color: pctColor(pct) }}>{fmt(funded)}</span>
           </div>
@@ -169,16 +217,38 @@ function HoverPopup({ country, activeIssue, onExpand }) {
             <span className="hpop-stat-val hpop-gap-val">{fmt(gap)}</span>
           </div>
 
-          {targetedPeople > 0 && (
+          {/* Efficiency stats — shown in all modes */}
+          {cpp != null && (
             <div className="hpop-stat-row hpop-stat-row--people">
-              <span className="hpop-stat-label">People targeted</span>
-              <span className="hpop-stat-val">{fmtN(targetedPeople)}</span>
+              <span className="hpop-stat-label">Cost / person</span>
+              <span className="hpop-stat-val" style={{ color: effColor(ratio) }}>
+                ${cpp.toFixed(0)}
+                {ratio != null && (
+                  <span className="hpop-ratio-badge" style={{ color: effColor(ratio) }}>
+                    {ratio < 1 ? `${((1-ratio)*100).toFixed(0)}% below avg` : `${((ratio-1)*100).toFixed(0)}% above avg`}
+                  </span>
+                )}
+              </span>
             </div>
           )}
-          {reachedPeople > 0 && (
+          {glMed != null && (
             <div className="hpop-stat-row">
-              <span className="hpop-stat-label">People reached</span>
-              <span className="hpop-stat-val" style={{ color: '#27AE60' }}>{fmtN(reachedPeople)}</span>
+              <span className="hpop-stat-label">Sector median</span>
+              <span className="hpop-stat-val hpop-muted">${glMed.toFixed(0)}/person</span>
+            </div>
+          )}
+          {priScore != null && (
+            <div className="hpop-stat-row">
+              <span className="hpop-stat-label">Priority score</span>
+              <span className="hpop-stat-val" style={{ color: priorityColor(priScore) }}>
+                {priScore}/100
+              </span>
+            </div>
+          )}
+          {targetedPeople > 0 && (
+            <div className="hpop-stat-row">
+              <span className="hpop-stat-label">People targeted</span>
+              <span className="hpop-stat-val">{fmtN(targetedPeople)}</span>
             </div>
           )}
         </div>
@@ -217,6 +287,7 @@ export default function Landing() {
   const [loading,      setLoading]      = useState(true);
   const [mapLoaded,    setMapLoaded]    = useState(false);
   const [activeIssue,  setActiveIssue]  = useState('Food Security & Agriculture');
+  const [mapMode,      setMapMode]      = useState('funding');   // 'funding' | 'efficiency' | 'priority'
   const [hoveredCode,  setHoveredCode]  = useState(null);
   const [hoveredPos,   setHoveredPos]   = useState(null);
   const [selectedCode, setSelectedCode] = useState(null);
@@ -228,28 +299,32 @@ export default function Landing() {
     setLoading(false);
   }, []);
 
-  // Choropleth fill expression
+  // Choropleth fill expression: changes colour logic based on mapMode
   const fillExpr = useMemo(() => {
     if (!countries.length) return 'rgba(0,0,0,0)';
-    const expr = ['match', ['get', 'name_en']];
+    const expr = ['match', ['get', 'iso_3166_1_alpha_3']];
     countries.forEach(c => {
-      const mb = ISO3_MAPBOX[c.code];
-      if (!mb) return;
-      expr.push(mb, pctColor(c.issue_pct_funded?.[activeIssue] ?? -1));
+      let color;
+      if (mapMode === 'efficiency') {
+        color = effColor(c.cost_ratio?.[activeIssue] ?? null);
+      } else if (mapMode === 'priority') {
+        color = priorityColor(c.priority_index?.[activeIssue] ?? null);
+      } else {
+        color = pctColor(c.issue_pct_funded?.[activeIssue] ?? -1);
+      }
+      expr.push(c.code, color);
     });
     expr.push('rgba(0,0,0,0)');
     return expr;
-  }, [countries, activeIssue]);
-
-  const hoveredMapboxName = ISO3_MAPBOX[hoveredCode ?? ''] ?? '__none__';
+  }, [countries, activeIssue, mapMode]);
 
   const fillOpacityExpr = useMemo(() => [
-    'case', ['==', ['get','name_en'], hoveredMapboxName], 0.78, 0.50,
-  ], [hoveredMapboxName]);
+    'case', ['==', ['get','iso_3166_1_alpha_3'], hoveredCode ?? '__none__'], 0.80, 0.52,
+  ], [hoveredCode]);
 
   const outlineWidthExpr = useMemo(() => [
-    'case', ['==', ['get','name_en'], hoveredMapboxName], 2.5, 0.5,
-  ], [hoveredMapboxName]);
+    'case', ['==', ['get','iso_3166_1_alpha_3'], hoveredCode ?? '__none__'], 2.5, 0.5,
+  ], [hoveredCode]);
 
   const geojson = useMemo(() => ({
     type: 'FeatureCollection',
@@ -330,13 +405,16 @@ export default function Landing() {
 
           {mapLoaded && (
             <>
+              {/* ── Choropleth: whole-country polygon fills ── */}
+              {/* source-layer "country" in Mapbox Streets v8 contains country polygons */}
+              {/* matched via iso_3166_1_alpha_3 property (e.g. "AFG", "SDN") */}
               <Layer id="country-fills" type="fill"
-                source="composite" source-layer="country_label"
+                source="composite" source-layer="country"
                 beforeId="waterway-label"
                 paint={{ 'fill-color': fillExpr, 'fill-opacity': fillOpacityExpr }} />
               <Layer id="country-lines" type="line"
-                source="composite" source-layer="country_label"
-                paint={{ 'line-color': fillExpr, 'line-width': outlineWidthExpr, 'line-opacity': 0.8 }} />
+                source="composite" source-layer="country"
+                paint={{ 'line-color': fillExpr, 'line-width': outlineWidthExpr, 'line-opacity': 0.9 }} />
               <Source id="crisis" type="geojson" data={geojson} generateId>
                 <Layer id="crisis-glow" type="circle" paint={{
                   'circle-radius': ['interpolate',['linear'],['zoom'],1,20,5,50],
@@ -367,6 +445,7 @@ export default function Landing() {
               <HoverPopup
                 country={hoveredCountry}
                 activeIssue={activeIssue}
+                mapMode={mapMode}
                 onExpand={() => {
                   setSelectedCode(hoveredCode);
                   setHoveredCode(null);
@@ -378,7 +457,7 @@ export default function Landing() {
         </Map>
       </div>
 
-      {/* ══ RIGHT: VERTICAL SECTOR TABS ══ */}
+      {/* ══ RIGHT: VERTICAL SECTOR NAV ══ */}
       <nav className="sector-nav" aria-label="Filter by sector">
         <span className="sector-nav-eyebrow">Sector</span>
         {ISSUE_CATEGORIES.map(issue => {
@@ -400,51 +479,51 @@ export default function Landing() {
           );
         })}
 
-        {/* Severity legend */}
-        <div className="snav-legend" aria-label="Funding % severity scale">
-          <span className="snav-leg-title">% Funded</span>
-          {[
-            ['< 10%',  '#C0392B'],
-            ['10–35%', '#E67E22'],
-            ['35–70%', '#F39C12'],
-            ['> 70%',  '#27AE60'],
-          ].map(([lbl, clr]) => (
-            <span key={lbl} className="snav-leg-item">
-              <span className="snav-leg-dot" style={{ background: clr }} />
-              <span>{lbl}</span>
-            </span>
+        {/* Map mode toggle */}
+        <div className="snav-mode-group" role="group" aria-label="Map view mode">
+          <span className="snav-leg-title" style={{ marginBottom: 4 }}>Map view</span>
+          {MAP_MODES.map(m => (
+            <button key={m.id}
+              className={`snav-mode-btn ${mapMode === m.id ? 'snav-mode-btn--on' : ''}`}
+              onClick={() => setMapMode(m.id)}
+              aria-pressed={mapMode === m.id}
+              title={m.label}
+            >
+              <span className="snav-mode-icon">{m.icon}</span>
+              <span className="snav-mode-label">{m.label}</span>
+            </button>
           ))}
         </div>
       </nav>
 
-      {/* ══ BOTTOM: ISSUE STATS BAR ══ */}
+      {/* ══ BOTTOM: STATS BAR ══ */}
       <div className="stats-footer" role="status" aria-live="polite">
         <div className="sf-icon-wrap" style={{ background:`${issueColor}18`, border:`1px solid ${issueColor}35` }}>
           <IssueIcon size={16} color={issueColor} aria-hidden="true" />
         </div>
         <div className="sf-item">
           <span className="sf-val" style={{ color: issueColor }}>{issueMeta.short || activeIssue}</span>
-          <span className="sf-lbl">{issueSet.length} crisis zones</span>
+          <span className="sf-lbl">
+            {mapMode === 'funding' ? 'Funding gap' : mapMode === 'efficiency' ? 'Cost efficiency' : 'Priority index'}
+          </span>
         </div>
         <div className="sf-sep" />
         <div className="sf-item">
           <span className="sf-val" style={{ color:'#C0392B' }}>{fmt(totalGap)}</span>
-          <span className="sf-lbl">Funding gap</span>
+          <span className="sf-lbl">Total funding gap</span>
         </div>
         <div className="sf-sep" />
         <div className="sf-item">
           <span className="sf-val" style={{ color: pctColor(avgFunded) }}>{avgFunded.toFixed(0)}%</span>
           <span className="sf-lbl">Avg. funded</span>
         </div>
-        {totalTargeted > 0 && (
-          <>
-            <div className="sf-sep" />
-            <div className="sf-item">
-              <span className="sf-val">{fmtN(totalTargeted)}</span>
-              <span className="sf-lbl">People targeted</span>
-            </div>
-          </>
-        )}
+        {totalTargeted > 0 && (<>
+          <div className="sf-sep" />
+          <div className="sf-item">
+            <span className="sf-val">{fmtN(totalTargeted)}</span>
+            <span className="sf-lbl">People targeted</span>
+          </div>
+        </>)}
       </div>
 
       {/* Loading */}

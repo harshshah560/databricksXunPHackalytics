@@ -134,7 +134,7 @@ export function getCountries() {
   }
 
   // --- Sectors overview (people per sector, latest year) ---
-  const soPeople = {}; // cc -> cat -> {targeted, reached, year}
+  const soPeople = {}; // cc -> cat -> {targeted, reached, alloc, year}
   for (const row of parseCSV(sectorsRaw)) {
     const cc  = row.countrycode;
     const yr  = parseInt(row.Year);
@@ -144,7 +144,7 @@ export function getCountries() {
     const r = n(row.Reached_People);
     if (!soPeople[cc]) soPeople[cc] = {};
     if (!soPeople[cc][cat] || yr > soPeople[cc][cat].year) {
-      soPeople[cc][cat] = { targeted: t, reached: r, year: yr };
+      soPeople[cc][cat] = { targeted: t, reached: r, alloc: n(row.Total_Allocations), year: yr };
     }
   }
 
@@ -195,6 +195,39 @@ export function getCountries() {
     cbpfByCC[cc].sort((a, b) => a.year - b.year);
   }
 
+  // --- Global median cost-per-person per sector (for benchmarking) ---
+  // cpp = Total_Allocations / Targeted_People from sectors_overview
+  const cppByCat = {}; // cat -> array of values across all countries
+  for (const cc of CBPF_COUNTRIES) {
+    for (const cat of ISSUE_CATEGORIES) {
+      const so = soPeople[cc]?.[cat];
+      if (!so || so.targeted <= 0 || so.alloc <= 0) continue;
+      if (!cppByCat[cat]) cppByCat[cat] = [];
+      cppByCat[cat].push(so.alloc / so.targeted);
+    }
+  }
+  // Median helper
+  const med = arr => {
+    if (!arr?.length) return null;
+    const s = [...arr].sort((a,b)=>a-b);
+    const m = Math.floor(s.length / 2);
+    return s.length % 2 ? s[m] : (s[m-1]+s[m])/2;
+  };
+  const globalMedians = {}; // cat -> median $/person
+  for (const cat of ISSUE_CATEGORIES) {
+    const m = med(cppByCat[cat]);
+    if (m != null) globalMedians[cat] = Math.round(m * 100) / 100;
+  }
+
+  // Max targeted per sector for scale normalization
+  const maxTargeted = {};
+  for (const cat of ISSUE_CATEGORIES) {
+    const vals = [...CBPF_COUNTRIES]
+      .map(cc => soPeople[cc]?.[cat]?.targeted || 0)
+      .filter(v => v > 0);
+    maxTargeted[cat] = vals.length ? Math.max(...vals) : 1;
+  }
+
   // --- Assemble countries ---
   _cache = [...CBPF_COUNTRIES]
     .map(cc => {
@@ -205,6 +238,9 @@ export function getCountries() {
       const issue_pct_funded  = {};
       const cluster_breakdown = {};
       const cluster_history   = {};
+      const cost_per_person   = {}; // cat -> $/person (from sectors_overview alloc)
+      const cost_ratio        = {}; // cat -> ratio vs global median (>1 expensive, <1 cheap)
+      const priority_index    = {}; // cat -> 0-100 composite score
 
       for (const cat of ISSUE_CATEGORIES) {
         const cd = ftsAgg[cc]?.[cat];
@@ -212,35 +248,66 @@ export function getCountries() {
 
         // Latest year with data
         const years = Object.keys(cd).map(Number).sort((a,b)=>b-a);
+        let req = 0, fund = 0;
         for (const yr of years) {
-          if (cd[yr].req > 0) {
-            const { req, fund } = cd[yr];
-            const pct  = Math.min(fund / req * 100, 100);
-            const so   = soPeople[cc]?.[cat] || {};
-            cluster_breakdown[cat] = {
-              req, fund,
-              pct:             Math.round(pct * 10) / 10,
-              gap:             Math.max(req - fund, 0),
-              targeted_people: so.targeted || 0,
-              reached_people:  so.reached  || 0,
-            };
-            issue_pct_funded[cat] = Math.round(pct * 10) / 10;
-            break;
-          }
+          if (cd[yr].req > 0) { req = cd[yr].req; fund = cd[yr].fund; break; }
         }
+        if (!req) continue;
 
-        // Full history (all years, pct capped at 100)
+        const pct = Math.min(fund / req * 100, 100);
+        const so  = soPeople[cc]?.[cat] || {};
+        const targeted = so.targeted || 0;
+        const reached  = so.reached  || 0;
+        const alloc    = so.alloc    || 0;
+
+        // Cost per person
+        const cpp = (targeted > 0 && alloc > 0)
+          ? Math.round(alloc / targeted * 100) / 100 : null;
+        const glMed = globalMedians[cat] || null;
+        const ratio = (cpp && glMed) ? Math.round(cpp / glMed * 100) / 100 : null;
+
+        cluster_breakdown[cat] = {
+          req, fund,
+          pct:              Math.round(pct * 10) / 10,
+          gap:              Math.max(req - fund, 0),
+          targeted_people:  targeted,
+          reached_people:   reached,
+          cost_per_person:  cpp,
+          cost_ratio:       ratio,
+          global_median_cpp:glMed,
+        };
+        issue_pct_funded[cat]  = Math.round(pct * 10) / 10;
+        if (cpp  != null) cost_per_person[cat] = cpp;
+        if (ratio != null) cost_ratio[cat]     = ratio;
+
+        // Full history
         const hist = Object.keys(cd)
-          .map(Number)
-          .sort((a, b) => a - b)
+          .map(Number).sort((a,b)=>a-b)
           .filter(yr => cd[yr].req > 0)
           .map(yr => ({
-            year: yr,
-            req:  cd[yr].req,
-            fund: cd[yr].fund,
-            pct:  Math.round(Math.min(cd[yr].fund / cd[yr].req * 100, 100) * 10) / 10,
+            year: yr, req: cd[yr].req, fund: cd[yr].fund,
+            pct: Math.round(Math.min(cd[yr].fund / cd[yr].req * 100, 100) * 10) / 10,
           }));
         if (hist.length) cluster_history[cat] = hist;
+
+        // Priority Index (0-100): gap weight + scale + vulnerability + chronic + cost efficiency
+        const gapF    = Math.max(req - fund, 0) / req;
+        const pop     = wi.population || 0;
+        const popImp  = pop > 0 && targeted > 0 ? Math.min(targeted / pop, 1.0) : 0;
+        const vuln    = (wi.vulnerability_score || 45) / 100;
+        const pctHist = Object.keys(cd)
+          .filter(yr => cd[yr].req > 0)
+          .map(yr => Math.min(cd[yr].fund / cd[yr].req, 1.0));
+        const chronic = pctHist.length
+          ? pctHist.filter(p => p < 0.30).length / pctHist.length : 0.5;
+        const effScore = (cpp && glMed && cpp > 0)
+          ? Math.min(glMed / cpp, 3.0) / 3.0 : 0.5; // cheaper = higher priority
+        const scale   = targeted > 0 ? targeted / (maxTargeted[cat] || 1) : 0;
+
+        priority_index[cat] = Math.round(
+          (gapF * 0.30 + popImp * 0.20 + vuln * 0.15 +
+           chronic * 0.15 + effScore * 0.10 + scale * 0.10) * 1000
+        ) / 10;
       }
 
       const pop = wi.population || 0;
@@ -255,6 +322,10 @@ export function getCountries() {
         cluster_breakdown,
         cluster_history,
         issue_pct_funded,
+        cost_per_person,
+        cost_ratio,
+        priority_index,
+        global_medians:    globalMedians,
         affected: {
           boys:          af.boys          || 0,
           girls:         af.girls         || 0,
