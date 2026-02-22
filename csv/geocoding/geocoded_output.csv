@@ -1699,7 +1699,7 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1698,Flood,Nigeria,Africa,"Jigawa, Bauchi, Taraba, Yobe provinces",10.314762,9.845442,60,4,,3000,3064
 1699,Flood,Nigeria,Africa,Kebbi province,12.457346,4.200611,,,,1000,1000
 1700,Flood,Nigeria,Africa,Gusau district (Zamfara province),12.165432,6.660409,,,,2000,2000
-1701,Flood,Pakistan,Asia,"Lasbela, Jhal Magsi, Killa Saifullah, Pishin, Noshki, Kachhi, Khuzdar, Kalat and Chaman districts (Balochistan); Khyber Pakhtunkhwa, Sindh, Punjab, Azad Jammu, Gilgit Baltistan and Kashmir provinces",-4.481577,138.93526,1739,12865,33000000,,33014604
+1701,Flood,Pakistan,Asia,"Lasbela, Jhal Magsi, Killa Saifullah, Pishin, Noshki, Kachhi, Khuzdar, Kalat and Chaman districts (Balochistan); Khyber Pakhtunkhwa, Sindh, Punjab, Azad Jammu, Gilgit Baltistan and Kashmir provinces",25.87,66.7129,1739,12865,33000000,,33014604
 1702,Earthquake,Pakistan,Asia,"Badin District, Tharparkar District, Mirpur Khas District districts (Sindh province)",24.656063,68.83902,12,100,914192,,914304
 1703,Earthquake,Pakistan,Asia,"North-West Frontier, Gilgit-Baltistan provinces, Khyber Agency district (Federally Administered Tribal Areas province)",35.92081,74.314044,6,42,100,,148
 1704,Earthquake,Pakistan,Asia,Bajaur Agency district (Federally Administered Tribal Areas province),34.730755,71.51272,3,,,,3
@@ -1711,14 +1711,14 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1710,Earthquake,Pakistan,Asia,Administrative unit not available district (Jammu and Kashmir province),33.314545,75.25874,19,40,140742,,140801
 1711,Earthquake,Pakistan,Asia,Lakki Marwat District (southern Khyber Pakhtunkhwa),32.608025,70.906166,43,,,,43
 1712,Flood,Pakistan,Asia,"Warri, Barkand, Gandi Gari villages (Upper Dir district, North-West Frontier province)",35.137365,72.150229,36,20,,,56
-1713,Earthquake,Pakistan,Asia,47 km north-west of the Barishal Town,-25.863611,25.658611,1,2,150,,153
+1713,Earthquake,Pakistan,Asia,Barishal,22.7133,90.3496,1,2,150,,153
 1714,Flood,Pakistan,Asia,"Gwadar, Killa Abdullah, Kech districts (Balochistan province)",30.728048,66.65997,15,,5000,,5015
 1715,Flood,Pakistan,Asia,"Govek, Faqir, Api villages (North Waziristan Agency district, Federally Administered Tribal Areas province)",32.969845,70.276886,13,300,,,313
-1716,Flood,Pakistan,Asia,"Landi Kotal, Jamrud villages (Peshawar district, North-West Frontier province), Chrasadda, Kohistan, Upper Dir districts (North-West Frontier province), Khyber Agency district (Federally Administered Tribal Areas province)",-4.481577,138.93526,130,,2000,,2130
+1716,Flood,Pakistan,Asia,"Landi Kotal, Jamrud villages (Peshawar district, North-West Frontier province), Chrasadda, Kohistan, Upper Dir districts (North-West Frontier province), Khyber Agency district (Federally Administered Tribal Areas province)",34.1053,71.1552,130,,2000,,2130
 1717,Flood,Pakistan,Asia,"Baidara, Barinjal villages (Swat district, North-West Frontier province)",34.77175,72.36015,22,,500,,522
 1718,Flood,Pakistan,Asia,"Oshai Darray village (Upper Dir district, North -West Frontier province)",35.20481,71.8783,80,,,,80
 1719,Flood,Pakistan,Asia,"Madyan village (Swat district, North-West Frontier province)",35.141291,72.53744,10,,,,10
-1720,Earthquake,Pakistan,Asia,"Khanozai village (Pishin District district, Balochistan province), Kawas village (Ziarat District district, Balochistan province), Harnai area (Sibi District district, Balochistan province)",-4.481577,138.93526,166,320,75000,,75486
+1720,Earthquake,Pakistan,Asia,"Khanozai village (Pishin District district, Balochistan province), Kawas village (Ziarat District district, Balochistan province), Harnai area (Sibi District district, Balochistan province)",30.6207,67.3265,166,320,75000,,75486
 1721,Flood,Pakistan,Asia,Barkhan district (Balochistan province),29.900656,69.52215,60,,4000,,4060
 1722,Earthquake,Pakistan,Asia,"Garhi Khairo village (Jacobabad district, Sindh province), Quetta, Chagai districts (Balochistan province)",28.059792,68.16944,2,,1000,,1002
 1723,Earthquake,Pakistan,Asia,Awaran District district (Balochistan province),26.461313,65.236755,22,50,,,72
@@ -1727,7 +1727,6 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1726,Earthquake,Pakistan,Asia,Khyber Agency district (Federally Administrered Tribal Areas province),34.00239,71.37921,3,85,,,88
 1727,Flood,Pakistan,Asia,Khyber Agency district (Federally Administered Tribal Areas province),34.00239,71.37921,26,3,,,29
 1728,Flood,Pakistan,Asia,"Turbat (Kech); Gwadar, Panjgur, Pishin, Ziarat, Qila Abdullah districts (Balochistan province)",26.005388,63.05792,13,650,60000,,60663
-1729,Flood,Pakistan,Asia,,28.674204,77.73164,60,,5000,,5060
 1730,Flood,Pakistan,Asia,Khyber Pakhtunkhwa province; Lasbellla district (Balochistan Province),34.012385,71.578746,25,22,,,47
 1731,Flood,Pakistan,Asia,"Mardan, Dir Lower districts (Khyber Pakhtunkhwa province)",34.197617,72.03963,11,,,,11
 1732,Flood,Pakistan,Asia,"Bajaur, Buner districts (Khyber Pakhtunkhwa Province)",34.477867,72.48591,7,,5000,,5007
@@ -1737,8 +1736,7 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1736,Earthquake,Pakistan,Asia,Khyber Pakhtunkhwa,34.012385,71.578746,11,79,860,,950
 1737,Flood,Pakistan,Asia,"Awaran, Zhob and Khuzdar Districts (Balochistan Province)",27.806559,66.61078,10,,,,10
 1738,Flood,Pakistan,Asia,"Mardan, Peshawar, South Waziristan and Khybe districts ( Khyber Pakhtunkhwa Province)",32.32314,70.058624,14,,50,,64
-1739,Flood,Pakistan,Asia,"Khuzdar City/Qusdar (Khuzdar District, central Balochistan), Kech District (southern Balochistan), Lasbela District (southern Balochistan) Mach Town (Kachhi District, central Balochistan); Khyber Pakhtunkhwa Province",-4.481577,138.93526,12,3,,,15
-1740,Flood,Pakistan,Asia,,28.674204,77.73164,13,,,,13
+1739,Flood,Pakistan,Asia,"Khuzdar City/Qusdar (Khuzdar District, central Balochistan), Kech District (southern Balochistan), Lasbela District (southern Balochistan) Mach Town (Kachhi District, central Balochistan); Khyber Pakhtunkhwa Province",27.8066,66.6107,12,3,,,15
 1741,Flood,Pakistan,Asia,Punjab Province,31.565682,74.314183,16,,,,16
 1742,Flood,Pakistan,Asia,"Punjab, Sindh, and Balochistan",31.565682,74.314183,6,101,89500,,89607
 1743,Flood,Pakistan,Asia,"Bajaur, Khyber, Makaland, Mohmand, and Lower and Upper Dir districts (Khyber Pakhtunkhwa Province); Gwadar (Balochistan province) Province",35.20481,71.8783,40,62,2770,400,3272
@@ -1750,8 +1748,8 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1749,Flood,Pakistan,Asia,"Sindh, Khyber Pakhtunkhwa provinces",34.012385,71.578746,26,4,,,30
 1750,Flood,Pakistan,Asia,Khyber Pakhtunkhwa Province,34.012385,71.578746,66,141,4000,695,4902
 1751,Flood,Pakistan,Asia,"Sindh province, Khyber Pakhtunkhwa, Baluchistan",34.012385,71.578746,410,170,1550000,,1550580
-1752,Earthquake,Pakistan,Asia,"Bisham Tehsil area (Shangla District district, North-West Frontier province), Batagram District, Mansehra District, Kohistan District districts (North-West Frontier province)",-4.481577,138.93526,24,63,10765,2320,13172
-1753,Flood,Pakistan,Asia,"Awaran, Gwadar, Jaffarabad, Jahl Magsi, Kech, Killa Abdullah, Lasbela, Nasirabad, Pishin, Quetta districts (Balochistan province), Abbottabad, Batagram, Kohistan, Lower Dir, Upper Dir, Malakand, Mansehra, Mardan, Shangla, Swat, Chitral districts (North-West Frontier province), Muzaffarabad, Bagh, Astore districts (Jammu and Kashmir province)",-4.481577,138.93526,520,450,7000000,,7000970
+1752,Earthquake,Pakistan,Asia,"Bisham Tehsil area (Shangla District district, North-West Frontier province), Batagram District, Mansehra District, Kohistan District districts (North-West Frontier province)",34.6755,73.0295,24,63,10765,2320,13172
+1753,Flood,Pakistan,Asia,"Awaran, Gwadar, Jaffarabad, Jahl Magsi, Kech, Killa Abdullah, Lasbela, Nasirabad, Pishin, Quetta districts (Balochistan province), Abbottabad, Batagram, Kohistan, Lower Dir, Upper Dir, Malakand, Mansehra, Mardan, Shangla, Swat, Chitral districts (North-West Frontier province), Muzaffarabad, Bagh, Astore districts (Jammu and Kashmir province)",26.4749,65.2679,520,450,7000000,,7000970
 1754,Flood,Pakistan,Asia,"Karachi Central, Karachi East, Karachi South, Karachi West, Malir districts (Sindh province)",24.855368,67.02053,228,186,,,414
 1755,Flood,Pakistan,Asia,"Karachi Central, Karachi East, Karachi South, Karachi West districts (Sindh province)",24.882362,67.06704,44,20,,,64
 1756,Flood,Pakistan,Asia,"Peshawar district (North-West Frontier province), Balochistan province",34.00801,71.57228,36,12,200000,,200048
@@ -1759,10 +1757,6 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1758,Flood,Pakistan,Asia,"Karachi Central, Karachi East, Karachi South, Karachi West districts (Sindh province)",24.882362,67.06704,52,70,,,122
 1759,Flood,Pakistan,Asia,"Batagram, Kohistan, Shangla, Swat districts (North-West Frontier province)",34.77175,72.36015,22,,,,22
 1760,Flood,Pakistan,Asia,"Uchosht village (Chitral district, North-West Frontier province)",35.854168,71.7873,46,,,,46
-1761,Flood,Pakistan,Asia,"Barkhan, Bolan, Kohlu, Nasirabad, Sibi districts (Balochistan province), Mohmand Agency, Khyber Agency (Federally Administered Tribal Areas), Bannu, Batagram, Charsadda, D. I. Khan, Kohat, Kohistan, Lakki Marwat, Lower Dir, Mansehra, Nowshera, Peshawar, Shangla, Swat, Tank districts (North-West Frontier province), Khushab, Layyah, Mianwali, Muzaffargarh, Rajanpur districts (Punjab province), Bagh, Gilgit-Baltistan, Mirpur, Muzaffarabad districts (Jammu and Kashmir province), Sindh province",-4.481577,138.93526,1985,2946,20356550,,20361481
-1762,Flood,Pakistan,Asia,"Jaffarabad, Jhal Magsi, Nasirabad districts (Balochistan province), Dera Ghazi Kan, Rajanpur districts (Punjab province), Dadu, Ghotki, Jacobabad, Larkana (Sindh province), Jammu and Kashmir provinces",-4.481577,138.93526,480,2902,5046462,,5049844
-1763,Earthquake,Pakistan,Asia,"Mashkhel area (Chagai district, Balochistan province), Washuk area (Kharan district, Balochistan province), Karachi Central District, Karachi East District, Karachi South District, Karachi West District districts (Sindh province)",-4.481577,138.93526,41,175,15000,,15216
-1764,Flood,Pakistan,Asia,"Bolan District, Jaffarabad District, Jhal Magsi District, Kalat District, Kech District, Khuzdar District, Lasbela District, Loralai District, Mastung District, Nasirabad District, Quetta District, Sibi District districts (Balochistan province), Chitral District (North-West Frontier province), Bahawalpur District, Chakwal District, Dera Ghazi Khan District, Gujranwala District, Jhang District, Kasur District, Khanewal District, Layyah District, Mandi Bahauddin District, Mianwali District, Muzaffargarh District, Narowal District, Rahim Yar Khan District, Rajanpur District, Sahiwal District, Sheikhupura District, Sialkot District, Toba Tek Singh District, Vehari District districts (Punjab province), Dadu District, Ghotki District, Hyderabad District, Jacobabad District, Khairpur District, Larkana District, Mirpur Khas District, Naushahro Feroze District, Nawabshah District, Shikarpur District, Sukkur District districts (Sindh province)",-4.481577,138.93526,234,855,1496870,,1497959
 1765,Earthquake,Pakistan,Asia,"Awaran District, Chagai District, Gwadar District, Kech District, Khuzdar District, Panjgur District districts (Balochistan province)",29.352959,64.69928,399,599,185150,,186148
 1766,Flood,Pakistan,Asia,"Punjab, Jammu and Kashmir, North-West Frontier, Balochistan, Sindh provinces",31.565682,74.314183,238,232,1572191,,1572661
 1767,Flood,Pakistan,Asia,Jammu and Kashmir provinces,33.314545,75.25874,12,,,,12
@@ -1770,37 +1764,24 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1769,Flood,Pakistan,Asia,"Balochistan, Sindh provinces",24.854684,67.020706,32,,,2900,2932
 1770,Flood,Pakistan,Asia,"Federally Administered Tribal Areas, North-West Frontier, Punjab provinces",31.565682,74.314183,32,,,,32
 1771,Flood,Pakistan,Asia,"Rawalpindi District (Punjab province), Islamabad District (Islamabad province), Jammu and Kashmir provinces",33.59134,73.053505,18,,,,18
-1772,Flood,Pakistan,Asia,North-West Frontier province,-25.863611,25.658611,10,,,,10
 1773,Flood,Pakistan,Asia,"Ursoon, Drosh village (Chitral district, Khyber Pakhtunkhwa province)",35.854168,71.7873,46,,235,175,456
 1774,Flood,Pakistan,Asia,Karachi district (Sindh province),24.855368,67.02053,10,,,,10
 1775,Flood,Pakistan,Asia,"Karachi, Hyderabad, Tando Allahyar, Mirpur Khas (Sindh), Balochistan state",28.52806,67.73407,22,60,2900,,2982
 1776,Flood,Pakistan,Asia,"Punjab, Khyber Pakhtunkhwa, Balochistan, Sindh Azad Jammu and Kashmir",34.012385,71.578746,217,320,28855,,29392
-1777,Flood,Pakistan,Asia,"Tehsil Hub, Jangi village, Lasbela district, Dera Bugti district, Chagai, Kalat, Bolan, Kholu districts (Balouchistan province), Sindh (Karachi), Jhang, Rawalpindi (Punjab), Azad Jammu & Kashmir, Shareeb Khana (Bajaur) in the Federally Administered Tribal Areas, Chitral (Khyber Pakhtunkhwa)",-4.481577,138.93526,167,167,2200,,2534
 1778,Flood,Pakistan,Asia,Karachi,24.855368,67.02053,16,,,,16
-1779,Drought,Pakistan,Asia,"Thatta, Dadu, Sanghar, Tharparkar, Umerkot, Kambar Shadadkot, Jamshoro, Badin distrcits (Sindh province ); Pishin, Killa Abdullah, Noshki, Chaghi, Kharan, Washuk, Panjgur, Kech, Jhal Magsi, Awaran, Zhob, Jaffarabad, Barkhan, Quetta, Killah Saifullah, Kohlu, Naseerabad, Kachhi districts (Balochistan province)",-4.481577,138.93526,77,,4680912,,4680989
 1780,Flood,Pakistan,Asia,Khyber Pakhtunkhwa,34.012385,71.578746,24,24,155,,203
-1781,Flood,Pakistan,Asia,"Charsadda, Khyber, Bajaur, Malakand, Mardan, Upper Dir, North Waziristan, Mohmand, Bajaur, Lower-Chitral, Lower Dir, Shangla, Tank, Kurram, Swabi and Hangu districts (Khyber Pakhtunkhwa Province)",-4.481577,138.93526,2,6,,250,258
 1782,Flood,Pakistan,Asia,"Khyber Pakhtunkhwa, Punjab, Balochistan, Sindh",34.012385,71.578746,194,,,,194
 1783,Flood,Pakistan,Asia,"Balochistan, Khyber Pakhtunkhwa, and Punjab",34.012385,71.578746,33,48,150,,231
-1784,Flood,Pakistan,Asia,"Badin, Dadu, Hyderabad, Karachi, Larkana, Nawabshah, Shikarpur, Tharparkar, Thatta districts (Sindh province), Awaran, Bolan, Jaffarabad, Jhal Magsi, Kech, Khuzdar, Lasbela, Nasirabad, Zhob, Ziarat, Sibi districts (Balochistan province), Narowal, Sialkot districts (Punjab province), Buner, Charsadda, Nowshera, Swabi (North-West Frontier province)",-4.481577,138.93526,230,456,1265767,,1266453
 1785,Flood,Pakistan,Asia,"Kohlu, Sibi, Nasirabad districts (Balochistan province)",28.546549,68.21555,20,,,3500,3520
-1786,Flood,Pakistan,Asia,"Monda village (Doda district, Jammu and Kashmir province), Charsadda, Chitral, D. I. Khan, Karak, Nowshera, Mansehra, Peshawar, Shangla, Swat districts (North-West Frontier province), Dadu, Ghotki, Thatta, Jacobabad, Khairpur, Shikarpur, Sukkur districts (Sindh province), Punjab province",-4.481577,138.93526,39,,460073,,460112
-1787,Earthquake,Pakistan,Asia,"Bisham Tehsil, Chakisar Tehsil areas (Shangla District district, North-West Frontier province), Palas Sub-Division area (Kohistan District district, North-West Frontier province), Abbottabad District, Mansehra District, Batagram District districts (North-West Frontier province), Gujranwala District, Gujrat District, Rawalpindi District districts (Punjab province), Islamabad District district (Islamabad province),",-4.481577,138.93526,73338,128309,,5000000,5201647
 1788,Flood,Pakistan,Asia,"Karachi Central, Karachi East, Karachi South, Karachi West districts (Sindh province)",24.882362,67.06704,74,50,,5000,5124
 1789,Flood,Pakistan,Asia,"Punjab, Jammu and Kashmir provinces",33.314545,75.25874,20,,,,20
-1790,Flood,Pakistan,Asia,Mardan district (North-West Frontier province),-25.863611,25.658611,233,175,,600,1008
 1791,Flood,Pakistan,Asia,"Rah Nolia, Rano Mera villages (Kohistan district, North-West Frontier province)",25.892415,68.440731,22,,,,22
-1792,Flood,Pakistan,Asia,Mardan district (North-West Frontier province),-25.863611,25.658611,14,10,,,24
 1793,Flood,Pakistan,Asia,"North-West Frontier, Jammu and Kashmir provinces",33.559707,75.289307,26,,1200,,1226
-1794,Flood,Pakistan,Asia,"Badin, Dadu, Ghotki, Hyderabad, Jacobabad, Karachi Central, Karachi East, Karachi South, Karachi West, Khaipur, Larkana, Malir, Mirpur Khas, Naushahro Feroze, Nawabshah, Sanghar, Shikarpur, Sukkur, Tharparkar, Thatta, Umer Kot districts (Sindh province)",-4.481577,138.93526,509,755,5400000,,5401264
 1795,Flood,Pakistan,Asia,"Azad Jammu and Kashmir, Khyber Pakhtunkhwa",33.314545,75.25874,16,,,,16
-1796,Flood,Pakistan,Asia,"Sialkot, Narowal, Lahore, Gujranwala, Mandi Bahauddin, Gujrat, Hafizabad, Jhelum, Jhang, Sargodha, Okara, Attock districts (Punjab province), Jammu and Kashmir provinces",-4.481577,138.93526,255,673,2530000,,2530928
 1797,Flood,Pakistan,Asia,Neelum Valley,34.795208,74.1875,28,,,,28
-1798,Earthquake,Pakistan,Asia,"Islamabad District district (Islamabad province), Chakwal District, Gujranwala District, Jhang District, Jhelum District, Kasur District, Mianwali District, Multan District, Muzaffargarh District, Narowal District, Rawalpindi District, Sahiwal District, Sargodha District, Sheikhupura District districts (Punjab province), Azad area (Jammu and Kashmir province), North-West Frontier province",-4.481577,138.93526,280,1745,366945,133900,502870
 1799,Flood,Pakistan,Asia,"Kohistan, Shangla districts (Khyber Pakhtunkhwa province), Gilgit-Balistan (40409), Azad Kashmir (40408) provinces",34.888557,72.595985,92,77,,,169
 1800,Flood,Pakistan,Asia,"Azad Jammu and Kashmir, Punjab, Federally Administered Tribal Areas (Orakzai), Khyber Pakhtunkhwa, Balochistan, Gilgit-Baltistan",33.74666,70.94172,141,127,,4285,4553
 1801,Flood,Pakistan,Asia,"Peshawar, South Waziristan, Tank, Khyber, Lower Kohistan, Mardan, Hangu, Orakza, Bajaur (Khyber Pakhtunkhwa Province)Orakzai, Peshawar, Tank and",32.32314,70.058624,14,27,750,,791
-1802,Flood,Pakistan,Asia,"Ismalia, Kalu Khan, Adina villages (Swabi district, North-West Frontier province), Shahbaz Garrhi, Garryala villages (Mardan district, North-West Frontier province)",-4.481577,138.93526,36,,75000,,75036
 1803,Flood,Pakistan,Asia,Jammu and Kashmir provinces,33.314545,75.25874,20,,,,20
 1804,Flood,Pakistan,Asia,"Jammu and Kashmir, Punjab, North-West Frontier provinces",31.565682,74.314183,40,,2000,,2040
 1805,Flood,Pakistan,Asia,"Punjab, Sindh, Jammu and Kashmir provinces",33.314545,75.25874,42,20,58000,,58062
@@ -1811,13 +1792,13 @@ disaster_id,disaster_type,country,region,location,lat,lng,deaths,injuries,genera
 1810,Flood,Panama,Americas,"San Miguelito district (Panama province), Bocas del Toro, Veraguas, Chiriqui provinces",9.055106,-79.493306,4,,10000,1500,11504
 1811,Flood,Panama,Americas,"Capira, Chame, Chiman, San Carlos, San Miguelito, Arraiján, Chepo, La Chorrera, Panama, Kuna de Madungandi districts (Panama province), Chiriqui province",30.177941,-85.805315,,,1900,,1900
 1812,Flood,Panama,Americas,"Capira, Chepo, La Chorrera, Kuna de Madungandi districts (Panama province), Kuna Yala district (Kuna Yala province), Aguadulce, Anton, La Pintada, Nata, Ola, Penonome districts (Cocle province), Chagres, Donoso districts (Colon province)",30.177941,-85.805315,11,,3240,1290,4541
-1813,Flood,Panama,Americas,"Panama, Colon provinces",9.355301,-79.897408,16,,11650,,11666
+1813,Flood,Panama,Americas,Colon,9.355301,-79.897408,16,,11650,,11666
 1814,Earthquake,Panama,Americas,"Puerto Armuelles municipality (Baru district, Chiriqui province)",8.271901,-82.8593,2,75,1000,,1077
 1815,Earthquake,Panama,Americas,"Colon district (Colon province), Panama district (Panama province)",9.356469,-79.90248,,,,340,340
 1816,Flood,Panama,Americas,"Capira, Chame, Chepo, Chiman, Kuna de Madungandí, La Chorrera, San Carlos, Panama districts (Panama province), Portobelo, Colon districts (Colon province), Darien province",30.177941,-85.805315,13,203,24407,,24623
 1817,Flood,Panama,Americas,"Panama district (Panama province), Santiago district (Veraguas province)",8.097437,-80.977295,,,3500,,3500
 1818,Flood,Panama,Americas,"Changuinola, Almirante, Chiriquí Grande (Bocas del Toro Province); Chiriquí, and Nabe-Buglé",8.949473,-82.11668,1,,27189,,27190
-1819,Flood,Panama,Americas,"Cristóbal Town (Colón Province, central Panama), Las Garzas de Pacora locality (eastern Panama); Panamá Oeste, Chiriquí",8.982861,-79.52339,,,3001,,3001
+1819,Flood,Panama,Americas,Cristobal Town,8.982861,-79.52339,,,3001,,3001
 1820,Flood,Panama,Americas,"Bocas del Toro, Veraguas, Darien, Colon, Cocle, Kuna Yala, Panama provinces",9.078349,-79.363632,1,,15000,,15001
 1821,Flood,Panama,Americas,"Darien, Embera provinces",8.115198,-78.019104,,,7698,,7698
 1822,Flood,Panama,Americas,"Panama, Los Santos provinces",9.078125,-79.35947,,,1035,,1035
