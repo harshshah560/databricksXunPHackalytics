@@ -1,0 +1,344 @@
+/* ═══════════════════════════════════════════════════
+   ProjectsDrawer.css
+   Right-side slide-in panel. Uses same UN/OCHA tokens
+   as CountryModal via CSS variable inheritance.
+   ═══════════════════════════════════════════════════ */
+
+/* ── Overlay (semi-transparent backdrop) ── */
+.pd-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;                          /* above CountryModal (1000) */
+  background: rgba(26, 43, 74, 0.35);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-end;
+}
+
+/* ── Drawer panel ── */
+.pd-drawer {
+  width: 440px;
+  max-width: 100vw;
+  height: 100%;
+  background: var(--cm-panel-bg, #ffffff);
+  border-left: 1px solid var(--cm-panel-border, rgba(0,0,0,0.10));
+  border-left-top: 3px solid #009EDB;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: -8px 0 40px rgba(0, 0, 0, 0.14);
+}
+
+/* ── Header ── */
+.pd-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px 14px;
+  border-bottom: 3px solid #009EDB;
+  background: color-mix(in srgb, #009EDB 5%, var(--cm-panel-bg, #fff));
+  flex-shrink: 0;
+}
+.pd-header-left { display:flex; flex-direction:column; gap:2px; }
+.pd-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--cm-title, #1A2B4A);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+.pd-subtitle {
+  font-size: 0.68rem;
+  color: var(--cm-muted, #666);
+  font-weight: 500;
+}
+.pd-close {
+  background: var(--cm-close-bg, rgba(0,0,0,0.05));
+  border: 1px solid var(--cm-panel-border, rgba(0,0,0,0.10));
+  border-radius: 6px;
+  color: var(--cm-muted, #666);
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background 0.12s, color 0.12s;
+}
+.pd-close:hover { background: rgba(192,57,43,0.08); color: #C0392B; }
+
+/* ── Filters ── */
+.pd-filters {
+  padding: 10px 14px 0;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--cm-sec-border, rgba(0,0,0,0.07));
+  padding-bottom: 10px;
+}
+.pd-search-wrap {
+  position: relative;
+  margin-bottom: 8px;
+}
+.pd-search-icon {
+  position: absolute;
+  left: 9px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--cm-muted, #666);
+  pointer-events: none;
+}
+.pd-search {
+  width: 100%;
+  padding: 7px 10px 7px 30px;
+  border-radius: 6px;
+  border: 1px solid var(--cm-panel-border, rgba(0,0,0,0.12));
+  background: var(--cm-issue-bg, rgba(0,0,0,0.02));
+  color: var(--cm-text, #333);
+  font-size: 0.75rem;
+  outline: none;
+  transition: border-color 0.12s;
+  box-sizing: border-box;
+}
+.pd-search:focus { border-color: #009EDB; }
+.pd-search::placeholder { color: var(--cm-faint, #999); }
+
+.pd-sector-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.pd-sec-pill {
+  padding: 3px 9px;
+  border-radius: 12px;
+  border: 1px solid var(--cm-panel-border, rgba(0,0,0,0.10));
+  background: transparent;
+  color: var(--cm-muted, #666);
+  font-size: 0.63rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.12s;
+  white-space: nowrap;
+}
+.pd-sec-pill:hover { background: rgba(0,158,219,0.06); border-color: rgba(0,158,219,0.3); }
+.pd-sec-pill--on {
+  background: rgba(0,158,219,0.10);
+  border-color: rgba(0,158,219,0.45);
+  color: #009EDB;
+  font-weight: 700;
+}
+
+/* ── Tabs ── */
+.pd-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--cm-sec-border, rgba(0,0,0,0.07));
+  padding: 0 14px;
+  flex-shrink: 0;
+}
+.pd-tab {
+  padding: 8px 12px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--cm-muted, #666);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.12s, border-color 0.12s;
+  white-space: nowrap;
+}
+.pd-tab:hover { color: var(--cm-text, #333); }
+.pd-tab--on { color: #009EDB; border-bottom-color: #009EDB; }
+
+/* ── Summary bar ── */
+.pd-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 7px 16px;
+  background: color-mix(in srgb, #009EDB 4%, var(--cm-panel-bg, #fff));
+  font-size: 0.67rem;
+  color: var(--cm-muted, #666);
+  border-bottom: 1px solid var(--cm-sec-border, rgba(0,0,0,0.07));
+  flex-shrink: 0;
+}
+.pd-summary strong { color: var(--cm-title, #1A2B4A); }
+.pd-sum-dot {
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: var(--cm-faint, #ccc);
+  flex-shrink: 0;
+}
+
+/* ── Project list ── */
+.pd-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--cm-bar-track, rgba(0,0,0,0.06)) transparent;
+}
+.pd-list::-webkit-scrollbar { width: 4px; }
+.pd-list::-webkit-scrollbar-thumb { background: var(--cm-bar-track); border-radius: 10px; }
+
+/* ── Project card ── */
+.pd-card {
+  border: 1px solid var(--cm-sec-border, rgba(0,0,0,0.08));
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--cm-issue-bg, rgba(0,0,0,0.015));
+  transition: border-color 0.12s;
+}
+.pd-card:hover { border-color: rgba(0,158,219,0.3); }
+
+.pd-card--comparable {
+  border-color: rgba(0,158,219,0.15);
+  background: color-mix(in srgb, #009EDB 3%, var(--cm-panel-bg, #fff));
+}
+
+.pd-card-header {
+  width: 100%;
+  padding: 10px 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  position: relative;
+  transition: background 0.1s;
+}
+.pd-card-header:hover { background: var(--cm-issue-hover, rgba(0,0,0,0.03)); }
+
+.pd-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.pd-card-sector {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #009EDB;
+  background: rgba(0,158,219,0.10);
+  padding: 1px 6px;
+  border-radius: 10px;
+}
+.pd-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.pd-alloc {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--cm-title, #1A2B4A);
+  font-variant-numeric: tabular-nums;
+}
+.pd-comparable-tag {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.6rem;
+  color: var(--cm-muted, #666);
+  background: var(--cm-bar-track, rgba(0,0,0,0.05));
+  padding: 1px 6px;
+  border-radius: 10px;
+}
+
+.pd-card-title {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--cm-text, #333);
+  line-height: 1.4;
+  margin: 0 20px 5px 0;
+}
+
+.pd-card-stats {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pd-stat {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.62rem;
+  color: var(--cm-muted, #666);
+}
+
+.pd-cpp-chip {
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 10px;
+  border: 1px solid;
+}
+
+.pd-card-chevron {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: var(--cm-muted, #999);
+}
+
+/* ── Card expanded body ── */
+.pd-card-body { overflow: hidden; }
+.pd-card-inner {
+  padding: 10px 14px 12px;
+  border-top: 1px solid var(--cm-sec-border, rgba(0,0,0,0.07));
+  background: color-mix(in srgb, #009EDB 2%, var(--cm-panel-bg, #fff));
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.pd-detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.7rem;
+  padding: 3px 0;
+  border-bottom: 1px solid var(--cm-sec-border, rgba(0,0,0,0.05));
+}
+.pd-detail-row:last-of-type { border-bottom: none; }
+.pd-detail-label { color: var(--cm-muted, #666); flex-shrink: 0; min-width: 100px; }
+.pd-detail-val { color: var(--cm-text, #333); font-weight: 600; text-align: right; }
+.pd-detail-alloc { color: var(--cm-title, #1A2B4A); font-size: 0.82rem; }
+.pd-code { font-family: 'Courier New', monospace; font-size: 0.62rem; color: var(--cm-muted); }
+
+.pd-cerf-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 6px;
+  padding: 6px 12px;
+  border-radius: 5px;
+  border: 1px solid rgba(0,158,219,0.4);
+  background: rgba(0,158,219,0.07);
+  color: #009EDB;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.12s;
+  width: fit-content;
+}
+.pd-cerf-link:hover { background: rgba(0,158,219,0.15); }
+
+/* ── Empty state ── */
+.pd-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--cm-muted, #666);
+  font-size: 0.78rem;
+}
+.pd-empty-hint { font-size: 0.68rem; margin-top: 6px; color: var(--cm-faint, #999); }
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .pd-drawer { width: 100vw; }
+}

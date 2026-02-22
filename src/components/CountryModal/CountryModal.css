@@ -127,6 +127,36 @@
 }
 .cm-close:hover { background: rgba(192,57,43,0.1); color: #C0392B; }
 
+/* Projects button in header */
+.cm-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 14px;
+  flex-shrink: 0;
+}
+
+.cm-projects-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 158, 219, 0.4);
+  background: rgba(0, 158, 219, 0.07);
+  color: #009EDB;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  transition: background 0.12s, border-color 0.12s;
+  white-space: nowrap;
+}
+.cm-projects-btn:hover {
+  background: rgba(0, 158, 219, 0.16);
+  border-color: rgba(0, 158, 219, 0.65);
+}
+
 /* ── Body ── */
 .cm-body {
   overflow-y: auto;

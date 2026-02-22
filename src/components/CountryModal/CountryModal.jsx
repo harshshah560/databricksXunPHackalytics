@@ -324,7 +324,7 @@ function SectorRow({ cat, data, history, isOpen, onToggle }) {
 // ── Main modal ────────────────────────────────────────────────────
 export default function CountryModal({ country, onClose }) {
   const overlayRef = useRef(null);
-  const [openSector, setOpenSector] = useState(null);
+  const [openSector,   setOpenSector]   = useState(null);
 
   useEffect(() => {
     const onKey = e => { if (e.key === 'Escape') onClose(); };

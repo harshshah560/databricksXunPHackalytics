@@ -1,0 +1,1623 @@
+{
+  "AFG": [
+    {
+      "code": "HAFG26",
+      "plan": "Afghanistan Humanitarian Needs and Response Plan 2026",
+      "year": "2026",
+      "categories": "Humanitarian needs and response plan | cluster | en",
+      "req_usd": 1714181496.0
+    },
+    {
+      "code": "HAFG25",
+      "plan": "Afghanistan Humanitarian Needs and Response Plan 2025",
+      "year": "2025",
+      "categories": "Humanitarian needs and response plan | cluster | en",
+      "req_usd": 2416811546.0
+    },
+    {
+      "code": "HAFG24",
+      "plan": "Afghanistan Humanitarian Needs and Response Plan 2024",
+      "year": "2024",
+      "categories": "Humanitarian needs and response plan | cluster | en",
+      "req_usd": 3059587797.0
+    },
+    {
+      "code": "HAFG23",
+      "plan": "Afghanistan Humanitarian Response Plan 2023",
+      "year": "2023",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 3227372908.0
+    },
+    {
+      "code": "HAFG22",
+      "plan": "Afghanistan Humanitarian Response Plan 2022",
+      "year": "2022",
+      "categories": "en | Humanitarian response plan | cluster",
+      "req_usd": 4442200000.0
+    },
+    {
+      "code": "FAFG21",
+      "plan": "Afghanistan Flash Appeal 2021",
+      "year": "2021",
+      "categories": "cluster | en | Flash appeal",
+      "req_usd": 606261163.0
+    },
+    {
+      "code": "HAFG21",
+      "plan": "Afghanistan Humanitarian Response Plan 2021",
+      "year": "2021",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 868666483.0
+    },
+    {
+      "code": "HAFG20",
+      "plan": "Afghanistan Humanitarian Response Plan 2020",
+      "year": "2020",
+      "categories": "en | Humanitarian response plan | cluster",
+      "req_usd": 1131050820.0
+    },
+    {
+      "code": "HAFG19",
+      "plan": "Afghanistan Humanitarian Response Plan 2019",
+      "year": "2019",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 611759986.0
+    },
+    {
+      "code": "HAFG18",
+      "plan": "Afghanistan Humanitarian Response Plan 2018",
+      "year": "2018",
+      "categories": "Humanitarian response plan | cluster | en",
+      "req_usd": 598923998.0
+    }
+  ],
+  "BFA": [
+    {
+      "code": "HBFA26",
+      "plan": "Burkina Faso Besoins Humanitaires et Plan de R\u00e9ponse 2026",
+      "year": "2026",
+      "categories": "Humanitarian needs and response plan | cluster | fr",
+      "req_usd": 662000000.0
+    },
+    {
+      "code": "HBFA25",
+      "plan": "Burkina Faso Besoins Humanitaires et Plan de R\u00e9ponse 2025",
+      "year": "2025",
+      "categories": "Humanitarian needs and response plan | cluster | fr",
+      "req_usd": 792565236.0
+    },
+    {
+      "code": "HBFA24",
+      "plan": "Burkina Faso Plan de R\u00e9ponse Humanitaire 2024",
+      "year": "2024",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 934604385.0
+    },
+    {
+      "code": "HBFA23",
+      "plan": "Burkina Faso Plan de R\u00e9ponse Humanitaire 2023",
+      "year": "2023",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 876731475.0
+    },
+    {
+      "code": "HBFA22",
+      "plan": "Burkina Faso Plan de R\u00e9ponse Humanitaire 2022",
+      "year": "2022",
+      "categories": "fr | Humanitarian response plan | cluster",
+      "req_usd": 805099698.0
+    },
+    {
+      "code": "HBFA21",
+      "plan": "Burkina Faso Plan de R\u00e9ponse Humanitaire 2021",
+      "year": "2021",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 607875894.0
+    },
+    {
+      "code": "HBFA20",
+      "plan": "Burkina Faso Plan de R\u00e9ponse Humanitaire 2020",
+      "year": "2020",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 424357861.0
+    },
+    {
+      "code": "OBFA19",
+      "plan": "Burkina Faso Plan d'Urgence 2019",
+      "year": "2019",
+      "categories": "cluster | fr | Other",
+      "req_usd": 186965134.0
+    },
+    {
+      "code": "OBFA18",
+      "plan": "Burkina Faso Plan d'Urgence et de R\u00e9silience 2018",
+      "year": "2018",
+      "categories": "sector | fr | Other",
+      "req_usd": 90291110.0
+    },
+    {
+      "code": "HBFA17",
+      "plan": "Burkina Faso Plan de R\u00e9ponse Humanitaire 2017",
+      "year": "2017",
+      "categories": "fr | Humanitarian response plan | sector",
+      "req_usd": 61089000.0
+    }
+  ],
+  "CAF": [
+    {
+      "code": "HCAF26",
+      "plan": "R\u00e9publique Centrafricaine Besoins Humanitaires et Plan de R\u00e9ponse 2026",
+      "year": "2026",
+      "categories": "Humanitarian needs and response plan | cluster | fr",
+      "req_usd": 264097388.0
+    },
+    {
+      "code": "HCAF25",
+      "plan": "R\u00e9publique Centrafricaine Besoins Humanitaires et Plan de R\u00e9ponse 2025",
+      "year": "2025",
+      "categories": "Humanitarian needs and response plan | cluster | fr",
+      "req_usd": 326056578.0
+    },
+    {
+      "code": "HCAF24",
+      "plan": "R\u00e9publique Centrafricaine Plan de R\u00e9ponse Humanitaire 2024",
+      "year": "2024",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 367670976.0
+    },
+    {
+      "code": "HCAF23",
+      "plan": "R\u00e9publique Centrafricaine Plan de R\u00e9ponse Humanitaire 2023",
+      "year": "2023",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 533305798.0
+    },
+    {
+      "code": "HCAF22",
+      "plan": "R\u00e9publique Centrafricaine Plan de R\u00e9ponse Humanitaire 2022",
+      "year": "2022",
+      "categories": "fr | Humanitarian response plan | cluster",
+      "req_usd": 461253975.0
+    },
+    {
+      "code": "HCAF21",
+      "plan": "R\u00e9publique Centrafricaine Plan de R\u00e9ponse Humanitaire 2021",
+      "year": "2021",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 444760000.0
+    },
+    {
+      "code": "HCAF2021",
+      "plan": "R\u00e9publique Centrafricaine Plan de R\u00e9ponse Humanitaire 2020",
+      "year": "2020",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 553622290.0
+    },
+    {
+      "code": "HCAF19",
+      "plan": "R\u00e9publique Centrafricaine Plan de R\u00e9ponse Humanitaire 2019",
+      "year": "2019",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 430700000.0
+    },
+    {
+      "code": "HCAF18",
+      "plan": "R\u00e9publique Centrafricaine Plan de R\u00e9ponse Humanitaire 2018",
+      "year": "2018",
+      "categories": "Humanitarian response plan | cluster | fr",
+      "req_usd": 515600000.0
+    },
+    {
+      "code": "HCAF17",
+      "plan": "R\u00e9publique Centrafricaine Plan de R\u00e9ponse Humanitaire 2017",
+      "year": "2017",
+      "categories": "Humanitarian response plan | cluster | fr",
+      "req_usd": 497300000.0
+    }
+  ],
+  "COD": [
+    {
+      "code": "HCOD26",
+      "plan": "R\u00e9publique D\u00e9mocratique du Congo Besoins Humanitaires et Plan de R\u00e9ponse 2026",
+      "year": "2026",
+      "categories": "Humanitarian needs and response plan | cluster | fr",
+      "req_usd": 1403721718.0
+    },
+    {
+      "code": "HCOD25",
+      "plan": "R\u00e9publique D\u00e9mocratique du Congo Besoins Humanitaires et Plan de R\u00e9ponse 2025",
+      "year": "2025",
+      "categories": "Humanitarian needs and response plan | cluster | fr",
+      "req_usd": 2538016151.0
+    },
+    {
+      "code": "HCOD24",
+      "plan": "R\u00e9publique D\u00e9mocratique du Congo Plan de R\u00e9ponse Humanitaire 2024",
+      "year": "2024",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 2580627746.0
+    },
+    {
+      "code": "HCOD23",
+      "plan": "R\u00e9publique D\u00e9mocratique du Congo Plan de R\u00e9ponse Humanitaire 2023",
+      "year": "2023",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 2252684083.0
+    },
+    {
+      "code": "HCOD22",
+      "plan": "R\u00e9publique D\u00e9mocratique du Congo Plan de R\u00e9ponse Humanitaire 2022",
+      "year": "2022",
+      "categories": "Humanitarian response plan | cluster | fr",
+      "req_usd": 1881674597.0
+    },
+    {
+      "code": "HCOD21",
+      "plan": "R\u00e9publique D\u00e9mocratique du Congo Plan de R\u00e9ponse Humanitaire 2021",
+      "year": "2021",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 1984303303.0
+    },
+    {
+      "code": "HCOD20",
+      "plan": "R\u00e9publique D\u00e9mocratique du Congo Plan de R\u00e9ponse Humanitaire 2020",
+      "year": "2020",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 2069134820.0
+    },
+    {
+      "code": "HCOD19",
+      "plan": "R\u00e9publique D\u00e9mocratique du Congo Plan de R\u00e9ponse Humanitaire 2019",
+      "year": "2019",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 1653700000.0
+    },
+    {
+      "code": "HCOD18",
+      "plan": "R\u00e9publique D\u00e9mocratique du Congo Plan de R\u00e9ponse Humanitaire 2018",
+      "year": "2018",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 1675200000.0
+    },
+    {
+      "code": "HCOD17",
+      "plan": "R\u00e9publique D\u00e9mocratique du Congo Plan de R\u00e9ponse Humanitaire 2017",
+      "year": "2017",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 812614297.0
+    }
+  ],
+  "ETH": [
+    {
+      "code": "HETH24",
+      "plan": "Ethiopia Humanitarian Response Plan 2024",
+      "year": "2024",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 3235782784.0
+    },
+    {
+      "code": "HETH23",
+      "plan": "Ethiopia Humanitarian Response Plan 2023",
+      "year": "2023",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 3994813508.0
+    },
+    {
+      "code": "HETH22",
+      "plan": "Ethiopia Humanitarian Response Plan 2022",
+      "year": "2022",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 3335002211.0
+    },
+    {
+      "code": "HETH21",
+      "plan": "Ethiopia Humanitarian Response Plan 2021",
+      "year": "2021",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 1488027181.0
+    },
+    {
+      "code": "HETH20",
+      "plan": "Ethiopia Humanitarian Response Plan 2020",
+      "year": "2020",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 1250804122.0
+    },
+    {
+      "code": "HETH19",
+      "plan": "Ethiopia Humanitarian Response Plan 2019",
+      "year": "2019",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 844548490.0
+    },
+    {
+      "code": "HETH18",
+      "plan": "Ethiopia Humanitarian and Disaster Resilience Plan 2018",
+      "year": "2018",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 1177218620.0
+    },
+    {
+      "code": "HETH17",
+      "plan": "Ethiopia Humanitarian Response Plan 2017",
+      "year": "2017",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 1417400000.0
+    },
+    {
+      "code": "OETH06",
+      "plan": "Ethiopia 2006 Humanitarian Appeal (Joint Govt-NGO-UN)",
+      "year": "2006",
+      "categories": "Other",
+      "req_usd": 350735786.0
+    },
+    {
+      "code": "OETH0607",
+      "plan": "Ethiopia: 2006 Govt-UN Joint Emergency Flood Appeal for Somali Region",
+      "year": "2006",
+      "categories": "Other",
+      "req_usd": 7502719.0
+    }
+  ],
+  "HTI": [
+    {
+      "code": "HHTI26",
+      "plan": "Haiti Besoins Humanitaires et Plan de R\u00e9ponse 2026",
+      "year": "2026",
+      "categories": "Humanitarian needs and response plan | cluster | fr",
+      "req_usd": 880327426.0
+    },
+    {
+      "code": "HHTI25",
+      "plan": "Haiti Besoins Humanitaires et Plan de R\u00e9ponse 2025",
+      "year": "2025",
+      "categories": "Humanitarian needs and response plan | cluster | fr",
+      "req_usd": 908159989.0
+    },
+    {
+      "code": "HHTI24",
+      "plan": "Ha\u00efti Besoins Humanitaires et Plan de R\u00e9ponse 2024",
+      "year": "2024",
+      "categories": "Humanitarian needs and response plan | cluster | fr",
+      "req_usd": 673767352.0
+    },
+    {
+      "code": "HHTI23",
+      "plan": "Ha\u00efti Plan de R\u00e9ponse Humanitaire 2023",
+      "year": "2023",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 719857713.0
+    },
+    {
+      "code": "FHTI2223",
+      "plan": "Ha\u00efti Chol\u00e9ra+ Appel \u00c9clair 2022",
+      "year": "2022",
+      "categories": "sector | fr | Flash appeal",
+      "req_usd": 145600234.0
+    },
+    {
+      "code": "FHTI2122",
+      "plan": "Haiti Earthquake Flash Appeal 2021",
+      "year": "2021",
+      "categories": "sector | en | Flash appeal",
+      "req_usd": 187295000.0
+    },
+    {
+      "code": "HHTI20",
+      "plan": "Ha\u00efti Plan de R\u00e9ponse Humanitaire 2020",
+      "year": "2020",
+      "categories": "sector | fr | Humanitarian response plan",
+      "req_usd": 471993035.0
+    },
+    {
+      "code": "HHTI19",
+      "plan": "Ha\u00efti Plan de R\u00e9ponse Humanitaire 2019",
+      "year": "2019",
+      "categories": "sector | fr | Humanitarian response plan",
+      "req_usd": 126207627.0
+    },
+    {
+      "code": "HHTI18",
+      "plan": "Haiti Humanitarian Response Plan 2018",
+      "year": "2018",
+      "categories": "sector | en | Humanitarian response plan",
+      "req_usd": 252200142.0
+    },
+    {
+      "code": "HHTI17",
+      "plan": "Haiti Humanitarian Response Plan 2017",
+      "year": "2017",
+      "categories": "Humanitarian response plan | sector | en",
+      "req_usd": 192223638.0
+    }
+  ],
+  "IRQ": [
+    {
+      "code": "HIRQ22",
+      "plan": "Iraq Humanitarian Response Plan 2022",
+      "year": "2022",
+      "categories": "en | Humanitarian response plan | cluster",
+      "req_usd": 400004347.0
+    },
+    {
+      "code": "HIRQ21",
+      "plan": "Iraq Humanitarian Response Plan 2021",
+      "year": "2021",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 607196803.0
+    },
+    {
+      "code": "HIRQ20",
+      "plan": "Iraq Humanitarian Response Plan 2020",
+      "year": "2020",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 662168145.0
+    },
+    {
+      "code": "HIRQ19",
+      "plan": "Iraq Humanitarian Response Plan 2019",
+      "year": "2019",
+      "categories": "en | Humanitarian response plan | cluster",
+      "req_usd": 701154139.0
+    },
+    {
+      "code": "HIRQ18",
+      "plan": "Iraq Humanitarian Response Plan 2018",
+      "year": "2018",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 568745625.0
+    },
+    {
+      "code": "HIRQ17",
+      "plan": "Iraq Humanitarian Response Plan 2017",
+      "year": "2017",
+      "categories": "en | Humanitarian response plan | cluster",
+      "req_usd": 984647064.0
+    },
+    {
+      "code": "FIRQ16",
+      "plan": "Iraq Mosul Flash Appeal 2016",
+      "year": "2016",
+      "categories": "cluster | en | Flash appeal",
+      "req_usd": 283700000.0
+    },
+    {
+      "code": "HIRQ16",
+      "plan": "Iraq Humanitarian Response Plan 2016",
+      "year": "2016",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 860544743.0
+    },
+    {
+      "code": "HIRQ15",
+      "plan": "Iraq Strategic Response Plan 2015",
+      "year": "2015",
+      "categories": "Strategic response plan | cluster | en",
+      "req_usd": 704285754.0
+    },
+    {
+      "code": "HIRQ14",
+      "plan": "Iraq Strategic Response Plan 2014",
+      "year": "2014",
+      "categories": "Strategic response plan | cluster | en",
+      "req_usd": 1113276782.0
+    }
+  ],
+  "MLI": [
+    {
+      "code": "HMLI26",
+      "plan": "Mali Besoins Humanitaires et Plan de R\u00e9ponse 2026",
+      "year": "2026",
+      "categories": "Humanitarian needs and response plan | cluster | fr",
+      "req_usd": 551000000.0
+    },
+    {
+      "code": "HMLI25",
+      "plan": "Mali Besoins Humanitaires et Plan de R\u00e9ponse 2025",
+      "year": "2025",
+      "categories": "Humanitarian needs and response plan | cluster | fr",
+      "req_usd": 771314315.0
+    },
+    {
+      "code": "HMLI24",
+      "plan": "Mali Besoins Humanitaires et Plan de R\u00e9ponse 2024",
+      "year": "2024",
+      "categories": "Humanitarian needs and response plan | cluster | fr",
+      "req_usd": 701569941.0
+    },
+    {
+      "code": "HMLI23",
+      "plan": "Mali Plan de R\u00e9ponse Humanitaire 2023",
+      "year": "2023",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 751470941.0
+    },
+    {
+      "code": "HMLI22",
+      "plan": "Mali Plan de R\u00e9ponse Humanitaire 2022",
+      "year": "2022",
+      "categories": "fr | Humanitarian response plan | cluster",
+      "req_usd": 685734819.0
+    },
+    {
+      "code": "HMLI21",
+      "plan": "Mali Plan de R\u00e9ponse Humanitaire 2021",
+      "year": "2021",
+      "categories": "fr | Humanitarian response plan | cluster",
+      "req_usd": 563286869.0
+    },
+    {
+      "code": "HMLI20",
+      "plan": "Mali Plan de R\u00e9ponse Humanitaire 2020",
+      "year": "2020",
+      "categories": "Humanitarian response plan | cluster | fr",
+      "req_usd": 474292180.0
+    },
+    {
+      "code": "HMLI19",
+      "plan": "Mali Plan de R\u00e9ponse Humanitaire 2019",
+      "year": "2019",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 323953738.0
+    },
+    {
+      "code": "HMLI18",
+      "plan": "Mali Plan de R\u00e9ponse Humanitaire 2018",
+      "year": "2018",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 329565482.0
+    },
+    {
+      "code": "HMLI17",
+      "plan": "Mali Plan de R\u00e9ponse Humanitaire 2017",
+      "year": "2017",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 304734494.0
+    }
+  ],
+  "MOZ": [
+    {
+      "code": "HMOZ26",
+      "plan": "Mozambique Humanitarian Needs and Response Plan 2026",
+      "year": "2026",
+      "categories": "Humanitarian needs and response plan | cluster | en",
+      "req_usd": 347649861.0
+    },
+    {
+      "code": "FMOZ25",
+      "plan": "Mozambique Drought Flash Appeal 2025",
+      "year": "2025",
+      "categories": "cluster | en | Flash appeal",
+      "req_usd": 133082917.0
+    },
+    {
+      "code": "FMOZ25a",
+      "plan": "Mozambique Tropical Cyclones Flash Appeal 2025",
+      "year": "2025",
+      "categories": "cluster | en | Flash appeal",
+      "req_usd": 197543124.0
+    },
+    {
+      "code": "HMOZ25",
+      "plan": "Mozambique Humanitarian Needs and Response Plan 2025",
+      "year": "2025",
+      "categories": "Humanitarian needs and response plan | cluster | en",
+      "req_usd": 352096942.0
+    },
+    {
+      "code": "FMOZ24",
+      "plan": "Mozambique Drought Flash Appeal 2024",
+      "year": "2024",
+      "categories": "cluster | en | Flash appeal",
+      "req_usd": 89025047.0
+    },
+    {
+      "code": "HMOZ24",
+      "plan": "Mozambique Humanitarian Needs and Response Plan 2024",
+      "year": "2024",
+      "categories": "Humanitarian needs and response plan | cluster | en",
+      "req_usd": 413420177.0
+    },
+    {
+      "code": "OMOZ23",
+      "plan": "Mozambique Cyclone Freddy, Floods and Cholera Response Plan 2023",
+      "year": "2023",
+      "categories": "cluster | en | Other",
+      "req_usd": 138008861.0
+    },
+    {
+      "code": "FMOZ22",
+      "plan": "Mozambique Gombe Emergency Response Plan 2022",
+      "year": "2022",
+      "categories": "cluster | en | Flash appeal",
+      "req_usd": 48073854.0
+    },
+    {
+      "code": "HMOZ22",
+      "plan": "Mozambique Humanitarian Response Plan 2022",
+      "year": "2022",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 388499803.0
+    },
+    {
+      "code": "HMOZ21",
+      "plan": "Mozambique Humanitarian Response Plan 2021",
+      "year": "2021",
+      "categories": "en | Humanitarian response plan | cluster",
+      "req_usd": 254080356.0
+    }
+  ],
+  "NER": [
+    {
+      "code": "HNER26",
+      "plan": "Niger Besoins Humanitaires et Plan de R\u00e9ponse 2026",
+      "year": "2026",
+      "categories": "Humanitarian needs and response plan | cluster | fr",
+      "req_usd": 449000000.0
+    },
+    {
+      "code": "HNER25",
+      "plan": "Niger Besoins Humanitaires et Plan de R\u00e9ponse 2025",
+      "year": "2025",
+      "categories": "Humanitarian needs and response plan | cluster | fr",
+      "req_usd": 603027582.0
+    },
+    {
+      "code": "HNER24",
+      "plan": "Niger Besoins Humanitaires et Plan de R\u00e9ponse 2024",
+      "year": "2024",
+      "categories": "Humanitarian needs and response plan | cluster | fr",
+      "req_usd": 662192757.0
+    },
+    {
+      "code": "HNER23",
+      "plan": "Niger Plan de R\u00e9ponse Humanitaire 2023",
+      "year": "2023",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 583906619.0
+    },
+    {
+      "code": "HNER22",
+      "plan": "Niger Plan de R\u00e9ponse Humanitaire 2022",
+      "year": "2022",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 552598446.0
+    },
+    {
+      "code": "HNER21",
+      "plan": "Niger Plan de R\u00e9ponse Humanitaire 2021",
+      "year": "2021",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 523182880.0
+    },
+    {
+      "code": "HNER20",
+      "plan": "Niger Plan de R\u00e9ponse Humanitaire 2020",
+      "year": "2020",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 516074957.0
+    },
+    {
+      "code": "HNER19",
+      "plan": "Niger Plan de R\u00e9ponse Humanitaire 2019",
+      "year": "2019",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 383101817.0
+    },
+    {
+      "code": "HNER18",
+      "plan": "Niger Plan de R\u00e9ponse Humanitaire 2018",
+      "year": "2018",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 338303089.0
+    },
+    {
+      "code": "HNER17",
+      "plan": "Niger Plan de R\u00e9ponse Humanitaire 2017",
+      "year": "2017",
+      "categories": "Humanitarian response plan | cluster | fr",
+      "req_usd": 287273789.0
+    }
+  ],
+  "PSE": [
+    {
+      "code": "FPSE26",
+      "plan": "Escalation of Hostilities in the OPT Flash Appeal 2026",
+      "year": "2026",
+      "categories": "cluster | en | Flash appeal",
+      "req_usd": 4064305808.0
+    },
+    {
+      "code": "FPSE25",
+      "plan": "Escalation of Hostilities in the OPT Flash Appeal 2025",
+      "year": "2025",
+      "categories": "cluster | en | Flash appeal",
+      "req_usd": 4073058682.0
+    },
+    {
+      "code": "FPSE24",
+      "plan": "Escalation of Hostilities in the OPT Flash Appeal 2024",
+      "year": "2024",
+      "categories": "cluster | en | Flash appeal",
+      "req_usd": 3422855934.0
+    },
+    {
+      "code": "FPSE23",
+      "plan": "Escalation of Hostilities in the OPT Flash Appeal 2023",
+      "year": "2023",
+      "categories": "cluster | en | Flash appeal",
+      "req_usd": 629098307.0
+    },
+    {
+      "code": "HPSE20",
+      "plan": "Occupied Palestinian Territory Humanitarian Response Plan 2020",
+      "year": "2020",
+      "categories": "Humanitarian response plan | cluster | en",
+      "req_usd": 420381684.0
+    },
+    {
+      "code": "HPSE19",
+      "plan": "Occupied Palestinian Territory Humanitarian Response Strategy 2019",
+      "year": "2019",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 350589271.0
+    },
+    {
+      "code": "HPSE18",
+      "plan": "Occupied Palestinian Territory Humanitarian Response Strategy 2018",
+      "year": "2018",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 539721755.0
+    },
+    {
+      "code": "HPSE16",
+      "plan": "Occupied Palestinian Territory Humanitarian Response Plan 2016",
+      "year": "2016",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 570702496.0
+    },
+    {
+      "code": "HPSE15",
+      "plan": "Occupied Palestinian Territory Strategic Response Plan 2015",
+      "year": "2015",
+      "categories": "en | Strategic response plan | cluster",
+      "req_usd": 706051110.0
+    },
+    {
+      "code": "SPSE14",
+      "plan": "Occupied Palestinian Territory Strategic Response Plan 2014",
+      "year": "2014",
+      "categories": "Strategic response plan | cluster | en",
+      "req_usd": 931086454.0
+    }
+  ],
+  "SDN": [
+    {
+      "code": "HSDN26",
+      "plan": "Sudan Humanitarian Needs and Response Plan 2026",
+      "year": "2026",
+      "categories": "Humanitarian needs and response plan | cluster | en",
+      "req_usd": 2866228594.0
+    },
+    {
+      "code": "HSDN25",
+      "plan": "Sudan Humanitarian Needs and Response Plan 2025",
+      "year": "2025",
+      "categories": "Humanitarian needs and response plan | cluster | en",
+      "req_usd": 4162518656.0
+    },
+    {
+      "code": "HSDN24",
+      "plan": "Sudan Humanitarian Needs and Response Plan 2024",
+      "year": "2024",
+      "categories": "Humanitarian needs and response plan | cluster | en",
+      "req_usd": 2695680744.0
+    },
+    {
+      "code": "HSDN23",
+      "plan": "Sudan Humanitarian Response Plan 2023",
+      "year": "2023",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 2565230201.0
+    },
+    {
+      "code": "HSDN22",
+      "plan": "Sudan Humanitarian Response Plan 2022",
+      "year": "2022",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 1936697740.0
+    },
+    {
+      "code": "HSDN21",
+      "plan": "Sudan Humanitarian Response Plan 2021",
+      "year": "2021",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 1939814880.0
+    },
+    {
+      "code": "HSDN20",
+      "plan": "Sudan Humanitarian Response Plan 2020",
+      "year": "2020",
+      "categories": "Humanitarian response plan | cluster | en",
+      "req_usd": 1633403129.0
+    },
+    {
+      "code": "HSDN19",
+      "plan": "Sudan Humanitarian Response Plan 2019",
+      "year": "2019",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 1149289490.0
+    },
+    {
+      "code": "HSDN18",
+      "plan": "Sudan Humanitarian Response Plan 2018",
+      "year": "2018",
+      "categories": "Humanitarian response plan | cluster | en",
+      "req_usd": 1007555093.0
+    },
+    {
+      "code": "HSDN17",
+      "plan": "Sudan Humanitarian Response Plan 2017",
+      "year": "2017",
+      "categories": "en | Humanitarian response plan | cluster",
+      "req_usd": 803966226.0
+    }
+  ],
+  "SOM": [
+    {
+      "code": "HSOM26",
+      "plan": "Somalia Humanitarian Needs and Response Plan 2026",
+      "year": "2026",
+      "categories": "Humanitarian needs and response plan | cluster | en",
+      "req_usd": 850000000.0
+    },
+    {
+      "code": "HSOM25",
+      "plan": "Somalia Humanitarian Needs and Response Plan 2025",
+      "year": "2025",
+      "categories": "Humanitarian needs and response plan | cluster | en",
+      "req_usd": 1421988955.0
+    },
+    {
+      "code": "HSOM24",
+      "plan": "Somalia Humanitarian Needs and Response Plan 2024",
+      "year": "2024",
+      "categories": "Humanitarian needs and response plan | cluster | en",
+      "req_usd": 1585259297.0
+    },
+    {
+      "code": "HSOM23",
+      "plan": "Somalia Humanitarian Response Plan 2023",
+      "year": "2023",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 2599161218.0
+    },
+    {
+      "code": "HSOM22",
+      "plan": "Somalia Humanitarian Response Plan 2022",
+      "year": "2022",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 2267407090.0
+    },
+    {
+      "code": "HSOM21",
+      "plan": "Somalia Humanitarian Response Plan 2021",
+      "year": "2021",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 1092121872.0
+    },
+    {
+      "code": "HSOM20",
+      "plan": "Somalia Humanitarian Response Plan 2020",
+      "year": "2020",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 1009926527.0
+    },
+    {
+      "code": "HSOM19",
+      "plan": "Somalia Humanitarian Response Plan 2019",
+      "year": "2019",
+      "categories": "en | Humanitarian response plan | cluster",
+      "req_usd": 1077453103.0
+    },
+    {
+      "code": "HSOM18",
+      "plan": "Somalia Humanitarian Response Plan 2018",
+      "year": "2018",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 1542514570.0
+    },
+    {
+      "code": "HSOM17",
+      "plan": "Somalia Humanitarian Response Plan 2017",
+      "year": "2017",
+      "categories": "en | Humanitarian response plan | cluster",
+      "req_usd": 1507846515.0
+    }
+  ],
+  "SSD": [
+    {
+      "code": "HSSD26",
+      "plan": "South Sudan Humanitarian Needs and Response Plan 2026",
+      "year": "2026",
+      "categories": "Humanitarian needs and response plan | cluster | en",
+      "req_usd": 1463046056.0
+    },
+    {
+      "code": "HSSD25",
+      "plan": "South Sudan Humanitarian Needs and Response Plan 2025",
+      "year": "2025",
+      "categories": "Humanitarian needs and response plan | cluster | en",
+      "req_usd": 1694778653.0
+    },
+    {
+      "code": "HSSD24",
+      "plan": "South Sudan Humanitarian Needs and Response Plan 2024",
+      "year": "2024",
+      "categories": "Humanitarian needs and response plan | cluster | en",
+      "req_usd": 1788817122.0
+    },
+    {
+      "code": "HSSD23",
+      "plan": "South Sudan Humanitarian Response Plan 2023",
+      "year": "2023",
+      "categories": "en | Humanitarian response plan | cluster",
+      "req_usd": 2055885216.0
+    },
+    {
+      "code": "HSSD22",
+      "plan": "South Sudan Humanitarian Response Plan 2022",
+      "year": "2022",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 1699588587.0
+    },
+    {
+      "code": "HSSD21",
+      "plan": "South Sudan Humanitarian Response Plan 2021",
+      "year": "2021",
+      "categories": "en | Humanitarian response plan | cluster",
+      "req_usd": 1677772788.0
+    },
+    {
+      "code": "HSSD20",
+      "plan": "South Sudan Humanitarian Response Plan 2020",
+      "year": "2020",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 1899937964.0
+    },
+    {
+      "code": "HSSD19",
+      "plan": "South Sudan Humanitarian Response Plan 2019",
+      "year": "2019",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 1507421344.0
+    },
+    {
+      "code": "HSSD18",
+      "plan": "South Sudan Humanitarian Response Plan 2018",
+      "year": "2018",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 1717890485.0
+    },
+    {
+      "code": "HSSD17",
+      "plan": "South Sudan Humanitarian Response Plan 2017",
+      "year": "2017",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 1639694893.0
+    }
+  ],
+  "SYR": [
+    {
+      "code": "HSYR26",
+      "plan": "Syrian Arab Republic Humanitarian Response Priorities 2026",
+      "year": "2026",
+      "categories": "Humanitarian needs and response plan | sector | en",
+      "req_usd": 3190000000.0
+    },
+    {
+      "code": "FSYR25",
+      "plan": "Syrian Arab Republic Humanitarian Response Priorities \u2013 January-December 2025",
+      "year": "2025",
+      "categories": "sector | en | Flash appeal",
+      "req_usd": 3186585280.0
+    },
+    {
+      "code": "HSYR24",
+      "plan": "Syrian Arab Republic Humanitarian Response Plan 2024",
+      "year": "2024",
+      "categories": "sector | en | Humanitarian response plan",
+      "req_usd": 4074158710.0
+    },
+    {
+      "code": "OSYR24",
+      "plan": "Inter-Agency Emergency Appeal for the Influx from Lebanon to Syria 2024",
+      "year": "2024",
+      "categories": "sector | en | Other",
+      "req_usd": 135664082.0
+    },
+    {
+      "code": "FSYR23",
+      "plan": "Syria Earthquake Flash Appeal 2023",
+      "year": "2023",
+      "categories": "sector | en | Flash appeal",
+      "req_usd": 397623464.0
+    },
+    {
+      "code": "HSYR23",
+      "plan": "Syrian Arab Republic Humanitarian Response Plan 2023",
+      "year": "2023",
+      "categories": "sector | en | Humanitarian response plan",
+      "req_usd": 5413802598.0
+    },
+    {
+      "code": "HSYR22",
+      "plan": "Syrian Arab Republic Humanitarian Response Plan 2022 - 2023",
+      "year": "2022",
+      "categories": "sector | en | Humanitarian response plan",
+      "req_usd": 4444280227.0
+    },
+    {
+      "code": "HSYR21",
+      "plan": "Syrian Arab Republic Humanitarian Response Plan 2021",
+      "year": "2021",
+      "categories": "Humanitarian response plan | sector | en",
+      "req_usd": 4224416702.0
+    },
+    {
+      "code": "HSYR20",
+      "plan": "Syrian Arab Republic Humanitarian Response Plan 2020",
+      "year": "2020",
+      "categories": "sector | en | Humanitarian response plan",
+      "req_usd": 3817532832.0
+    },
+    {
+      "code": "HSYR19",
+      "plan": "Syrian Arab Republic Humanitarian Response Plan 2019",
+      "year": "2019",
+      "categories": "sector | en | Humanitarian response plan",
+      "req_usd": 3293416196.0
+    }
+  ],
+  "TCD": [
+    {
+      "code": "HTCD26",
+      "plan": "Tchad Besoins Humanitaires et Plan de R\u00e9ponse 2026",
+      "year": "2026",
+      "categories": "Humanitarian needs and response plan | sector | fr",
+      "req_usd": 975000000.0
+    },
+    {
+      "code": "HTCD25",
+      "plan": "Tchad Besoins Humanitaires et Plan de R\u00e9ponse 2025",
+      "year": "2025",
+      "categories": "Humanitarian needs and response plan | sector | fr",
+      "req_usd": 1454258243.0
+    },
+    {
+      "code": "HTCD24",
+      "plan": "Tchad Besoins Humanitaires et Plan de R\u00e9ponse 2024",
+      "year": "2024",
+      "categories": "Humanitarian needs and response plan | sector | fr",
+      "req_usd": 1124572823.0
+    },
+    {
+      "code": "HTCD23",
+      "plan": "Tchad Plan de R\u00e9ponse Humanitaire 2023",
+      "year": "2023",
+      "categories": "sector | fr | Humanitarian response plan",
+      "req_usd": 920624766.0
+    },
+    {
+      "code": "HTCD22",
+      "plan": "Tchad Plan de R\u00e9ponse Humanitaire 2022",
+      "year": "2022",
+      "categories": "sector | fr | Humanitarian response plan",
+      "req_usd": 510909899.0
+    },
+    {
+      "code": "HTCD21",
+      "plan": "Tchad Plan de R\u00e9ponse Humanitaire 2021",
+      "year": "2021",
+      "categories": "fr | Humanitarian response plan | cluster",
+      "req_usd": 617522407.0
+    },
+    {
+      "code": "HTCD20",
+      "plan": "Tchad Plan de R\u00e9ponse Humanitaire 2020",
+      "year": "2020",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 664641160.0
+    },
+    {
+      "code": "HTCD19",
+      "plan": "Tchad Plan de R\u00e9ponse Humanitaire 2019",
+      "year": "2019",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 476641195.0
+    },
+    {
+      "code": "HTCD18",
+      "plan": "Tchad Plan de R\u00e9ponse Humanitaire 2018",
+      "year": "2018",
+      "categories": "cluster | fr | Humanitarian response plan",
+      "req_usd": 543769241.0
+    },
+    {
+      "code": "HTCD17",
+      "plan": "Tchad Plan de R\u00e9ponse Humanitaire 2017",
+      "year": "2017",
+      "categories": "Humanitarian response plan | cluster | fr",
+      "req_usd": 588608263.0
+    }
+  ],
+  "YEM": [
+    {
+      "code": "HYEM26",
+      "plan": "Yemen Humanitarian Needs and Response Plan 2026",
+      "year": "2026",
+      "categories": "Humanitarian needs and response plan | cluster | en",
+      "req_usd": 2470000000.0
+    },
+    {
+      "code": "HYEM25",
+      "plan": "Yemen Humanitarian Needs and Response Plan 2025",
+      "year": "2025",
+      "categories": "Humanitarian needs and response plan | cluster | en",
+      "req_usd": 2478772922.0
+    },
+    {
+      "code": "HYEM24",
+      "plan": "Yemen Humanitarian Response Plan 2024",
+      "year": "2024",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 2705762394.0
+    },
+    {
+      "code": "HYEM23",
+      "plan": "Yemen Humanitarian Response Plan 2023",
+      "year": "2023",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 4344155316.0
+    },
+    {
+      "code": "HYEM22",
+      "plan": "Yemen Humanitarian Response Plan 2022",
+      "year": "2022",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 4271938417.0
+    },
+    {
+      "code": "HYEM21",
+      "plan": "Yemen Humanitarian Response Plan 2021",
+      "year": "2021",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 3853456397.0
+    },
+    {
+      "code": "HYEM20",
+      "plan": "Yemen Humanitarian Response Plan 2020",
+      "year": "2020",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 3382681703.0
+    },
+    {
+      "code": "HYEM19",
+      "plan": "Yemen Humanitarian Response Plan 2019",
+      "year": "2019",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 4192680354.0
+    },
+    {
+      "code": "HYEM18",
+      "plan": "Yemen Humanitarian Response Plan 2018",
+      "year": "2018",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 3108067800.0
+    },
+    {
+      "code": "HYEM17",
+      "plan": "Yemen Humanitarian Response Plan 2017",
+      "year": "2017",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 2338796140.0
+    }
+  ],
+  "LBN": [
+    {
+      "code": "FLBN25",
+      "plan": "Lebanon Flash Appeal 2025",
+      "year": "2025",
+      "categories": "sector | en | Flash appeal",
+      "req_usd": 371357000.0
+    },
+    {
+      "code": "FLBN24",
+      "plan": "Lebanon Flash Appeal 2024",
+      "year": "2024",
+      "categories": "sector | en | Flash appeal",
+      "req_usd": 425745000.0
+    },
+    {
+      "code": "OLBN23",
+      "plan": "Lebanon Emergency Response Plan 2023",
+      "year": "2023",
+      "categories": "sector | en | Other",
+      "req_usd": 200203540.0
+    },
+    {
+      "code": "OLBN22",
+      "plan": "Lebanon Emergency Response Plan 2022",
+      "year": "2022",
+      "categories": "sector | en | Other",
+      "req_usd": 378175867.0
+    },
+    {
+      "code": "OLBN2122",
+      "plan": "Lebanon Emergency Response Plan 2021",
+      "year": "2021",
+      "categories": "sector | en | Other",
+      "req_usd": 167976726.0
+    },
+    {
+      "code": "FLBN20",
+      "plan": "Lebanon Flash Appeal 2020",
+      "year": "2020",
+      "categories": "en | Flash appeal | sector",
+      "req_usd": 196609142.0
+    },
+    {
+      "code": "OLBN20",
+      "plan": "Lebanon Intersectoral COVID-19 Response Plan 2020",
+      "year": "2020",
+      "categories": "sector | en | Other",
+      "req_usd": 136500000.0
+    },
+    {
+      "code": "OLBN07",
+      "plan": "Lebanon Crisis Appeal 2007",
+      "year": "2007",
+      "categories": "Other",
+      "req_usd": 13083469.0
+    },
+    {
+      "code": "FLBN06",
+      "plan": "Lebanon Crisis 2006",
+      "year": "2006",
+      "categories": "Flash appeal",
+      "req_usd": 96520410.0
+    }
+  ],
+  "MMR": [
+    {
+      "code": "HMMR26",
+      "plan": "Myanmar Humanitarian Needs and Response Plan 2026",
+      "year": "2026",
+      "categories": "Humanitarian needs and response plan | cluster | en",
+      "req_usd": 889600798.0
+    },
+    {
+      "code": "HMMR25a",
+      "plan": "Myanmar Earthquake HNRP Flash Addendum 2025",
+      "year": "2025",
+      "categories": "Humanitarian needs and response plan | cluster | en",
+      "req_usd": 275150034.0
+    },
+    {
+      "code": "HMMR25b",
+      "plan": "Myanmar Original Humanitarian Needs and Response Plan 2025",
+      "year": "2025",
+      "categories": "Humanitarian needs and response plan | cluster | en",
+      "req_usd": 1137811569.0
+    },
+    {
+      "code": "HMMR24",
+      "plan": "Myanmar Humanitarian Needs and Response Plan 2024",
+      "year": "2024",
+      "categories": "Humanitarian needs and response plan | cluster | en",
+      "req_usd": 993548103.0
+    },
+    {
+      "code": "HMMR23",
+      "plan": "Myanmar Humanitarian Response Plan 2023",
+      "year": "2023",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 886738899.0
+    },
+    {
+      "code": "HMMR22",
+      "plan": "Myanmar Humanitarian Response Plan 2022",
+      "year": "2022",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 825698032.0
+    },
+    {
+      "code": "HMMR21",
+      "plan": "Myanmar Humanitarian Response Plan 2021",
+      "year": "2021",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 276455939.0
+    },
+    {
+      "code": "OMMR21",
+      "plan": "Myanmar Interim Emergency Response Plan 2021",
+      "year": "2021",
+      "categories": "en | Other | cluster",
+      "req_usd": 109161826.0
+    },
+    {
+      "code": "HMMR20",
+      "plan": "Myanmar Humanitarian Response Plan 2020",
+      "year": "2020",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 275300000.0
+    },
+    {
+      "code": "HMMR19",
+      "plan": "Myanmar Humanitarian Response Plan 2019",
+      "year": "2019",
+      "categories": "Humanitarian response plan | cluster | en",
+      "req_usd": 214360000.0
+    }
+  ],
+  "UKR": [
+    {
+      "code": "HUKR26",
+      "plan": "Ukraine Humanitarian Needs and Response Plan 2026",
+      "year": "2026",
+      "categories": "Humanitarian needs and response plan | cluster | en",
+      "req_usd": 2303961975.0
+    },
+    {
+      "code": "HUKR25",
+      "plan": "Ukraine Humanitarian Needs and Response Plan 2025",
+      "year": "2025",
+      "categories": "Humanitarian needs and response plan | cluster | en",
+      "req_usd": 2633534010.0
+    },
+    {
+      "code": "HUKR24",
+      "plan": "Ukraine Humanitarian Needs and Response Plan 2024",
+      "year": "2024",
+      "categories": "Humanitarian needs and response plan | cluster | en",
+      "req_usd": 3107702931.0
+    },
+    {
+      "code": "HUKR23",
+      "plan": "Ukraine Humanitarian Response Plan 2023",
+      "year": "2023",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 3945656687.0
+    },
+    {
+      "code": "FUKR22",
+      "plan": "Ukraine Flash Appeal 2022",
+      "year": "2022",
+      "categories": "cluster | en | Flash appeal",
+      "req_usd": 4292463880.0
+    },
+    {
+      "code": "HUKR21",
+      "plan": "Ukraine Humanitarian Response Plan 2021",
+      "year": "2021",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 167982922.0
+    },
+    {
+      "code": "HUKR20",
+      "plan": "Ukraine Humanitarian Response Plan 2020",
+      "year": "2020",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 204653234.0
+    },
+    {
+      "code": "HUKR19",
+      "plan": "Ukraine Humanitarian Response Plan 2019",
+      "year": "2019",
+      "categories": "Humanitarian response plan | cluster | en",
+      "req_usd": 163640038.0
+    },
+    {
+      "code": "HUKR18",
+      "plan": "Ukraine Humanitarian Response Plan 2018",
+      "year": "2018",
+      "categories": "Humanitarian response plan | cluster | en",
+      "req_usd": 186909122.0
+    },
+    {
+      "code": "HUKR17",
+      "plan": "Ukraine Humanitarian Response Plan 2017",
+      "year": "2017",
+      "categories": "cluster | en | Humanitarian response plan",
+      "req_usd": 203608611.0
+    }
+  ],
+  "COL": [
+    {
+      "code": "HCOL26",
+      "plan": "Colombia Necesidades Humanitarias y Plan de Respuesta 2026",
+      "year": "2026",
+      "categories": "Humanitarian needs and response plan | cluster | es",
+      "req_usd": 384000000.0
+    },
+    {
+      "code": "HCOL25",
+      "plan": "Colombia Necesidades Humanitarias y Plan de Respuesta 2025",
+      "year": "2025",
+      "categories": "Humanitarian needs and response plan | cluster | es",
+      "req_usd": 342308343.0
+    },
+    {
+      "code": "HCOL24",
+      "plan": "Colombia Plan de Respuesta a Prioridades Comunitarias Colombia 2024 - 2025",
+      "year": "2024",
+      "categories": "Humanitarian needs and response plan | cluster | es",
+      "req_usd": 331990687.0
+    },
+    {
+      "code": "HCOL23",
+      "plan": "Colombia Plan de Respuesta Humanitaria 2023",
+      "year": "2023",
+      "categories": "cluster | es | Humanitarian response plan",
+      "req_usd": 283317893.0
+    },
+    {
+      "code": "HCOL22",
+      "plan": "Colombia Plan de Respuesta Humanitaria 2022",
+      "year": "2022",
+      "categories": "cluster | es | Humanitarian response plan",
+      "req_usd": 282854048.0
+    },
+    {
+      "code": "HCOL21",
+      "plan": "Colombia Plan de Respuesta Humanitaria 2021",
+      "year": "2021",
+      "categories": "cluster | es | Humanitarian response plan",
+      "req_usd": 174010305.0
+    },
+    {
+      "code": "HCOL20",
+      "plan": "Colombia Plan de Respuesta Humanitaria 2020",
+      "year": "2020",
+      "categories": "cluster | es | Humanitarian response plan",
+      "req_usd": 209700000.0
+    },
+    {
+      "code": "OCOL20",
+      "plan": "Colombia Plan de Respuesta Intersectorial COVID-19 2020",
+      "year": "2020",
+      "categories": "cluster | es | Other",
+      "req_usd": 283920647.0
+    },
+    {
+      "code": "OCOL03",
+      "plan": "Colombia (HAP) 2003",
+      "year": "2003",
+      "categories": "Other",
+      "req_usd": 79497508.0
+    }
+  ],
+  "NGA": [
+    {
+      "code": "HNGA26",
+      "plan": "Nigeria Humanitarian Needs and Response Plan 2026",
+      "year": "2026",
+      "categories": "Humanitarian needs and response plan | sector | en",
+      "req_usd": 516399423.0
+    },
+    {
+      "code": "HNGA25",
+      "plan": "Nigeria Humanitarian Needs and Response Plan 2025",
+      "year": "2025",
+      "categories": "Humanitarian needs and response plan | sector | en",
+      "req_usd": 910246471.0
+    },
+    {
+      "code": "HNGA24",
+      "plan": "Nigeria Humanitarian Response Plan 2024",
+      "year": "2024",
+      "categories": "sector | en | Humanitarian response plan",
+      "req_usd": 926542686.0
+    },
+    {
+      "code": "HNGA21",
+      "plan": "Nigeria Humanitarian Response Plan 2021",
+      "year": "2021",
+      "categories": "en | Humanitarian response plan | sector",
+      "req_usd": 1006358629.0
+    },
+    {
+      "code": "HNGA19",
+      "plan": "Nigeria Humanitarian Response Strategy 2019",
+      "year": "2019",
+      "categories": "en | Humanitarian response plan | sector",
+      "req_usd": 847703581.0
+    },
+    {
+      "code": "HNGA17",
+      "plan": "Nigeria Humanitarian Response Plan 2017",
+      "year": "2017",
+      "categories": "sector | en | Humanitarian response plan",
+      "req_usd": 1054431494.0
+    },
+    {
+      "code": "HNGA16",
+      "plan": "Nigeria Humanitarian Response Plan 2016",
+      "year": "2016",
+      "categories": "sector | en | Humanitarian response plan",
+      "req_usd": 484179598.0
+    },
+    {
+      "code": "HNGA15",
+      "plan": "Nigeria Strategic Response Plan 2015",
+      "year": "2015",
+      "categories": "Strategic response plan | sector | en",
+      "req_usd": 100263495.0
+    },
+    {
+      "code": "HNGA14",
+      "plan": "Nigeria Strategic Response Plan 2014",
+      "year": "2014",
+      "categories": "Strategic response plan | sector | en",
+      "req_usd": 93397393.0
+    }
+  ],
+  "VEN": [
+    {
+      "code": "HVEN26",
+      "plan": "Venezuela Plan de Respuesta Humanitaria 2026",
+      "year": "2026",
+      "categories": "Humanitarian needs and response plan | cluster | es",
+      "req_usd": 606000000.0
+    },
+    {
+      "code": "HVEN25",
+      "plan": "Venezuela Plan de Respuesta Humanitaria 2025",
+      "year": "2025",
+      "categories": "cluster | es | Humanitarian response plan",
+      "req_usd": 606497714.0
+    },
+    {
+      "code": "HVEN24",
+      "plan": "Venezuela Plan de Respuesta Humanitaria 2024",
+      "year": "2024",
+      "categories": "cluster | es | Humanitarian response plan",
+      "req_usd": 617034811.0
+    },
+    {
+      "code": "HVEN23",
+      "plan": "Venezuela Plan de Respuesta Humanitaria 2023",
+      "year": "2023",
+      "categories": "cluster | es | Humanitarian response plan",
+      "req_usd": 719581691.0
+    },
+    {
+      "code": "HVEN22",
+      "plan": "Venezuela Plan de Respuesta Humanitaria 2022",
+      "year": "2022",
+      "categories": "cluster | es | Humanitarian response plan",
+      "req_usd": 794987748.0
+    },
+    {
+      "code": "HVEN21",
+      "plan": "Venezuela Plan de Respuesta Humanitaria 2021",
+      "year": "2021",
+      "categories": "cluster | es | Humanitarian response plan",
+      "req_usd": 708098081.0
+    },
+    {
+      "code": "HVEN20",
+      "plan": "Venezuela Plan de Respuesta Humanitaria con Panorama de Necesidades 2020",
+      "year": "2020",
+      "categories": "cluster | es | Humanitarian response plan",
+      "req_usd": 762509363.0
+    },
+    {
+      "code": "HVEN19",
+      "plan": "Venezuela Plan de Respuesta Humanitaria 2019",
+      "year": "2019",
+      "categories": "Humanitarian response plan | cluster | es",
+      "req_usd": 222724387.0
+    }
+  ]
+}
