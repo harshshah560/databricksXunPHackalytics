@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from './context/ThemeContext';
 import Layout from './components/Layout';
 import Landing from './pages/Landing/Landing';
@@ -16,6 +17,7 @@ function App() {
             <Route path="/forecast" element={<Simulation />} />
           </Route>
         </Routes>
+        <Analytics />
       </BrowserRouter>
     </ThemeProvider>
   );
